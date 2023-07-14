@@ -1,0 +1,137 @@
+<!-- Formulario -->
+<form id="crear" class="formulario">
+  <!-- <fieldset disabled></fieldset> -->
+  <fieldset>
+    <legend class="titulo_formulario">
+      Bienvenido al Sistema de Inventario
+    </legend>
+    <div class="contenedor_formulario">
+      <div class="mb-3">
+        <tr *ngFor="let person of personaB">
+          <td>{{ person.per_cod }}</td>
+        </tr>
+        <input
+          type="text"
+          [(ngModel)]="persona.perCedula"
+          [ngModelOptions]="{ standalone: true }"
+          id="persona"
+          class="form-control"
+          placeholder="Cédula"
+          required
+        />
+        <input
+          type="text"
+          [(ngModel)]="persona.perPrimerNom"
+          [ngModelOptions]="{ standalone: true }"
+          id="persona"
+          class="form-control"
+          placeholder="Primer Nombre"
+          required
+        />
+        <input
+          type="text"
+          [(ngModel)]="persona.perSegundoNom"
+          [ngModelOptions]="{ standalone: true }"
+          id="persona"
+          class="form-control"
+          placeholder="Segundo Nombre"
+          required
+        />
+        <input
+          type="text"
+          [(ngModel)]="persona.perApellidoPater"
+          [ngModelOptions]="{ standalone: true }"
+          id="persona"
+          class="form-control"
+          placeholder="Primer Apellido"
+          required
+        />
+        <input
+          type="text"
+          [(ngModel)]="persona.perApellidoMater"
+          [ngModelOptions]="{ standalone: true }"
+          id="persona"
+          class="form-control"
+          placeholder="Segundo Apellido"
+          required
+        />
+        <input
+          type="text"
+          [(ngModel)]="persona.perDireccion"
+          [ngModelOptions]="{ standalone: true }"
+          id="persona"
+          class="form-control"
+          placeholder="Direccion"
+          required
+        />
+        <input
+          type="text"
+          [(ngModel)]="persona.perTelefono"
+          [ngModelOptions]="{ standalone: true }"
+          id="persona"
+          class="form-control"
+          placeholder="Telefono"
+          required
+        />
+        <input
+          type="text"
+          [(ngModel)]="persona.perGenero"
+          [ngModelOptions]="{ standalone: true }"
+          id="persona"
+          class="form-control"
+          placeholder="Genero ( M - F )"
+          required
+        />
+        <input
+          type="email"
+          [(ngModel)]="persona.perEmail"
+          [ngModelOptions]="{ standalone: true }"
+          id="persona"
+          class="form-control"
+          placeholder="Email"
+          required
+        />
+        <input
+          type="text"
+          [(ngModel)]="persona.perFechaNac"
+          [ngModelOptions]="{ standalone: true }"
+          id="persona"
+          class="form-control"
+          placeholder="Fecha de Nacimiento"
+          required
+        />
+        <input
+          type="email"
+          [(ngModel)]="usuario.usuario"
+          [ngModelOptions]="{ standalone: true }"
+          id="usuario"
+          class="form-control"
+          placeholder="Correo"
+          required
+        />
+        <input
+          type="password"
+          [(ngModel)]="usuario.contrasenia"
+          [ngModelOptions]="{ standalone: true }"
+          id="contrasenia"
+          class="form-control"
+          placeholder="Contraseña"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="crear()"
+      >
+        Siguiente
+      </button>
+
+      <p class="texto_formulario">
+        ¿Ya tienes Cuenta?
+        <a class="enlace_formulario" (click)="iniciar()">Iniciar Sesión</a>
+      </p>
+    </div>
+  </fieldset>
+</form>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div class="header">
+    <h1 style="margin-right: auto;">Panel Ingresar Categoría</h1>
+  </div>
+  <div class="button-container">
+    <button routerLink="/categoria/form">Ingresar Categoría</button>
+    <button (click)="filtrarCategorias('activo')">Activo</button>
+    <button (click)="filtrarCategorias('inactivo')">Inactivo</button>
+    <button (click)="editarCategoria()">Editar</button>
+    <input type="text" class="search-input" placeholder="Buscar" [(ngModel)]="filtrar" (input)="filtrarCategorias('busqueda')">
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead align="center">
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let categ of categFiltradas" [class.selected]="categ === filaSelect" (click)="selectRow(categ)">
+        <td>{{categ.cat_cod}}</td>
+        <td>{{categ.cat_nombre}}</td>
+        <td>{{categ.cat_descripcion}}</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
+

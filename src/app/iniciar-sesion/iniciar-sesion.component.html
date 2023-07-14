@@ -1,0 +1,56 @@
+<div class="contenedor">
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        <img class="imagen_header" src="../assets/Capa 2.png" alt="" />
+      </a>
+    </div>
+  </nav>
+
+  <!-- Formulario -->
+  <form (ngSubmit)="login()" id="login" class="formulario">
+    <fieldset>
+      <legend class="titulo_formulario">Bienvenido al Sistema de Inventario</legend>
+      <div class="contenedor_formulario">
+        <div class="mb-3">
+          <input
+            type="text"
+            [(ngModel)]="usuario.usuario"
+            [ngModelOptions]="{standalone: true}"
+            id="usuario"
+            class="form-control"
+            placeholder="Correo"
+            required
+          />
+          <input
+            type="password"
+            [(ngModel)]="usuario.contrasenia"
+            [ngModelOptions]="{standalone: true}"
+            id="contrasenia"
+            class="form-control"
+            placeholder="Contraseña"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+
+        <p class="texto_formulario">
+          <a class="enlace_formulario" href="">¿Olvidaste tu contraseña?</a>
+        </p>
+        <p class="texto_formulario">
+          ¿No tienes Cuenta? <a class="enlace_formulario" (click)="registroCuenta()">Registrate</a>
+        </p>
+      </div>
+    </fieldset>
+  </form>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="texto_footer">
+      <p class="texto-1">Tecnólogico del Azuay</p>
+      <p class="texto-2">Instituto Universitario</p>
+    </div>
+  </footer>
+</div>
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="widthdecive-width, initial-scale=1.0 " />
+    <link rel="stylesheet" href="ingreso-categoria.component.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header>">
+      <div class="contenedor">
+        <nav class="navbar navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img class="imagen_header" src="../assets/Capa 2.png" alt="" />
+            </a>
+            <div class="button-container">
+              <a class="btn">Ingreso de Ubicación</a>
+              <a class="btn">Ingreso de Bienes</a>
+              <a class="btn">Ingreso de Categoría</a>
+              <a class="btn">Custodios</a>
+              <a class="btn">Perfil</a>
+              <a class="btn">Cerrar Sesión</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+  </body>
+
+  <div class="body">
+    <h1 class="title1">Ingreso de Nueva Categoría</h1>
+
+    <div class="entradas">
+      <form class="entradas-form" method="post" action="#">
+        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+          Codigo<input
+            type="text"
+            name="codigo"
+            id="codigo"
+            required="required"
+            class="form"
+            placeholder="Ingrese el Código"
+          />
+          Nombre<input
+            type="text"
+            name="nombre"
+            id="nombre"
+            required="required"
+            class="form"
+            placeholder="Ingrese el Nombre"
+          />
+          Descripcion<textarea
+            name="descripcion"
+            id="descripcion"
+            class="form textarea"
+            placeholder="Ingrese una Descripción"
+          ></textarea>
+        </div>
+
+        <div class="relative fullwidth col-xs-12">
+          <button
+            type="submit"
+            id="submit"
+            name="submit"
+            class="form-btn semibold"
+          >
+            Guardar
+          </button>
+          <button
+            type="submit"
+            id="submit"
+            name="submit"
+            class="form-btn semibold"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</html>

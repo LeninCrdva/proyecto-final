@@ -1,0 +1,136 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.btn button{
+  color: white;
+  width: 100px;
+  padding: 8%;
+  border: 1px solid white;
+  font-size: 14px;
+  font-style: normal;
+  background-color: #1976d5;
+  border-radius: 0px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.title1{
+  color: #1976d5;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 10;
+}
+
+
+
+/* ------------------------------------------------ */
+
+.entradas-form {
+  font-size: 15px;
+}
+.form{
+  width: 100%;
+  padding: 15px;
+  background:#f8f8f8;
+  border:1px solid rgba(0, 0, 0, 0.075);
+  margin-bottom:25px;
+  color:#727272 !important;
+  font-size:14px;
+  margin-right: 50%;
+  margin-left: auto;
+}
+
+.form:hover{
+  border:1px solid #1976d5;
+}
+
+.textarea{
+  height: 200px;
+  max-height: 200px;
+  max-width: 100%;
+}
+
+
+.button{
+  background:#1976d5;
+  width:120px;
+}
+
+
+.form-btn{
+  width:180px;
+  height: auto;
+  padding:15px;
+  color:#fff;
+  background:#1976d5;
+  border:10px solid white;
+  border-radius:1px;
+}
+
+.form-btn:hover{
+  background:#375879;
+  color: white;
+  border:none;
+}
+
+/* ------------------------------------------------ */
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 80px;
+  background-color: #1976d5;
+  padding: 10px 46px;
+}
+
+.imagen_header {
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto; /* Mover los botones al margen derecho */
+}
+
+.button-container a.btn {
+  color: white;
+  padding: 7px 18px;
+  border: 1px solid white;
+  background-color: #1976d5;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button-container a.btn:hover {
+  background-color: white;
+  color: #1976d5;
+}
+
+/* Estilos adicionales para el input de búsqueda */
+.button-container input[type="search"] {
+  padding: 5px;
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+}
