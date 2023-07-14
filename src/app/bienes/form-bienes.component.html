@@ -65,8 +65,8 @@
         <div class="form-group">
             <label for="Categorias">Categorias</label>
             <div>
-                <select *ngFor="">
-                    <option >Elige una categoria</option>
+                <select>
+                    <option *ngFor="let cat of categorias" >{{cat.cat_nombre}}</option>
                 </select>
             </div>
         </div>

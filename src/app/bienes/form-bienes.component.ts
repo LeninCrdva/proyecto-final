@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Bien } from '../entities/bien';
+import { Categoria } from '../entities/categoria';
 import { BienesService } from '../services/bienes.service';
+import { CategoriaService } from '../services/categoria.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,12 +10,22 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './form-bienes.component.html'
 })
 export class FormBienesComponent {
+  
   protected bien: Bien = new Bien();
 
-  constructor(private bienService: BienesService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  categorias: Categoria[] = [];
+
+  constructor(private bienService: BienesService, private categoriaService: CategoriaService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargarBien()
+    this.cargarListaCategorias()
+  }
+
+  cargarListaCategorias() {
+    this.categoriaService.getCategoria().subscribe(
+      categoria => this.categorias = categoria
+    )
   }
 
   public handleSubmit(): void {
