@@ -12,7 +12,6 @@ export class BienesComponent implements OnInit {
   
   bienes: Bien[] = [];
 
-
   constructor(private bienesService: BienesService) { }
 
   ngOnInit(): void {

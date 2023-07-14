@@ -3,6 +3,8 @@ import { Bien } from '../entities/bien';
 import { Categoria } from '../entities/categoria';
 import { BienesService } from '../services/bienes.service';
 import { CategoriaService } from '../services/categoria.service';
+import { Propietario } from '../entities/propietario';
+import { PropietarioService } from '../services/propietario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,20 +13,35 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FormBienesComponent {
   
-  protected bien: Bien = new Bien();
+  bien: Bien = new Bien();
 
+  bienes: Bien[] = [];
+  propietarios: Propietario[] =[];
   categorias: Categoria[] = [];
 
-  constructor(private bienService: BienesService, private categoriaService: CategoriaService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private bienService: BienesService, private categoriaService: CategoriaService, private propietarioService: PropietarioService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.cargarBien()
+    this.cargarListaBienes()
     this.cargarListaCategorias()
+    this.cargarListaPropietario()
+  }
+
+  cargarListaBienes() {
+    this.bienService.getBienes().subscribe(
+      bien  => this.bienes = bien
+    )
   }
 
   cargarListaCategorias() {
     this.categoriaService.getCategoria().subscribe(
       categoria => this.categorias = categoria
+    )
+  }
+
+  cargarListaPropietario() {
+    this.propietarioService.getPropietarios().subscribe(
+      propietario => this.propietarios = propietario
     )
   }
 

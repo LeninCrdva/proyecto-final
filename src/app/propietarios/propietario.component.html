@@ -1,0 +1,39 @@
+<div class="container"><br><br>
+
+  <div class="card border-primary mb-3">
+    <div class="card-header">Propietario</div>
+    <div class="card-body text-primary">
+      <div class="col-sm-6">
+
+        <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/proietario/form']">Crear
+          Propietario</button>
+
+      </div><br>
+      <h5 class="card-title" style="margin-bottom: 16px;">Listado de Propietario</h5>
+      <table class="table table-bordered table-striped text-center">
+        <thead>
+          <tr>
+            <th>Codigo</th>
+            <th>Direccion</th>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Estado</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let propietario of propietarios">
+            <td>{{propietario.pro_cod}}</td>
+            <td>{{propietario.pro_direccion}}</td>
+            <td>{{propietario.pro_nombre}}</td>
+            <td>{{propietario.pro_telefono}}</td>
+            <td>{{ propietario.pro_estado ? 'Verdadero' : 'Falso' }}</td>
+            
+            <td><button style="border: none; background: transparent;" [routerLink]="['/propietario/form', propietario.pro_cod]"><i
+                  class="fas fa-pencil-alt"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

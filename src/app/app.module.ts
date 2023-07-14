@@ -20,20 +20,23 @@ import {FormComponent}from './ingreso-categoria/form.component';
 import { PerfilUsuariosComponent } from './PerfilUsuarios/perfil-usuario.component';
 import { FormBienesComponent } from './bienes/form-bienes.component';
 import { BienesComponent } from './bienes/bienes.component';
+import { PropietarioComponent } from './propietarios/propietario.component';
+import { FormPropietariosComponent } from './propietarios/form-propietarios.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: '', component: VentanaPrincipalComponent},
+  { path:'', redirectTo: '', pathMatch: 'full' },
+  { path:'', component: VentanaPrincipalComponent},
   { path:'ubicacion', component: UbicacionComponent },
   { path:'registro',component:RegistroComponent},
   { path:'login',component:IniciarSesionComponent},
-  { path: 'paginaadmin', component:PaginaAdminComponent},
-  { path: 'categorias', component:CategoriasComponent},
-  { path: 'categoria/form', component:FormComponent},
-  { path: 'categoria/form/:cat_cod', component: FormComponent },
+  { path:'paginaadmin', component:PaginaAdminComponent},
+  { path:'categorias', component:CategoriasComponent},
+  { path:'categoria/form', component:FormComponent},
+  { path:'categoria/form/:cat_cod', component: FormComponent },
   { path:'perfil', component:PerfilUsuariosComponent},
   { path:'bienes', component: BienesComponent},
-  
+  { path:'propietario', component:PropietarioComponent},
+  { path:'proietario/form', component:FormPropietariosComponent}
 ];
 
 @NgModule({
@@ -49,7 +52,9 @@ const routes: Routes = [
     FormComponent,
     FooterComponent,
     BienesComponent,
-    FormBienesComponent
+    FormBienesComponent,
+    PropietarioComponent,
+    FormPropietariosComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes),HttpClientModule,FormsModule],
   providers: [],
