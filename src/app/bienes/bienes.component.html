@@ -3,13 +3,17 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">           
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#FormModal"><h6>Ingresar bien</h6></button>
+                <button class="btn btn-primary btn-sm" routerLink="form"><h6>Ingresar bien</h6></button>
             </div>
             <div class="col-sm">
                 <button class="btn btn-primary btn-sm"><h6>Reporte de Bienes</h6></button>
             </div>
             <div class="col-sm">
-                <!--data-bs-toggle="modal" data-bs-target="#ForAsginarModal"-->
+
+                <!--
+                    data-bs-toggle="modal" data-bs-target="#FormModal"
+                    data-bs-toggle="modal" data-bs-target="#ForAsginarModal"
+                -->
                 <button class="btn btn-primary btn-sm" 
                 (click)="AsignarBien()"><h6>Asignar bien</h6></button>
             </div>
@@ -62,7 +66,7 @@
 </div>
 
   
-<!-- Modal -->
+<!--
 <div class="modal fade" id="FormModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -79,7 +83,7 @@
         </div>
     </div>
 </div>
-<!--
+
 <div class="modal fade" id="ForAsginarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

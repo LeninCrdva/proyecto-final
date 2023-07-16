@@ -71,12 +71,17 @@ export class FormBienesComponent {
         }
       );
     } else {
+     try {
       this.bienService.createBien(this.bien).subscribe(
         bien => {
           console.log(bien);
           this.router.navigate(['/bienes']);
         }
       );
+     } catch (error) {
+      console.log(this.bien);
+      console.log('Error Here');
+     }
     }
   }
 

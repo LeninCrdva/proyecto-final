@@ -10,8 +10,6 @@ import { map } from 'rxjs/operators';
 })
 export class BienesService {
 
-// Cambiar endpoint en el back
-
   private urlEndPoint:string = 'http://localhost:8080/tecazuay/bien'
   private httpHeaders = new HttpHeaders({ 'Content-Type' : 'application/json' })
   

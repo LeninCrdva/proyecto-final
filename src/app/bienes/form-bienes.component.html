@@ -2,7 +2,7 @@
     <form ngNativeValidate (ngSubmit)="handleSubmit()">
         <div class="form-group">
             <label for="codigo">Código</label>
-            <input type="text" class="form-control" name="codigo" aria-describedby="codeDesc" disabled>
+            <input [(ngModel)]="bien.bien_codigoG" type="text" class="form-control" name="codigo" aria-describedby="codeDesc">
             <small name="codeDesc" class="form-text text-muted" >Código autogenerado</small>
         </div>
         <div class="form-group">
@@ -40,15 +40,6 @@
             <div>
                 <select [(ngModel)]="bien.propietario" name="propietario" class="form-select" required>
                     <option *ngFor="let prop of propietarios" [ngValue]="prop">{{ prop.pro_nombre }}</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="edificio">Edificio</label>
-            <div>
-                <select [(ngModel)]="bien.bien_edi_cod" name="edificio" class="form-select" required>
-                    <option>Elige un edificio</option>
                 </select>
             </div>
         </div>

@@ -68,7 +68,7 @@ export class FormAsignacionComponent implements OnInit {
       console.log(bien);
       Swal.fire(
         'Bien Asignado',
-        `Bien ${this.bien.bien_codigoG} asignado a ${this.bien.usuario}`,
+        `Bien ${this.bien.bien_codigoG} asignado a ${this.bien.usuario.persona.perPrimerNom + ' ' + this.bien.usuario.persona.perApellidoPater}`,
         'success'
       );
       this.router.navigate(['/bienes']);
