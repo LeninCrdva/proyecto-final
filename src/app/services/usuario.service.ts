@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../entities/usuario';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +20,8 @@ export class UsuarioService {
   }
 
   getDatosUsuario(): any {
-    return this.datosUsuario;
-    
+    return this.datosUsuario; 
   }
-
-  
 
   constructor(private http: HttpClient) {}
 
@@ -37,21 +33,8 @@ export class UsuarioService {
     return this.http.get<any>(`${this.apiUrl}/usuarios/${id}`);
   }
 
-  createUser(usuario: Usuario):  Observable<Usuario> {
-    return this.http
-      .post<Usuario>(this.urlCreateUsuario, usuario, {
-        headers: this.httpHeaders,
-      })
-      .pipe(
-        catchError((e) => {
-          Swal.fire(
-            'Error al guardar',
-            'NO se puede guardar el Informe Visita',
-            'error'
-          );
-          return throwError(e);
-        })
-      );
+  createCustodio(usuario: Usuario):  Observable<Usuario> {
+    return this.http.post<Usuario>(this.urlCreateUsuario, usuario, {headers: this.httpHeaders,});
   }
 
   updateUser(id: number, usuario: any): Observable<any> {

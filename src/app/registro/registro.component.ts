@@ -19,6 +19,7 @@ export class RegistroComponent implements OnInit{
   persona: Persona = new Persona();
   personas : any;
   public personaB: Array<any> = [];
+  public editMode: boolean = false;
 
   constructor(private usuarioService: UsuarioService, private personaService: PersonaService) { }
 
@@ -57,66 +58,81 @@ export class RegistroComponent implements OnInit{
   // }
 
 
-  crear(){
-    const formulario: any = document.getElementById("crear");
-    const formularioValido = formulario.reportValidity();
-    if (formularioValido) {
-      this.loading = true;
-      console.log('Valores enviados:', this.usuario);
-      this.usuarioService.createUser(this.usuario).subscribe(
-        (response: any) => {
-          this.loading = false;
-          if (response) {
-            if (response.hasOwnProperty("usuario")) {
-              this.errorInicio = false;
-              localStorage.setItem("usuario", JSON.stringify(response.usuario));
-              location.href = 'registro';
-            } else {
-              console.error('Error de registro::', response);
-              this.errorInicio = true;
-            }
-          } else {
-            console.error('Error de registro:', response);
-            this.errorInicio = true;
-          }
-        },
-        (error: any) => {
-          this.loading = false;
-          this.errorInicio = true;
-        }
-      );
-    }
-    if (formularioValido) {
-      this.loading = true;
-      console.log('Valores enviados:', this.persona);
-      this.personaService.createPersona(this.persona).subscribe(
-        (response: any) => {
-          this.loading = false;
-          if (response) {
-            if (response.hasOwnProperty("persona")) {
-              this.errorInicio = false;
-              localStorage.setItem("persona", JSON.stringify(response.persona));
-              location.href = 'registro';
-            } else {
-              console.error('Error de registro::', response);
-              this.errorInicio = true;
-            }
-          } else {
-            console.error('Error de registro:', response);
-            this.errorInicio = true;
-          }
-        },
-        (error: any) => {
-          this.loading = false;
-          this.errorInicio = true;
-        }
-      );
-    }
-  }
+  // crear(){
+  //   const formulario: any = document.getElementById("crear");
+  //   const formularioValido = formulario.reportValidity();
+  //   if (formularioValido) {
+  //     this.loading = true;
+  //     console.log('Valores enviados:', this.usuario);
+  //     this.usuarioService.createUser(this.usuario).subscribe(
+  //       (response: any) => {
+  //         this.loading = false;
+  //         if (response) {
+  //           if (response.hasOwnProperty("usuario")) {
+  //             this.errorInicio = false;
+  //             localStorage.setItem("usuario", JSON.stringify(response.usuario));
+  //             location.href = 'registro';
+  //           } else {
+  //             console.error('Error de registro::', response);
+  //             this.errorInicio = true;
+  //           }
+  //         } else {
+  //           console.error('Error de registro:', response);
+  //           this.errorInicio = true;
+  //         }
+  //       },
+  //       (error: any) => {
+  //         this.loading = false;
+  //         this.errorInicio = true;
+  //       }
+  //     );
+  //   }
+  //   if (formularioValido) {
+  //     this.loading = true;
+  //     console.log('Valores enviados:', this.persona);
+  //     this.personaService.createPersona(this.persona).subscribe(
+  //       (response: any) => {
+  //         this.loading = false;
+  //         if (response) {
+  //           if (response.hasOwnProperty("persona")) {
+  //             this.errorInicio = false;
+  //             localStorage.setItem("persona", JSON.stringify(response.persona));
+  //             location.href = 'registro';
+  //           } else {
+  //             console.error('Error de registro::', response);
+  //             this.errorInicio = true;
+  //           }
+  //         } else {
+  //           console.error('Error de registro:', response);
+  //           this.errorInicio = true;
+  //         }
+  //       },
+  //       (error: any) => {
+  //         this.loading = false;
+  //         this.errorInicio = true;
+  //       }
+  //     );
+  //   }
+  // }
 
-  iniciar(){
-    location.href="login";
-  }
+  // iniciar(){
+  //   location.href="login";
+  // }
   
+  public create(): void {
+    if (this.editMode) {
+      this.usuarioService.createCustodio(this.usuario).subscribe(
+        usuario => {
+          Swal.fire('Cliente Actualizado', `Custodio actualizado con éxito`, 'success');
+        }
+      );
+    } else {
+      this.usuarioService.createCustodio(this.usuario).subscribe(
+        usuario => {
+          Swal.fire('Cliente Guardado', `Cliente guardado con éxito`, 'success');
+        }
+      );
+    }
+  }
 
 }
