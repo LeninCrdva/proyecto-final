@@ -9,6 +9,8 @@ import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
 export class HeaderComponent {
   usuario: any = {};
 
+  modalTitle:string = 'Crear Custodio';
+
   constructor(private dataStorageService: DataStorageService) {
     // Obtener los datos del usuario almacenados en las cookies
     this.usuario = this.dataStorageService.getData('datosUsuario'); // Reemplaza 'nombreDeTuLlave' con la llave que usaste para guardar los datos del usuario
