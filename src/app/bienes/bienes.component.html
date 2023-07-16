@@ -9,6 +9,11 @@
                 <button class="btn btn-primary btn-sm"><h6>Reporte de Bienes</h6></button>
             </div>
             <div class="col-sm">
+                <!--data-bs-toggle="modal" data-bs-target="#ForAsginarModal"-->
+                <button class="btn btn-primary btn-sm" 
+                (click)="AsignarBien()"><h6>Asignar bien</h6></button>
+            </div>
+            <div class="col-sm">
                 <form action="" class="form">
                     <div class="form-group">
                         <input type="text" class="form-control typehead" name="" id="" aria-describedby="helpId" placeholder="Buscar">
@@ -37,19 +42,19 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let bien of bienes">
+                <tr *ngFor="let bien of bienes" [class.selected]="bien === filaSelect" (click)="selectRow(bien)">
                     <td>{{bien.bien_codigoG}}</td>
                     <td>{{bien.bien_modelo}}</td>
                     <td>{{bien.bien_marca}}</td>
                     <td>{{bien.bien_estado}}</td>
                     <!-- <td>{{bien.bien_detalle}}</td>  -->
                     <td>{{bien.bien_descripcion}}</td> 
-                    <td>{{bien.bien_serie}}</td> Ah, si falta
-                    <td>{{bien.bien_propietario}}</td>
+                    <td>{{bien.bien_serie}}</td>
+                    <td>{{bien.propietario.pro_nombre}}</td>
                     <td>{{bien.bien_precio}}</td>
                     <td>{{bien.bien_edi_cod}}</td>
-                    <td>{{bien.bien_cat_cod}}</td>
-                    <td>{{bien.bien_user_cod}}</td>
+                    <td>{{bien.categoria.cat_nombre}}</td>
+                    <td>{{bien.usuario.usuario + ' - ' + bien.usuario.persona.perPrimerNom + ' ' + bien.usuario.persona.perApellidoPater}}</td>
                 </tr>
             </tbody>
         </table>
@@ -59,18 +64,38 @@
   
 <!-- Modal -->
 <div class="modal fade" id="FormModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{modalTitle}}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-        <app-form-bienes></app-form-bienes>
-    </div>
-    <div class="modal-footer position-relative">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-    </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">{{modalTitle}}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <app-form-bienes></app-form-bienes>
+        </div>
+        <div class="modal-footer position-relative">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
     </div>
 </div>
+<!--
+<div class="modal fade" id="ForAsginarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">{{modalTitle}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-form-bienes></app-form-bienes>
+            </div>
+            <div class="modal-footer position-relative">
+            </div>
+            <div class="modal-footer position-relative">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </div>
+-->

@@ -12,7 +12,7 @@ export class BienesService {
 
 // Cambiar endpoint en el back
 
-  private urlEndPoint:string = 'http://localhost:8080/api/bien'
+  private urlEndPoint:string = 'http://localhost:8080/tecazuay/bien'
   private httpHeaders = new HttpHeaders({ 'Content-Type' : 'application/json' })
   
   constructor(private http: HttpClient) { }

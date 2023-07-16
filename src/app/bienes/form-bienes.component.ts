@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { Bien } from '../entities/bien';
 import { Categoria } from '../entities/categoria';
+import { Propietario } from '../entities/propietario';
+import { Usuario } from '../entities/usuario';
 import { BienesService } from '../services/bienes.service';
 import { CategoriaService } from '../services/categoria.service';
-import { Propietario } from '../entities/propietario';
 import { PropietarioService } from '../services/propietario.service';
+import { UsuarioService } from '../services/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-bienes',
@@ -18,13 +21,16 @@ export class FormBienesComponent {
   bienes: Bien[] = [];
   propietarios: Propietario[] =[];
   categorias: Categoria[] = [];
-
-  constructor(private bienService: BienesService, private categoriaService: CategoriaService, private propietarioService: PropietarioService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  usuarios: Usuario[] = [];
+  
+  constructor(private bienService: BienesService, private categoriaService: CategoriaService,
+     private propietarioService: PropietarioService, private usuarioService: UsuarioService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargarListaBienes()
     this.cargarListaCategorias()
     this.cargarListaPropietario()
+    this.cargarListaUsuarios()
   }
 
   cargarListaBienes() {
@@ -45,11 +51,22 @@ export class FormBienesComponent {
     )
   }
 
+  cargarListaUsuarios() {
+    this.usuarioService.getUsers().subscribe(
+      user  => this.usuarios = user
+    )
+  }
+
   public handleSubmit(): void {
     if (this.bien.bien_cod) {
       this.bienService.createBien(this.bien).subscribe(
         bien => {
           console.log(bien);
+          Swal.fire(
+            'Bien Agregado',
+            `Bien ${this.bien.bien_descripcion} guardado`,
+            'success'
+          );
           this.router.navigate(['/bienes']);
         }
       );
