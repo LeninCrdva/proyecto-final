@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
-
+import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
 import Swal from 'sweetalert2';
-import { Router,NavigationExtras  } from '@angular/router';
+import { Router  } from '@angular/router';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -15,7 +15,7 @@ export class IniciarSesionComponent implements OnInit {
   usuario: any = {};
 
 
-  constructor(private usuarioService: UsuarioService, private router: Router) { }
+  constructor(private usuarioService: UsuarioService, private router: Router, public dataStorageService: DataStorageService) { }
 
   ngOnInit(): void { }
 
@@ -36,24 +36,40 @@ export class IniciarSesionComponent implements OnInit {
               localStorage.setItem("usuario", JSON.stringify(response.usuario));
               this.usuarioService.findUsuariosWithDatosCompletos(this.usuario.usuario, this.usuario.contrasenia).subscribe(
                 (userData: any) => {
-                  if (userData) {
+                  if (userData && userData.length > 0) {
+                    const userDataItem = userData[0];
                     console.log('Datos del usuario:', userData);
                     const rolNombre = userData[0].roles && userData[0].roles.length > 0 ? userData[0].roles[0].rol_nombre : null;
-                    
+                   const primerNombre = userDataItem.persona && userDataItem.persona.perPrimerNom ? userDataItem.persona.perPrimerNom : '';
+                   const segundoNombre = userDataItem.persona && userDataItem.persona.perSegundoNom ? userDataItem.persona.perSegundoNom : '';
+                   const apellidoPaterno = userDataItem.persona && userDataItem.persona.perApellidoPater ? userDataItem.persona.perApellidoPater : '';
+                   const apellidoMaterno = userDataItem.persona && userDataItem.persona.perApellidoMater ? userDataItem.persona.perApellidoMater : '';
                     console.log('Rol Nombre:', rolNombre); // Imprimir el nombre del rol en la consola
-                    
+                    const datosGuardados = {
+                      primerNombre: primerNombre,
+                      segundoNombre: segundoNombre,
+                     apellidoPaterno: apellidoPaterno,
+                     apellidoMaterno: apellidoMaterno,
+                      cedula: userDataItem.persona && userDataItem.persona.perCedula ? userDataItem.persona.perCedula : '',
+                      correo: userDataItem.persona && userDataItem.persona.perEmail ? userDataItem.persona.perEmail : '',
+                      usuario: this.usuario.usuario,
+                      contrasenia: this.usuario.contrasenia
+                    };
+                    this.dataStorageService.setData('datosUsuario', datosGuardados);
+
+                    console.log('Datos guardados en:', this.dataStorageService.getData('datosUsuario'));
+              
                     if (rolNombre === "Super Usuario") {
                       // Redireccionar a la página de ubicaciónpaginaadmin
-                      this.usuarioService.setDatosUsuario({
-                        usuario: this.usuario.usuario,
-                        contrasenia: this.usuario.contrasenia,
-                        userData: userData[0]
-                      });
-                      location.href = 'perfil';
+                      location.href = 'paginaadmin';//'/paginaadmin'
+                     //this.router.navigate(['/perfil']);
+                     //this.router.navigate(['/paginaadmin']);
                     
                     } else {
                       // Redireccionar a otra página (por ejemplo, ubicacion luego cambiar)
-                      location.href = 'ubicacion';
+                      //this.router.navigate(['/perfil']);
+                      this.router.navigate(['/ubicacion']);//cargado
+                     // location.href = 'ubicacion';//redirecciona con niueva carga
                     }
                   }
                   

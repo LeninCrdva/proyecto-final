@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { UbicacionComponent } from './ubicacion/ubicacion.component';
 
+
 import { PaginaAdminComponent } from './Pagina-Admin/pagina-admin.component';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
@@ -22,7 +23,7 @@ import { FormBienesComponent } from './bienes/form-bienes.component';
 import { BienesComponent } from './bienes/bienes.component';
 import { PropietarioComponent } from './propietarios/propietario.component';
 import { FormPropietariosComponent } from './propietarios/form-propietarios.component';
-
+import { DataStorageService } from './PerfilUsuarios/data-storage.service'; 
 const routes: Routes = [
   { path:'', redirectTo: '', pathMatch: 'full' },
   { path:'', component: VentanaPrincipalComponent},
@@ -36,7 +37,8 @@ const routes: Routes = [
   { path:'perfil', component:PerfilUsuariosComponent},
   { path:'bienes', component: BienesComponent},
   { path:'propietario', component:PropietarioComponent},
-  { path:'proietario/form', component:FormPropietariosComponent}
+  { path:'proietario/form', component:FormPropietariosComponent},
+  { path: 'propietario/form/:id', component: FormPropietariosComponent },
 ];
 
 @NgModule({

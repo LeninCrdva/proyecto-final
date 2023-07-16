@@ -27,4 +27,8 @@ export class PropietarioService {
   getPropietario(pro_cod:number):Observable<Propietario>{
     return this.http.get<Propietario>(`${this.urlEndPoint}/${pro_cod}`)
   }
+  updatePropietario(id: number, propietario: Propietario): Observable<Propietario> {
+    const url = `${this.urlEndPoint}/${id}`;
+    return this.http.put<Propietario>(url, propietario, { headers: this.httpHeaders });
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { UsuarioService } from '../services/usuario.service';
+import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
+import { Location } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-PerfilUsuarios',
@@ -8,36 +9,60 @@ import { UsuarioService } from '../services/usuario.service';
   styleUrls: ['./perfil-usuario.component.css']
 })
 export class PerfilUsuariosComponent implements OnInit {
-  datosUsuario: Array<string> = [];
+  datosUsuario: any = {};
+  verificacionCache: string = '';
+  verContrasenia: boolean = false;
 
-  constructor(private usuarioService: UsuarioService, private route: ActivatedRoute) { }
+  constructor(private dataStorageService: DataStorageService, private location: Location) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      const usuario = params['usuario'];
-      const contrasenia = params['contrasenia'];
+    // Obtener los datos del usuario almacenados en el servicio DataStorageService
+    this.datosUsuario = this.dataStorageService.getData('datosUsuario');
+    // Ver los datos obtenidos por consola
+    console.log('Datos del usuario:', this.datosUsuario);
+    // Por defecto, el ojo estará tachado
+    this.verContrasenia = false;
+  }
 
-      // Llamar al servicio para obtener los datos del usuario utilizando usuario y contrasenia
-      this.usuarioService.findUsuariosWithDatosCompletos(usuario, contrasenia).subscribe(
-        (userData: any) => {
-          if (userData && userData.length > 0) {
-            const userDataItem = userData[0];
-            this.datosUsuario = [
-              userDataItem.persona.perCedula || '',
-              userDataItem.persona.perPrimerNom || '',
-              userDataItem.persona.perSegundoNom || '',
-              userDataItem.persona.perApellidoPater || '',
-              userDataItem.persona.perApellidoMater || '',
-              userDataItem.persona.perEmail || '',
-              userDataItem.usuario || '',
-              userDataItem.contrasenia || ''
-            ];
-          }
+  toggleContrasenia(): void {
+    if (!this.verContrasenia) {
+      // Mostrar la alerta de SweetAlert para la verificación de caché
+      Swal.fire({
+        title: 'Verificación de Caché',
+        text: 'Para ver la contraseña, ingresa "ver" en el campo de verificación de caché:',
+        input: 'text',
+        inputPlaceholder: 'Escribe "ver"',
+        inputAttributes: {
+          autocapitalize: 'off'
         },
-        (error: any) => {
-          console.error('Error al obtener los datos del usuario:', error);
+        showCancelButton: true,
+        confirmButtonText: 'Ver contraseña',
+        cancelButtonText: 'Cancelar',
+        preConfirm: (inputValue) => {
+          // Verificar si la verificación de caché es correcta
+          if (inputValue.toLowerCase() !== 'ver') {
+            Swal.showValidationMessage('La verificación de caché es incorrecta');
+          } else {
+            return inputValue;
+          }
         }
-      );
-    });
+      }).then((result) => {
+        // Verificar que el resultado no sea undefined y que contenga un valor válido
+        if (result && result.value && result.value.toLowerCase() === 'ver') {
+          this.verContrasenia = true;
+        }
+      });
+    } else {
+      this.verContrasenia = false;
+    }
+  }
+
+  onVerificacionCacheChange(): void {
+    // Verificar si el campo de verificación de caché coincide con el texto "ver" para habilitar la visualización de la contraseña
+    this.verContrasenia = this.verificacionCache.toLowerCase() === 'ver';
+  }
+
+  volverPaginaAnterior() {
+    this.location.back();
   }
 }

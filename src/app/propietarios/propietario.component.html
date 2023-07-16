@@ -28,9 +28,11 @@
             <td>{{propietario.pro_nombre}}</td>
             <td>{{propietario.pro_telefono}}</td>
             <td>{{ propietario.pro_estado ? 'Verdadero' : 'Falso' }}</td>
-            
-            <td><button style="border: none; background: transparent;" [routerLink]="['/propietario/form', propietario.pro_cod]"><i
-                  class="fas fa-pencil-alt"></i></button></td>
+            <td>
+              <button style="border: none; background: transparent;" [routerLink]="['/propietario/form', propietario.pro_cod]">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
