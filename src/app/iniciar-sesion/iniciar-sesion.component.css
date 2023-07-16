@@ -22,7 +22,8 @@
   margin-top: 25px;
   width: 400px;
   height: 500px;
-  border: 1px solid black;
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
+	border-radius: 20px;
 }
 .titulo_formulario {
   background-color: #1976d5;

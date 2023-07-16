@@ -8,7 +8,8 @@
 .formulario {
   margin: auto;
   margin-top: 25px;
-  border: 1px solid black;
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
+	border-radius: 20px;
 }
 
 .titulo_formulario {
