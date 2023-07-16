@@ -24,6 +24,8 @@ import { BienesComponent } from './bienes/bienes.component';
 import { PropietarioComponent } from './propietarios/propietario.component';
 import { FormPropietariosComponent } from './propietarios/form-propietarios.component';
 import { DataStorageService } from './PerfilUsuarios/data-storage.service'; 
+import { FormAsignacionComponent } from './bienes/form-asignacion.component';
+
 const routes: Routes = [
   { path:'', redirectTo: '', pathMatch: 'full' },
   { path:'', component: VentanaPrincipalComponent},
@@ -36,9 +38,12 @@ const routes: Routes = [
   { path:'categoria/form/:cat_cod', component: FormComponent },
   { path:'perfil', component:PerfilUsuariosComponent},
   { path:'bienes', component: BienesComponent},
+  { path:'bienes/form', component: FormBienesComponent},
+  { path:'bienes/form/:bien_cod', component: FormAsignacionComponent},
   { path:'propietario', component:PropietarioComponent},
   { path:'proietario/form', component:FormPropietariosComponent},
   { path: 'propietario/form/:id', component: FormPropietariosComponent },
+
 ];
 
 @NgModule({
@@ -56,7 +61,8 @@ const routes: Routes = [
     BienesComponent,
     FormBienesComponent,
     PropietarioComponent,
-    FormPropietariosComponent
+    FormPropietariosComponent,
+    FormAsignacionComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes),HttpClientModule,FormsModule],
   providers: [],
