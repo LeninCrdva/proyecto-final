@@ -1,1 +1,31 @@
-<html></html>
+<app-header></app-header>
+<div class="container"><br><br>
+  <div class="card border-primary mb-3">
+    <div class="card-header">Historial</div>
+    <div class="card-body text-primary">
+      <br>
+      <h5 class="card-title" style="margin-bottom: 16px;">Listado de Historial</h5>
+      <table class="table table-bordered table-striped text-center">
+        <thead>
+          <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Detalles</th>
+            <th>Custodio</th>
+            <th>Bien/th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let historial of historial">
+            <td>{{historial.his_cod}}</td>
+            <td>{{historial.his_fecha}}</td>
+            <td>{{historial.his_detalles}}</td>
+            <td>{{historial.his_usu_cod}}</td>
+            <td>{{historial.his_bie_cod}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

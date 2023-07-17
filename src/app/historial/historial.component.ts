@@ -7,12 +7,16 @@ import { HistorialService } from '../services/historial.service';
   styleUrls: ['./historial.component.css']
 })
 export class HistorialComponent implements OnInit{
+  
   historial: Historial[]=[];
 
   constructor(private historialService: HistorialService){}
-  ngOnInit() {
-    this.historialService.getHistorial().subscribe(historial => this.historial = historial);
+
+  ngOnInit():void{
+    this.cargarListaHistorial()
   }
 
-
+  cargarListaHistorial(){
+    this.historialService.getHistorial().subscribe(historial => this.historial = historial)
+  }
 }
