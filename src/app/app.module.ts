@@ -41,6 +41,7 @@ const routes: Routes = [
   { path:'bienes/form', component: FormBienesComponent},
   { path:'bienes/form/:bien_cod', component: FormAsignacionComponent},
   { path:'propietario', component:PropietarioComponent},
+  { path:'historial', component:HistorialComponent},
   { path:'proietario/form', component:FormPropietariosComponent},
   { path: 'propietario/form/:id', component: FormPropietariosComponent },
   {path: 'form-ubicaciones', component: FormUbicacionesComponent},
