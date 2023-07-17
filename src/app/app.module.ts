@@ -25,7 +25,7 @@ import { PropietarioComponent } from './propietarios/propietario.component';
 import { FormPropietariosComponent } from './propietarios/form-propietarios.component';
 import { DataStorageService } from './PerfilUsuarios/data-storage.service'; 
 import { FormAsignacionComponent } from './bienes/form-asignacion.component';
-
+import { HistorialComponent } from './historial/historial.component'; 
 const routes: Routes = [
   { path:'', redirectTo: '', pathMatch: 'full' },
   { path:'', component: VentanaPrincipalComponent},
@@ -62,7 +62,8 @@ const routes: Routes = [
     FormBienesComponent,
     PropietarioComponent,
     FormPropietariosComponent,
-    FormAsignacionComponent
+    FormAsignacionComponent,
+    HistorialComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes),HttpClientModule,FormsModule],
   providers: [],
