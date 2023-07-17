@@ -18,6 +18,12 @@ export class BienesService {
   getBienes(): Observable<Bien[]>{
     return this.http.get<Bien[]>(this.urlEndPoint);
   }
+  //metodo para traer bienes de custodios
+  getBienesCustodio() {
+    return this.http
+      .get(this.urlEndPoint)
+      .pipe(map((response) => response as Bien[]));
+  }
   
   createBien(bien: Bien): Observable<Bien[]>{
     return this.http.post<Bien[]>(this.urlEndPoint, bien, {headers: this.httpHeaders});

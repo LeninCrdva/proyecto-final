@@ -12,7 +12,7 @@ export class Bien {
     'bien_descripcion': string;
     'bien_serie': string;
     'bien_precio': number;
-    'bien_estadoA': boolean;
+    'bien_estadoA': boolean=true;
     'bien_edi_cod': number;
     'usuario': Usuario;
     'propietario': Propietario;

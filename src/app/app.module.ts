@@ -25,6 +25,8 @@ import { PropietarioComponent } from './propietarios/propietario.component';
 import { FormPropietariosComponent } from './propietarios/form-propietarios.component';
 import { DataStorageService } from './PerfilUsuarios/data-storage.service'; 
 import { FormAsignacionComponent } from './bienes/form-asignacion.component';
+import { BienescustodioComponent } from './bienescustodio/bienescustodio.component';
+import { FilterPipe } from './pipes/filter.pipe';
 import { HistorialComponent } from './historial/historial.component'; 
 const routes: Routes = [
   { path:'', redirectTo: '', pathMatch: 'full' },
@@ -45,6 +47,7 @@ const routes: Routes = [
   { path: 'propietario/form/:id', component: FormPropietariosComponent },
   {path: 'form-ubicaciones', component: FormUbicacionesComponent},
   {path: 'form-ubicaciones/:id', component: FormUbicacionesComponent},
+  { path: 'biencustodio', component: BienescustodioComponent },
 ];
 
 @NgModule({
@@ -66,7 +69,9 @@ const routes: Routes = [
     FormAsignacionComponent,
     HistorialComponent,
     UbicacionesComponent,
-    FormUbicacionesComponent
+    FormUbicacionesComponent,
+    BienescustodioComponent,
+    FilterPipe
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes),HttpClientModule,FormsModule],
   providers: [],

@@ -46,6 +46,7 @@ export class IniciarSesionComponent implements OnInit {
                    const apellidoMaterno = userDataItem.persona && userDataItem.persona.perApellidoMater ? userDataItem.persona.perApellidoMater : '';
                     console.log('Rol Nombre:', rolNombre); // Imprimir el nombre del rol en la consola
                     const datosGuardados = {
+                      rolNombre :userData[0].roles && userData[0].roles.length > 0 ? userData[0].roles[0].rol_nombre : null,
                       primerNombre: primerNombre,
                       segundoNombre: segundoNombre,
                      apellidoPaterno: apellidoPaterno,
@@ -68,8 +69,9 @@ export class IniciarSesionComponent implements OnInit {
                     } else {
                       // Redireccionar a otra página (por ejemplo, ubicacion luego cambiar)
                       //this.router.navigate(['/perfil']);
-                      this.router.navigate(['/ubicacion']);//cargado
-                     // location.href = 'ubicacion';//redirecciona con niueva carga
+                      //this.router.navigate(['/ubicacion']);//cargado
+                    location.href = 'biencustodio';//redirecciona con niueva carga
+                    // this.router.navigate(['/biencustodio']);
                     }
                   }
                   
