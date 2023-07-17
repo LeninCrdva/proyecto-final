@@ -22,7 +22,7 @@
       <!-- Estado -->
       <div class="form-group">
         <label for="estado">Estado</label>
-        <input [(ngModel)]="bien.bien_estadoA" type="text" class="form-control" name="estado" placeholder="Estado">
+        <input [(ngModel)]="bien.bien_estado" type="text" class="form-control" name="estado" placeholder="Estado">
       </div>
   
       <!-- Descripción -->
@@ -53,6 +53,16 @@
         </div>
       </div>
   
+      <!-- Ubicación -->
+      <div class="form-group">
+        <label for="ubicacion">Ubicación</label>
+        <div>
+          <select [(ngModel)]="bien.ubicacion" name="ubicacion" class="form-select" (ngModelChange)="onUbicacionChange()" required>
+            <option *ngFor="let ubi of ubicaciones" [ngValue]="ubi">{{ ubi.ubi_nombre}}</option>
+          </select>
+        </div>
+      </div>
+
       <!-- Categorías -->
       <div class="form-group">
         <label for="categoria">Categorías</label>

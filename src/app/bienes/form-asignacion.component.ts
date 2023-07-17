@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Bien } from '../entities/bien';
 import { Categoria } from '../entities/categoria';
-import { CategoriaService } from '../services/categoria.service';
 import { Propietario } from '../entities/propietario';
-import { PropietarioService } from '../services/propietario.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { BienesService } from '../services/bienes.service';
+import { Ubicacion } from '../entities/ubicaciones';
 import { Usuario } from '../entities/usuario';
+import { CategoriaService } from '../services/categoria.service';
+import { PropietarioService } from '../services/propietario.service';
+import { BienesService } from '../services/bienes.service';
 import { UsuarioService } from '../services/usuario.service';
+import { UbicacionesService } from '../services/ubicaciones.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,17 +25,19 @@ export class FormAsignacionComponent implements OnInit {
     this.cargarListaCategorias()
     this.cargarListaPropietario()
     this.cargarListaUsuarios()
+    this.cargarListaUbicaciones()
   }
 
   constructor(private bienService: BienesService,private router: Router, private activatedRoute: ActivatedRoute,
     private categoriaService: CategoriaService, private propietarioService: PropietarioService, 
-    private usuarioService: UsuarioService) {}
+    private usuarioService: UsuarioService, private ubicacionService: UbicacionesService) {}
 
   public bien: Bien = new Bien();
 
   propietarios: Propietario[] =[];
   categorias: Categoria[] = [];
   usuarios: Usuario[] = [];
+  ubicaciones: Ubicacion[] = [];
 
   cargarListaCategorias() {
     this.categoriaService.getCategoria().subscribe(
@@ -52,6 +57,12 @@ export class FormAsignacionComponent implements OnInit {
     )
   }
 
+  cargarListaUbicaciones() {
+    this.ubicacionService.getUbicaciones().subscribe(
+      ubicacion => (this.ubicaciones = ubicacion)
+    );
+  }
+  
   cargarBien(): void {
     this.activatedRoute.params.subscribe((params) => {
       let bien_cod = params['bien_cod'];
