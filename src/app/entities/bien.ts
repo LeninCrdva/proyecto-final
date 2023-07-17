@@ -1,6 +1,7 @@
 import { Usuario } from "./usuario";
 import { Categoria } from "./categoria";
 import { Propietario } from "./propietario";
+import { Ubicacion } from "./ubicaciones";
 
 export class Bien {
     'bien_cod': number;
@@ -12,8 +13,8 @@ export class Bien {
     'bien_descripcion': string;
     'bien_serie': string;
     'bien_precio': number;
-    'bien_estadoA': boolean=true;
-    'bien_edi_cod': number;
+    'bien_estadoA': boolean;
+    'ubicacion': Ubicacion;
     'usuario': Usuario;
     'propietario': Propietario;
     'categoria': Categoria;

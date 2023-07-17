@@ -45,20 +45,20 @@
         </div>
 
         <div class="form-group">
-            <label for="edificio">Edificio</label>
-            <div>
-                <select name="edificio" class="form-select" disabled>
-                    <option> Elige un edificio  </option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
             <label for="categoria">Categorias</label>
             <div>
                 <select name="categoria" class="form-select" disabled>
                     <option *ngFor="let cat of categorias" [ngValue]="cat">{{ cat.cat_nombre }}</option>
                 </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ubicacion">Ubicación</label>
+            <div>
+              <select name="ubicacion" class="form-select" disabled>
+                <option *ngFor="let ubi of ubicaciones" [ngValue]="ubi">{{ ubi.ubi_nombre }}</option>
+              </select>
             </div>
         </div>
 

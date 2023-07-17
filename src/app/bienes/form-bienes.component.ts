@@ -3,10 +3,12 @@ import { Bien } from '../entities/bien';
 import { Categoria } from '../entities/categoria';
 import { Propietario } from '../entities/propietario';
 import { Usuario } from '../entities/usuario';
+import { Ubicacion } from '../entities/ubicaciones';
 import { BienesService } from '../services/bienes.service';
 import { CategoriaService } from '../services/categoria.service';
 import { PropietarioService } from '../services/propietario.service';
 import { UsuarioService } from '../services/usuario.service';
+import { UbicacionesService } from '../services/ubicaciones.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -16,28 +18,31 @@ import Swal from 'sweetalert2';
 })
 export class FormBienesComponent {
   
-  bien: Bien = new Bien();
-
-  bienes: Bien[] = [];
-  propietarios: Propietario[] = [];
-  categorias: Categoria[] = [];
-  usuarios: Usuario[] = [];
-  
-  constructor(
-    private bienService: BienesService,
-    private categoriaService: CategoriaService,
-    private propietarioService: PropietarioService,
-    private usuarioService: UsuarioService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
-
   ngOnInit(): void {
     this.cargarListaBienes();
     this.cargarListaCategorias();
     this.cargarListaPropietario();
     this.cargarListaUsuarios();
+    this.cargarListaUbicaciones()
   }
+
+  bien: Bien = new Bien();
+
+  bienes: Bien[] = [];
+  propietarios: Propietario[] = [];
+  categorias: Categoria[] = [];
+  usuarios!: Usuario[];
+  ubicaciones: Ubicacion[] = [];
+
+  constructor(
+    private bienService: BienesService,
+    private categoriaService: CategoriaService,
+    private propietarioService: PropietarioService,
+    private usuarioService: UsuarioService,
+    private ubicacionService: UbicacionesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   cargarListaBienes() {
     this.bienService.getBienes().subscribe(
@@ -60,6 +65,12 @@ export class FormBienesComponent {
   cargarListaUsuarios() {
     this.usuarioService.getUsers().subscribe(
       user => (this.usuarios = user)
+    );
+  }
+
+  cargarListaUbicaciones() {
+    this.ubicacionService.getUbicaciones().subscribe(
+      ubicacion => (this.ubicaciones = ubicacion)
     );
   }
 
@@ -109,5 +120,9 @@ export class FormBienesComponent {
   // Método para guardar el ID del usuario (custodio) seleccionado
   onCustodioChange(): void {
     console.log('ID de usuario (custodio) seleccionado:', this.bien.usuario.usu_cod);
+  }
+
+  onUbicacionChange(): void {
+    console.log('ID de la ubicación seleccionado:', this.bien.ubicacion.ubi_cod);
   }
 }
