@@ -1,0 +1,106 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/** DISEÑO NAVBAR **/
+
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 80px;
+  background-color: #1976d5;
+  padding: 10px 46px;
+}
+
+.imagen_header {
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+}
+
+.container-navbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.container-navbar a.btn {
+  color: white;
+  padding: 7px 18px;
+  border: 1px solid white;
+  background-color: #1976d5;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.container-navbar a.btn:hover {
+  background-color: white;
+  color: #1976d5;
+}
+
+
+/** TITULO **/
+
+.title1 {
+  color: #1976d5;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 10;
+}
+
+/** DISEñO FORMULARIO **/
+
+.entradas-form{
+  width: 400px;
+  background: white;
+  padding: 30px;
+  margin: auto;
+  margin-top: auto;
+  border-radius: 4px;
+  color: black;
+}
+
+.controls {
+  width: 100%;
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #1f53c5;
+  font-size: 18px;
+}
+
+/** botones form **/
+
+
+.button {
+  background: #1976d5;
+  width: 120px;
+  margin-left: 50%;
+}
+
+.botons {
+  width: 180px;
+  height: auto;
+  padding: 15px;
+  color: #fff;
+  background: #1976d5;
+  border: 10px solid white;
+  border-radius: 1px;
+}
+
+.botons:hover {
+  background: #375879;
+  color: white;
+  border: none;
+}

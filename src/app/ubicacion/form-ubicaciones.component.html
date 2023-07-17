@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+
+<div>
+    <h1 class="title1">Ingreso de Nueva ubicacion</h1>
+
+    <div class="entradas">
+
+        <form ngNativeVlidate class="entradas-form">
+
+            <section class="entradas-form"> Código:
+                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                name="codigo" id="codigo" required="required" class="controls"
+                    [(ngModel)]="ubicacion.ubi_cod">
+
+                Nombre:<input type="text" name="nombre" id="nombre" required="required" class="controls"
+                    placeholder="Ingrese el Nombre" [(ngModel)]="ubicacion.ubi_nombre">
+
+                Departamento:
+                <input type="text" name="departamento" id="departamento" required="required" class="controls"
+                    placeholder="Ingrese el Departamento" [(ngModel)]="ubicacion.ubi_departamento">
+            </section>
+
+            <div class="relative fullwidth col-xs-12">
+                <button type="submit" class="botons" on (click)="create()">Guardar</button>
+                <button type="submit" class="botons" onClick="location.href='../ubicaciones'">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</html>

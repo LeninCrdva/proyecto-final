@@ -11,8 +11,8 @@ import { CategoriasComponent } from './ingreso-categoria/categorias.component';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { UbicacionComponent } from './ubicacion/ubicacion.component';
-
+import { UbicacionesComponent } from './ubicacion/ubicaciones.component';
+import { FormUbicacionesComponent } from './ubicacion/form-ubicaciones.component';
 
 import { PaginaAdminComponent } from './Pagina-Admin/pagina-admin.component';
 import { FormsModule } from '@angular/forms';
@@ -29,7 +29,7 @@ import { HistorialComponent } from './historial/historial.component';
 const routes: Routes = [
   { path:'', redirectTo: '', pathMatch: 'full' },
   { path:'', component: VentanaPrincipalComponent},
-  { path:'ubicacion', component: UbicacionComponent },
+  { path:'ubicaciones', component: UbicacionesComponent },
   { path:'registro',component:RegistroComponent},
   { path:'login',component:IniciarSesionComponent},
   { path:'paginaadmin', component:PaginaAdminComponent},
@@ -43,7 +43,8 @@ const routes: Routes = [
   { path:'propietario', component:PropietarioComponent},
   { path:'proietario/form', component:FormPropietariosComponent},
   { path: 'propietario/form/:id', component: FormPropietariosComponent },
-
+  {path: 'form-ubicaciones', component: FormUbicacionesComponent},
+  {path: 'form-ubicaciones/:id', component: FormUbicacionesComponent},
 ];
 
 @NgModule({
@@ -63,7 +64,9 @@ const routes: Routes = [
     PropietarioComponent,
     FormPropietariosComponent,
     FormAsignacionComponent,
-    HistorialComponent
+    HistorialComponent,
+    UbicacionesComponent,
+    FormUbicacionesComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes),HttpClientModule,FormsModule],
   providers: [],
