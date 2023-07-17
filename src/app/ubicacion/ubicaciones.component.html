@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>FrontEnd</title>
+
+<html>
+    <body>
+        <header class="header>">
+            <div class="contenedor">
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                        <div class="container-navbar">
+                            <a class="btn" routerLink="/ubicaciones" >Ubicaciones</a>
+                            <a class="btn">Bienes Activos</a>
+                            <a class="btn">Categorias</a>
+                            <a class="btn">Custodios</a>
+                            <a class="btn">Perfil</a>
+                            <a class="btn">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+    </body> 
+
+ <h1 class="title1">Panel de Ubicacion</h1>
+
+  <div> 
+        <div class="button-container">
+            <button style="margin-left: 10%;" routerLink="/form-ubicaciones"> Crear Ubicacion </button>
+            <button style="margin-left: auto;">Activo</button>
+            <button style="margin-left: auto;">Inactivo</button>
+            <button style="margin-left: auto;">Editar</button>
+            <input type="text" class="buscar" placeholder="Buscar">
+        </div>
+
+        <table>
+            <thead>
+                <tr class="firstRow">
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Departamento</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let ubicaciones of ubicaciones">
+                    <td> {{ubicaciones.ubi_cod}} </td>
+                    <td> {{ubicaciones.ubi_nombre}} </td>
+                    <td> {{ubicaciones.ubi_departamento}} </td>
+                </tr>
+             </tbody>
+        </table>
+    </div>
+</html>
