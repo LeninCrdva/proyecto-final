@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
 import { RegistroComponent } from './registro/registro.component';
+import { RegistroUsuarioComponent } from './registro-usuarios/registrousuario.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { VentanaPrincipalComponent } from './ventana-principal/ventana-principal.component';
@@ -28,6 +29,10 @@ import { FormAsignacionComponent } from './bienes/form-asignacion.component';
 import { BienescustodioComponent } from './bienescustodio/bienescustodio.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { HistorialComponent } from './historial/historial.component'; 
+import { FormRolComponent } from './rol/formrol.component';
+import { AdminPrincipal1Component } from './admin-principal/admin-principal.component';
+import { HeaderSuperComponent } from './headerSuper/headerSuper.component';
+import {RolComponent} from './rol/rol.component';
 const routes: Routes = [
   { path:'', redirectTo: '', pathMatch: 'full' },
   { path:'', component: VentanaPrincipalComponent},
@@ -49,6 +54,11 @@ const routes: Routes = [
   {path: 'form-ubicaciones', component: FormUbicacionesComponent},
   {path: 'form-ubicaciones/:id', component: FormUbicacionesComponent},
   { path: 'biencustodio', component: BienescustodioComponent },
+  {path:'ingresorol', component: RolComponent},
+  {path:'rol/form', component: FormRolComponent},
+  {path:'rol/form/:id', component: FormRolComponent},
+  { path: 'superusuario', component: AdminPrincipal1Component },
+  {path:'rol',component:RolComponent},
 ];
 
 @NgModule({
@@ -61,8 +71,8 @@ const routes: Routes = [
     PaginaAdminComponent,
     PerfilUsuariosComponent,
     HeaderComponent,
+    HeaderSuperComponent,
     FormComponent,
-    FooterComponent,
     BienesComponent,
     FormBienesComponent,
     PropietarioComponent,
@@ -72,7 +82,13 @@ const routes: Routes = [
     UbicacionesComponent,
     FormUbicacionesComponent,
     BienescustodioComponent,
-    FilterPipe
+    FilterPipe,
+    RegistroUsuarioComponent,
+    AdminPrincipal1Component,
+    FormRolComponent,
+    RolComponent,
+    FooterComponent,
+
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes),HttpClientModule,FormsModule],
   providers: [],

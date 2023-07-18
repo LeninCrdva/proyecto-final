@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { RegistroUsuarioComponent } from '../registro-usuarios/registrousuario.component';
+
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-headerSuper',
+  templateUrl: './headerSuper.component.html',
+  styleUrls: ['./headerSuper.component.css']
 })
-export class HeaderComponent {
+export class HeaderSuperComponent {
   usuario: any = {};
-
-  modalTitle:string = 'Crear Custodio';
-
+  modalTitle:string = 'Crear Usuario';
   constructor(private dataStorageService: DataStorageService
     , private router: Router) {
     // Obtener los datos del usuario almacenados en las cookies
@@ -31,6 +31,7 @@ export class HeaderComponent {
         confirmButtonText: 'Aceptar'
       }).then(() => {
         // Redireccionar al usuario a la página de inicio de sesión (login)
+        // Aquí debes especificar la ruta correcta hacia la página de inicio de sesión
          this.router.navigate(['/login']);
       });
     }

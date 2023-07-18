@@ -1,0 +1,34 @@
+<app-headerSuper></app-headerSuper>
+<html>
+<body>
+  <div class="header">
+    <h1 style="margin-right: auto;">Panel de Rol</h1>
+    
+    </div>
+    <div class="button-container">
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/rol/form']">Crear Rol</button>
+
+  </div>
+  
+  <table>
+    <tr>
+      <th>Codigo</th>
+      <th>Nombre</th>
+      <th>Estado</th>
+      <th>Editar</th>
+    </tr>
+    <tr *ngFor="let rol of roles">
+        <td>{{ rol.rol_cod }}</td>
+        <td>{{ rol.rol_nombre }}</td>
+        <td>{{ rol.rol_estado }}</td>
+        
+        <td class="right-align">
+          <button style="border: none; background: transparent;" [routerLink]="['/rol/form', rol.rol_cod]">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+        </td>
+      </tr>
+  </table>
+</body>
+</html>
+<app-footer></app-footer>

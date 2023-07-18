@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="card bg-white">
+    <div class="card-header">
+      <h2>{{ titulo }}</h2>
+    </div>
+    <div class="card-body">
+      <form class="form" ngNativeValidate (ngSubmit)="create()">
+        <div class="form-group row">
+          <label for="rol_nombre" class="col-form-label col-sm-6">Rol Nombres</label>
+          <div class="col-sm-10"> <!-- Aumentar el ancho a 8 columnas -->
+            <input type="text" class="form-control" [(ngModel)]="Rol.rol_nombre" name="nombre">
+            <span class="bubble-alert" *ngIf="!validarSoloLetras(Rol.rol_nombre)">Completa el campo: el nombre debe contener solo letras</span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="rol_estado" class="col-form-label col-sm-6">Rol Estado</label>
+          <div class="col-sm-10"> <!-- Aumentar el ancho a 8 columnas -->
+            <input type="text" class="form-control" [(ngModel)]="Rol.rol_estado" name="rol_estado" required>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="rol_estado" class="col-form-label col-sm-6"></label>
+          <div class="col-sm-8"> <!-- Aumentar el ancho a 8 columnas -->
+            <label>
+              <input type="checkbox" class="form-check-input" [(ngModel)]="Rol.rol_estado" name="rol_estado">
+              Estado:<span id="estadoCheckbox">{{ Rol.rol_estado ? 'Activo' : 'Inactivo' }}</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-12 right-align"> <!-- Alinear a la derecha y ocupar 12 columnas -->
+            <button class="btn btn-success" role="button" (click)="!Rol.rol_cod ? create() : updates()">
+              {{ !Rol.rol_cod ? 'Crear' : 'Actualizar' }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

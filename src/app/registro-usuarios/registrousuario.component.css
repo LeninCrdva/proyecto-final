@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .formulario {
+    margin: auto;
+    margin-top: 25px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.2);
+      border-radius: 20px;
+  }
+  
+  .titulo_formulario {
+    background-color: #1976d5;
+    color: white;
+    font-size: 15px;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .contenedor_formulario {
+    padding: 40px;
+    display: grid;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .form-control, .btn {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }

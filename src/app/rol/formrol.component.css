@@ -1,0 +1,83 @@
+/* Estilos generales para el cuerpo del documento */
+body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 60px;
+}
+
+/* Estilos para el contenedor principal "container" */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+/* Estilos para la tarjeta */
+.card {
+  max-width: 1000px; /* Aumentar el ancho máximo de la tarjeta */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 15px; /* Aumentar el padding superior e inferior */
+  text-align: center;
+}
+
+.card-body {
+  padding: 40px; /* Aumentar el padding */
+}
+
+/* Estilos para el formulario */
+.form-group {
+  margin-bottom: 30px; /* Aumentar el margen inferior */
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px; /* Aumentar el padding */
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 21px;
+}
+
+/* Estilos para los botones */
+.btn-success {
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 18px; /* Aumentar el tamaño de la fuente */
+  padding: 15px 20px; /* Aumentar el padding */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-success:hover {
+  background-color: #0069d9;
+}
+
+/* Estilos para la burbuja de alerta */
+.bubble-alert {
+  display: inline-block;
+  background-color: #f68686;
+  color: #fff;
+  font-size: 15px;
+  padding: 8px 15px; /* Ajustar el padding */
+  border-radius: 8px;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 5px;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* Estilos para alinear a la derecha */
+.right-align {
+  text-align: right;
+}

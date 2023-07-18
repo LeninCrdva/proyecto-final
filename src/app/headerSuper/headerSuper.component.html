@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <a class="navbar-brand" href="#">
+    <img class="imagen_header" src="../assets/Capa 2.png" alt="">
+  </a>
+  <div class="button-container">
+    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/rol">Rol</a>
+    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/ubicaciones">Ingreso de Ubicacion</a>
+    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/bienes">Ingreso de Bien</a>
+    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/categorias">Ingreso de Categoria</a>
+    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/propietario">Ingreso de Propietario</a>
+    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/historial">Historial</a>
+    <!-- Cambia el data-bs-target a "#RegistroUsuarioModal" -->
+    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="#" data-bs-toggle="modal" data-bs-target="#RegistroUsuarioModal">Ingreso de Usuario</a>
+
+    <a class="btn btn-perfil" [ngClass]="{'disabled-link': !isPerfil}" href="/perfil">
+      <ng-container *ngIf="usuario && usuario.primerNombre && usuario.apellidoPaterno; else sinDatos">
+        <span class="btn-icon"><i class="fas fa-user-circle"></i></span>
+        <span class="btn-text">{{ usuario.primerNombre }}</span>
+        <span class="btn-text">{{ usuario.apellidoPaterno }}</span>
+      </ng-container>
+      <ng-template #sinDatos>
+        <span class="btn-icon"><i class="fas fa-user-circle"></i></span>
+        <span class="btn-text">Perfil</span>
+      </ng-template>
+    </a>
+    <a class="btn" (click)="cerrarSesion()" href="/login">Cerrar Sesion</a>
+  </div>
+</div>
+
+<!-- Cambia el id del modal a "RegistroUsuarioModal" y el contenido del modal a app-registrousuario -->
+<div class="modal fade" id="RegistroUsuarioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{modalTitle}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Cambia app-registro por app-registrousuario -->
+        <app-registro-usuarios></app-registro-usuarios>
+      </div>
+      <div class="modal-footer position-relative">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

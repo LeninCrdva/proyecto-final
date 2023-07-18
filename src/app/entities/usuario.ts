@@ -8,4 +8,5 @@ export class Usuario {
     contrasenia: string = '';
     usu_estado: boolean = true;
     roles: Rol[] = [];
+    rol: Rol = new Rol();
   }
