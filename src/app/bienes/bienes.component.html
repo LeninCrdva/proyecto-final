@@ -1,22 +1,19 @@
 <app-header></app-header>
 <div class="card-body">
-    
     <div class="container">
         <div class="row">
             <div class="col-sm">           
-                <button class="btn btn-primary btn-sm" routerLink="form"><h6>Ingresar bien</h6></button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FormIngresoModal">Ingresar bien</button>
+            </div>
+            <div class="col-sm">           
+                <button class="btn btn-primary" (click)="CargaEditarBien()">Editar</button>
             </div>
             <div class="col-sm">
-                <button class="btn btn-primary btn-sm"><h6>Reporte de Bienes</h6></button>
+                <button class="btn btn-primary">Reporte de Bienes</button>
             </div>
             <div class="col-sm">
-
-                <!--
-                    data-bs-toggle="modal" data-bs-target="#FormModal"
-                    data-bs-toggle="modal" data-bs-target="#ForAsginarModal"
-                -->
-                <button class="btn btn-primary btn-sm" 
-                (click)="AsignarBien()"><h6>Asignar bien</h6></button>
+                <button class="btn btn-primary" (click)="CargaAsignarBien()"
+                >Asignar bien</button>
             </div>
             <div class="col-sm">
                 <form action="" class="form">
@@ -52,7 +49,6 @@
                     <td>{{bien.bien_modelo}}</td>
                     <td>{{bien.bien_marca}}</td>
                     <td>{{bien.bien_estado}}</td>
-                    <!-- <td>{{bien.bien_detalle}}</td>  -->
                     <td>{{bien.bien_descripcion}}</td> 
                     <td>{{bien.bien_serie}}</td>
                     <td>{{bien.propietario.pro_nombre}}</td>
@@ -65,42 +61,24 @@
         </table>
     </div>
 </div>
-<app-footer></app-footer>
-  
-<!--
-<div class="modal fade" id="FormModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+<div class="modal fade" id="FormIngresoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">{{modalTitle}}</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <app-form-bienes></app-form-bienes>
         </div>
-        <div class="modal-footer position-relative">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <div class="modal-footer-form">
+            <button id="CloseModal" type="button" class="button-close" data-bs-dismiss="modal">Cancelar</button>
         </div>
         </div>
-    </div>
+    </div> 
 </div>
 
-<div class="modal fade" id="ForAsginarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">{{modalTitle}}</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <app-form-bienes></app-form-bienes>
-            </div>
-            <div class="modal-footer position-relative">
-            </div>
-            <div class="modal-footer position-relative">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>
--->
+<app-footer></app-footer>
+  
+
+

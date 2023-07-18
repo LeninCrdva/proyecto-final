@@ -1,30 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { Bien } from '../entities/bien';
 import { BienesService } from '../services/bienes.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-bienes',
+  selector: 'app-bienes-asignacion',
   templateUrl: './bienes.component.html',
   styleUrls: ['./bienes-style.component.css'],
 })
 
 export class BienesComponent implements OnInit {
   
-  modalTitle: string = 'Ingresar bien';
-  
+  ngOnInit(): void {
+    this.cargarListaBienes()
+  }
+
+  AsignarTitle: string = 'Asignar bien';
+  public bien: Bien = new Bien();
+
   bienes: Bien[] = [];
 
   codSeleccionado!: string;
   filaSelect: Bien | null = null;
   seleccionado: boolean = false;
 
-  constructor(private bienesService: BienesService,private router: Router) { }
-
-  ngOnInit(): void {
-    this.cargarListaBienes()
-  }
+  constructor(private bienesService: BienesService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   cargarListaBienes() {
     this.bienesService.getBienes().subscribe(
@@ -39,12 +40,19 @@ export class BienesComponent implements OnInit {
     console.log(bi)
   }
 
-  AsignarBien() {
+  CargaAsignarBien() {
     if (this.seleccionado) {
-      this.router.navigate(['/bienes/form/', this.codSeleccionado]);
+      this.router.navigate(['/bienes/form-asignar/', this.codSeleccionado]);
     } else {
       Swal.fire('Error', 'Por favor, seleccione el bien que desea asignar.', 'error');
     }
   }
 
+  CargaEditarBien() {
+    if (this.seleccionado) {
+      this.router.navigate(['/bienes/form/', this.codSeleccionado]);
+    } else {
+      Swal.fire('Error', 'Por favor, seleccione el bien que desea editar.', 'error');
+    }
+  }
 }

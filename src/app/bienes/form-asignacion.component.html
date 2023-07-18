@@ -1,8 +1,8 @@
-<div class="form-control">
+<div id="FormAsignar" class="form-control">
     <form ngNativeValidate>
         <div class="form-group" (ngSubmit)="Asignar()">
             <label for="codigo">Código</label>
-            <input type="text" class="form-control" name="codigo" aria-describedby="codeDesc" readonly>
+            <input [(ngModel)]="bien.bien_codigoG" type="text" class="form-control" name="codigo" aria-describedby="codeDesc" readonly>
             <small name="codeDesc" class="form-text text-muted" >Código autogenerado</small>
         </div>
         <div class="form-group">
@@ -17,7 +17,7 @@
 
         <div class="form-group">
             <label for="estado">Estado</label>
-            <input [(ngModel)]="bien.bien_estadoA" type="text" class="form-control" name="estado" placeholder="Estado" readonly>
+            <input [(ngModel)]="bien.bien_estado" type="text" class="form-control" name="estado" placeholder="Estado" readonly>
         </div>
 
         <div class="form-group">
@@ -65,8 +65,10 @@
         <div class="form-group">
             <label for="usuario">Usuario</label>
             <div>
-                <select [(ngModel)]="bien.usuario" name="usuario" class="form-select">
-                    <option  *ngFor="let user of usuarios" [ngValue]="user">{{ user.persona.perPrimerNom + ' ' + user.persona.perApellidoPater }}</option>
+                <select [(ngModel)]="bien.usuario" name="usuario" class="form-select" required>
+                    <option *ngFor="let user of usuarios" [ngValue]="user" selected>
+                        {{ user.persona.perPrimerNom + ' ' + user.persona.perApellidoPater }}
+                    </option>
                 </select>
             </div>
         </div>
