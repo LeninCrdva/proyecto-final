@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
 import { PersonaService } from '../services/persona.service';
 import { Usuario } from '../entities/usuario';
-import { Persona } from '../entities/persona';
 import { Rol } from '../entities/rol';
 import { RolService } from '../rol/rol.service';
 import Swal from 'sweetalert2';
@@ -16,13 +15,9 @@ import { NgForm } from '@angular/forms';
 })
 export class RegistroUsuarioComponent implements OnInit {
   roles: Rol[] = [];
-  rol: Rol = new Rol();
   errorInicio: boolean = false;
   loading: boolean = false;
   usuario: Usuario = new Usuario();
-  usuarios: any;
-  persona: Persona = new Persona();
-  personas: any;
   public personaB: Array<any> = [];
   public editMode: boolean = false;
   @ViewChild('crearForm') crearForm!: NgForm;
@@ -30,8 +25,6 @@ export class RegistroUsuarioComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private personaService: PersonaService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private rolservice: RolService
   ) {}
 
@@ -39,11 +32,12 @@ export class RegistroUsuarioComponent implements OnInit {
     this.cargarListRoles();
   }
   cargarListRoles() {
-    this.rolservice.getRoles().subscribe((rol) => (this.roles = rol));
+    this.rolservice.getRoles().subscribe(
+      role => (this.roles = role)
+      );
   }
   public listarPersonas() {
     this.personaService.getPersonas().subscribe((resp: any) => {
-      console.log(resp.data);
       this.personaB = resp.data;
     });
   }
@@ -63,9 +57,12 @@ export class RegistroUsuarioComponent implements OnInit {
   }
   // Método para guardar el ID del rol seleccionado
   onRolChange(): void {
+    /*const selectedRoleId = this.usuario.roles.rol_cod; // ID del rol seleccionado
   
-      console.log('ID del rol seleccionado', this.usuario.rol.rol_cod);
+    const selectedRole = this.usuario.roles.find((role) => role.rol_cod === selectedRoleId);
+    console.log('Objeto del rol seleccionado:', selectedRole);*/
   }
+  
 
   private closeModal(): void {
     const cancelButton = document.querySelector('.modal-footer .btn-secondary') as HTMLElement;

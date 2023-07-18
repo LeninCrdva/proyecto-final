@@ -34,11 +34,11 @@ export class UsuarioService {
   }
 
   createCustodio(usuario: Usuario):  Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.apiUrl}/users`, usuario, {headers: this.httpHeaders,});
+    return this.http.post<Usuario>(this.urlCreateUsuario, usuario, {headers: this.httpHeaders,});
   }
 
   createPerson(usuario: Usuario):  Observable<Usuario> {
-    return this.http.post<Usuario>(this.urlCreateUsuario, usuario, {headers: this.httpHeaders,});
+    return this.http.post<Usuario>(`${this.apiUrl}/users`, usuario, {headers: this.httpHeaders,});
   }
 
   updateUser(id: number, usuario: any): Observable<any> {
