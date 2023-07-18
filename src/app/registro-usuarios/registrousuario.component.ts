@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
 import { PersonaService } from '../services/persona.service';
 import { Usuario } from '../entities/usuario';
@@ -7,6 +7,7 @@ import { Rol } from '../entities/rol';
 import { RolService } from '../rol/rol.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-registro-usuarios',
@@ -24,6 +25,7 @@ export class RegistroUsuarioComponent implements OnInit {
   personas: any;
   public personaB: Array<any> = [];
   public editMode: boolean = false;
+  @ViewChild('crearForm') crearForm!: NgForm;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -48,12 +50,14 @@ export class RegistroUsuarioComponent implements OnInit {
 
   public create(): void {
     if (this.editMode) {
-      this.usuarioService.createCustodio(this.usuario).subscribe((usuario) => {
+      this.usuarioService.createPerson(this.usuario).subscribe((usuario) => {
         Swal.fire('Usuario Actualizado', `Custodio actualizado con éxito`, 'success');
+        this.cleanFields();
       });
     } else {
-      this.usuarioService.createCustodio(this.usuario).subscribe((usuario) => {
+      this.usuarioService.createPerson(this.usuario).subscribe((usuario) => {
         Swal.fire('Usuario Guardado', `Usuario guardado con éxito`, 'success');
+        this.cleanFields();
       });
     }
   }
@@ -63,6 +67,16 @@ export class RegistroUsuarioComponent implements OnInit {
       console.log('ID del rol seleccionado', this.usuario.rol.rol_cod);
   }
 
-
+  private closeModal(): void {
+    const cancelButton = document.querySelector('.modal-footer .btn-secondary') as HTMLElement;
+    if (cancelButton) {
+      cancelButton.click();
+    }
+  }  
+  
+  private cleanFields(): void {
+    this.closeModal();
+    this.crearForm.reset();
+  }
  
 }
