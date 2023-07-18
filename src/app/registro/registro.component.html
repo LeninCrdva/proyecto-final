@@ -1,4 +1,4 @@
-<form id="crear" class="formulario" ngNativeValidate (ngSubmit)="create()">
+<form id="crear" #crearForm="ngForm" class="formulario" ngNativeValidate (ngSubmit)="create()">
   <fieldset>
     <legend class="titulo_formulario">
       Crear Custodio
@@ -7,7 +7,7 @@
       <div class="mb-3">
         <div class="form-group">
           <label for="cedula">Cédula:</label>
-          <input type="text" [(ngModel)]="usuario.persona.perCedula" name="cedula" class="form-control" placeholder="Cédula" required />
+          <input type="text" [(ngModel)]="usuario.persona.perCedula" name="cedula" class="form-control" placeholder="Cédula"  required />
         </div>
 
         <div class="form-group">

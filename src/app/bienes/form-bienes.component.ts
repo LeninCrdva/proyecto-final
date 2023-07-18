@@ -14,20 +14,25 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-bienes',
-  templateUrl: './form-bienes.component.html'
+  templateUrl: './form-bienes.component.html',
+  styleUrls: ['./form-bienes.component.css'],
 })
 export class FormBienesComponent {
   
   ngOnInit(): void {
+    this.cargarBien();
     this.cargarListaBienes();
     this.cargarListaCategorias();
     this.cargarListaPropietario();
     this.cargarListaUsuarios();
-    this.cargarListaUbicaciones()
+    this.cargarListaUbicaciones();
   }
 
+  modalTitle: string = 'Ingresar bien';
+  codSeleccionado!: string;
+  seleccionado: boolean = false;
+  filaSelect: Bien | null = null;
   bien: Bien = new Bien();
-
   bienes: Bien[] = [];
   propietarios: Propietario[] = [];
   categorias: Categoria[] = [];
@@ -40,8 +45,8 @@ export class FormBienesComponent {
     private propietarioService: PropietarioService,
     private usuarioService: UsuarioService,
     private ubicacionService: UbicacionesService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   cargarListaBienes() {
@@ -74,10 +79,11 @@ export class FormBienesComponent {
     );
   }
 
-  public handleSubmit(): void {
+  public CrearBien(): void {
     this.bienService.createBien(this.bien).subscribe(
       bien => {
         console.log(bien);
+        this.CloseModal();
         Swal.fire(
           'Bien Agregado',
           `Bien ${this.bien.bien_descripcion} guardado`,
@@ -96,9 +102,41 @@ export class FormBienesComponent {
     );
   }
 
+  /*
+  public handleSubmit(): void {
+    if (this.bien.bien_cod) {
+      console.log(this.bien + ' asdsadsadsad')
+      this.bienService.createBien(this.bien).subscribe(
+        bien => {
+          this.router.navigate(['/bienes']);
+          Swal.fire('Bien Modificado', `Bien modificado con éxito`, 'success');
+        }
+      );
+    } else {
+      console.log(this.bien + ' asdsadsadsad');
+      this.bienService.createBien(this.bien).subscribe(
+        bien => {
+          this.CloseModal();
+          Swal.fire(
+            'Bien Agregado',
+            `Bien ${this.bien.bien_descripcion} guardado`,
+            'success'
+          );
+          this.router.navigate(['/bienes']);
+        }
+      );
+    } 
+  }
+*/
+  selectRow(bi: Bien) {
+    this.codSeleccionado = bi.bien_cod.toString();
+    this.filaSelect = bi;
+    this.seleccionado = true;
+  }
+
   public cargarBien(): void {
     this.activatedRoute.params.subscribe(params => {
-      let id = params['id'];
+      let id = params['bien_cod'];
       if (id) {
         this.bienService.getBien(id).subscribe(bien => {
           this.bien = bien;
@@ -107,6 +145,13 @@ export class FormBienesComponent {
     });
   }
   
+  CloseModal(): void {
+    const cancelButton = document.querySelector('.modal-footer-form #CloseModal') as HTMLElement;
+    if (cancelButton) {
+      cancelButton.click();
+    }
+  }
+
   // Método para guardar el ID de la categoría seleccionada
   onCategoriaChange(): void {
     console.log('ID de categoría seleccionada:', this.bien.categoria.cat_cod);

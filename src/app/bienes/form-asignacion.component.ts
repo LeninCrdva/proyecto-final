@@ -12,6 +12,7 @@ import { UbicacionesService } from '../services/ubicaciones.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import Swal from 'sweetalert2';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-form-asignacion',
@@ -62,21 +63,28 @@ export class FormAsignacionComponent implements OnInit {
       ubicacion => (this.ubicaciones = ubicacion)
     );
   }
-  
+
   cargarBien(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      let bien_cod = params['bien_cod'];
-      if (bien_cod) {
-        this.bienService
-          .getBien(bien_cod)
-          .subscribe((bien) => (this.bien = bien));
+    this.activatedRoute.params.pipe(
+      switchMap(params => {
+        let bien_cod = params['bien_cod'];
+        if (bien_cod) {
+          return this.bienService.getBien(bien_cod);
+        } else {
+          // Si no se proporciona un bien_cod, puedes devolver un observable vacío o null
+          // según lo que necesites en tu lógica
+          return of(null);
+        }
+      })
+    ).subscribe((bien) => {
+      if (bien) {
+        this.bien = bien;
       }
     });
   }
 
   public Asignar(): void {
     this.bienService.createBien(this.bien).subscribe((bien) => {
-      console.log(bien);
       Swal.fire(
         'Bien Asignado',
         `Bien ${this.bien.bien_codigoG} asignado a ${this.bien.usuario.persona.perPrimerNom + ' ' + this.bien.usuario.persona.perApellidoPater}`,
@@ -84,5 +92,12 @@ export class FormAsignacionComponent implements OnInit {
       );
       this.router.navigate(['/bienes']);
     });
+  }
+
+  CloseModal(): void {
+    const cancelButton = document.querySelector('.modal-footer #CloseAsignar') as HTMLElement;
+    if (cancelButton) {
+      cancelButton.click();
+    }
   }
 }
