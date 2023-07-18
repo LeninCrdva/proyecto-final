@@ -42,7 +42,7 @@
 
         <!-- Precio -->
         <div class="form-group">
-          <input [(ngModel)]="bien.bien_precio" type="number" class="form-control" name="precio" placeholder="Precio">
+          <input [(ngModel)]="bien.bien_precio" [min]="0" [max]="100000" [step]="0.01" type="number" class="form-control" name="precio" placeholder="Precio">
         </div>
 
         <!-- Propietario -->

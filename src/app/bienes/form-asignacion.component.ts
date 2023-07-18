@@ -29,6 +29,8 @@ export class FormAsignacionComponent implements OnInit {
     this.cargarListaUbicaciones()
   }
 
+  Title: string = 'Asignar Bien';
+
   constructor(private bienService: BienesService,private router: Router, private activatedRoute: ActivatedRoute,
     private categoriaService: CategoriaService, private propietarioService: PropietarioService, 
     private usuarioService: UsuarioService, private ubicacionService: UbicacionesService) {}

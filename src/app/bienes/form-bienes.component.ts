@@ -38,7 +38,6 @@ export class FormBienesComponent {
   categorias: Categoria[] = [];
   usuarios!: Usuario[];
   ubicaciones: Ubicacion[] = [];
-
   constructor(
     private bienService: BienesService,
     private categoriaService: CategoriaService,
