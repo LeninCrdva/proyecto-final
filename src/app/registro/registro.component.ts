@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
 import { PersonaService } from '../services/persona.service';
 import { Usuario } from '../entities/usuario';
 import { Persona } from '../entities/persona';
 import Swal from 'sweetalert2';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-registro',
@@ -20,6 +22,8 @@ export class RegistroComponent implements OnInit{
   personas : any;
   public personaB: Array<any> = [];
   public editMode: boolean = false;
+  @ViewChild('crearForm') crearForm!: NgForm;
+
 
   constructor(private usuarioService: UsuarioService, private personaService: PersonaService) { }
 
@@ -123,16 +127,38 @@ export class RegistroComponent implements OnInit{
     if (this.editMode) {
       this.usuarioService.createCustodio(this.usuario).subscribe(
         usuario => {
-          Swal.fire('Cliente Actualizado', `Custodio actualizado con éxito`, 'success');
+          if(usuario != null) {
+            Swal.fire('Cliente Actualizado', `Custodio actualizado con éxito`, 'success');
+            this.cleanFields();
+          } else {
+            Swal.fire('Cliente Actualizado', `No se pudo actualizar el cliente`, 'error');
+          }
         }
       );
     } else {
       this.usuarioService.createCustodio(this.usuario).subscribe(
         usuario => {
-          Swal.fire('Cliente Guardado', `Cliente guardado con éxito`, 'success');
+          if(usuario != null){
+            Swal.fire('Cliente Guardado', `Cliente guardado con éxito`, 'success');
+            this.cleanFields();
+          } else {
+            Swal.fire('Cliente Guardado', `No se pudo guardar el cliente`, 'error');
+          }
         }
       );
     }
+  }
+
+  private closeModal(): void {
+    const cancelButton = document.querySelector('.modal-footer .btn-secondary') as HTMLElement;
+    if (cancelButton) {
+      cancelButton.click();
+    }
+  }  
+  
+  private cleanFields(): void {
+    this.closeModal();
+    this.crearForm.reset();
   }
 
 }
