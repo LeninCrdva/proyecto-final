@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../entities/usuario';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +25,13 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/usuarios`);
+  getUsers(): Observable<Usuario[]> {
+    //return this.http.get<Usuario>(`${this.apiUrl}/usuarios`);
+    return this.http.get(this.urlCreateUsuario).pipe(
+      map(response => response as Usuario[])
+    );
   }
-
+  
   getUserById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/usuarios/${id}`);
   }

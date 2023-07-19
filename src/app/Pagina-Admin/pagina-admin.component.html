@@ -13,12 +13,6 @@
                 <button class="btn btn-primary btn-sm">Subir Excel</button>
             </div>
             <div class="col-sm">
-                <button class="btn btn-primary btn-sm">Asignar Custodio</button>
-            </div>
-            <div class="col-sm">
-                <button class="btn btn-primary btn-sm">Editar</button>
-            </div>
-            <div class="col-sm">
                 <form action="" class="form">
                     <div class="form-group">
                         <input type="text" class="form-control typehead" name="" id="" aria-describedby="helpId" placeholder="Buscar">
@@ -32,52 +26,32 @@
         <table class="table table-bordered table-sm small">
             <thead>
                 <tr class="btn-primary disabled font-weight-bold">
-                    <td>Código</td>
-                    <td>Modelo</td>
-                    <td>Marca</td>
-                    <td>Estado</td>
-                    <td>Descripción</td>
-                    <td>Serie</td>
-                    <td>Propietario</td>
-                    <td>Precio</td>
-                    <td>Edificio</td>
-                    <td>Categoria</td>
-                    <td>Custodio</td>
-                    <td>Editar</td>
+                    <td>Cedula</td>
+                    <td>Nombre</td>
+                    <td>Apellido</td>
+                    <td>Dirección</td>
+                    <td>Telefono</td>
+                    <td>Género</td>
+                    <td>Email</td>
+                    <td>Fecha de nacimiento</td>
+                    <td>Rol Otorgado</td>
                 </tr>
             </thead>
 
             <tbody>
-                <tr class="text-center">
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>8</td>
-                    <td>9</td>
-                    <td>10</td>
-                    <td>12</td>
-                    <td>
-                        <button class="btn btn-secondary btn-sm">Editar</button>
-                    </td>
-                </tr>
-                <tr class="text-center">
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>8</td>
-                    <td>9</td>
-                    <td>10</td>
-                    <td>12</td>
-                    <td>
-                        <button class="btn btn-secondary btn-sm">Editar</button>
+                <tr *ngFor="let cust of usuariosCustodios" class="text-center" >
+                    <td>{{cust.persona.perCedula}}</td>
+                    <td>{{cust.persona.perPrimerNom}}</td>
+                    <td>{{cust.persona.perApellidoMater}}</td>
+                    <td>{{cust.persona.perDireccion}}</td>
+                    <td>{{cust.persona.perTelefono}}</td>
+                    <td>{{cust.persona.perGenero === 'M' ? 'Masculino':'Femenino'}}</td>
+                    <td>{{cust.persona.perEmail}}</td>
+                    <td>{{cust.persona.perFechaNac}}</td>
+                    <td *ngFor="let rol of cust.roles">
+                        <ng-container *ngIf="rol.rol_nombre === 'Custodio'">
+                            {{ rol.rol_nombre }}
+                        </ng-container>
                     </td>
                 </tr>
             </tbody>
