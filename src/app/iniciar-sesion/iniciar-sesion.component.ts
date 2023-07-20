@@ -71,7 +71,7 @@ export class IniciarSesionComponent implements OnInit {
                       //this.router.navigate(['/perfil']);
                       //this.router.navigate(['/ubicacion']);//cargado
                       if(rolNombre=="Rector"){
-
+                        location.href = 'superusuario';
                       }
                       else{
                         location.href = 'biencustodio';
