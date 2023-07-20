@@ -1,5 +1,5 @@
 <div class="Form-Bien">
-  <form ngNativeValidate (ngSubmit)="CrearBien()">
+  <form (ngSubmit)="CrearBien()">
     <fieldset class="section">
       <div class="title">
         <legend class="Form-title text-center">
@@ -10,8 +10,8 @@
         <div class="form-group">
           <label for="codigo">Código</label>
           <input [(ngModel)]="bien.bien_codigoG" type="text" class="form-control" name="codigo"
-            aria-describedby="codeDesc">
-          <small name="codeDesc" class="form-text text-muted">Código autogenerado</small>
+            aria-describedby="codigoDesc">
+          <small id="codigoDesc" class="form-text text-muted">Código autogenerado</small>
         </div>
 
         <!-- Modelo -->
@@ -44,51 +44,53 @@
         <div class="form-group">
           <input [(ngModel)]="bien.bien_precio" [min]="0" [max]="100000" [step]="0.01" type="number" class="form-control" name="precio" placeholder="Precio">
         </div>
-       <!-- Propietario -->
-       
-       <div class="form-group">
-        <label for="propietario">Propietario</label>
-        <div>
-          <select [(ngModel)]="bien.propietario" name="propietario" class="form-select"
-                  (ngModelChange)="onPropietarioChange()" [compareWith]="compareFn" required>
-            <option *ngFor="let propietario of propietarios" [ngValue]="propietario" [selected]="propietario.pro_cod === bien.propietario.pro_cod">{{ propietario.pro_nombre }}</option>
-          </select>
-        </div>
-      </div>
-      
 
-
-
-           <!-- Ubicación -->
-          <div class="form-group">
-           <label for="ubicacion">Ubicación</label>
+        <!-- Propietario -->
+        <div class="form-group">
+          <label for="propietario">Propietario</label>
           <div>
-             <select [(ngModel)]="bien.ubicacion" name="ubicacion" class="form-select"
+            <!-- Utiliza la variable propietariosCargados para mostrar el select -->
+            <select *ngIf="propietariosCargados" [(ngModel)]="bien.propietario" name="propietario" class="form-select"
+              (ngModelChange)="onPropietarioChange()" [compareWith]="compareFn" required>
+              <option *ngFor="let propietario of propietarios" [ngValue]="propietario">
+                {{ propietario.pro_nombre }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Ubicación -->
+        <div class="form-group">
+          <label for="ubicacion">Ubicación</label>
+          <div>
+            <select [(ngModel)]="bien.ubicacion" name="ubicacion" class="form-select"
               (ngModelChange)="onUbicacionChange()" [compareWith]="compareUbicaciones" required>
-             <option *ngFor="let ubi of ubicaciones" [ngValue]="ubi">{{ ubi.ubi_nombre }}</option>
-             </select>
-           </div>
-           </div>
-             <!-- Categorías -->
-             <div class="form-group">
-               <label for="categoria">Categorías</label>
-            <div>
-               <select [(ngModel)]="bien.categoria" name="categoria" class="form-select"
-                (ngModelChange)="onCategoriaChange()" [compareWith]="compareCategorias" required>
-                <option *ngFor="let cat of categorias" [ngValue]="cat">{{ cat.cat_nombre }}</option>
-              </select>
-            </div>
-            </div>
-            <!-- Custodio (Usuario) -->
-           <div class="form-group">
-             <label for="custodio">Custodio (Usuario)</label>
-           <div>
-             <select [(ngModel)]="bien.usuario" name="usuario" class="form-select" (ngModelChange)="onCustodioChange()"
-                [compareWith]="compareUsuarios" required>
-               <option *ngFor="let user of usuarios" [ngValue]="user">{{ user.usuario }}</option>
-             </select>
-             </div>
-             </div>
+              <option *ngFor="let ubi of ubicaciones" [ngValue]="ubi">{{ ubi.ubi_nombre }}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Categorías -->
+        <div class="form-group">
+          <label for="categoria">Categorías</label>
+          <div>
+            <select [(ngModel)]="bien.categoria" name="categoria" class="form-select"
+              (ngModelChange)="onCategoriaChange()" [compareWith]="compareCategorias" required>
+              <option *ngFor="let cat of categorias" [ngValue]="cat">{{ cat.cat_nombre }}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Custodio (Usuario) -->
+        <div class="form-group">
+          <label for="custodio">Custodio (Usuario)</label>
+          <div>
+            <select [(ngModel)]="bien.usuario" name="usuario" class="form-select" (ngModelChange)="onCustodioChange()"
+              [compareWith]="compareUsuarios" required>
+              <option *ngFor="let user of usuarios" [ngValue]="user">{{ user.usuario }}</option>
+            </select>
+          </div>
+        </div>
 
         <!-- Botón de Guardar -->
         <div class="btn-container py-2 text-center">

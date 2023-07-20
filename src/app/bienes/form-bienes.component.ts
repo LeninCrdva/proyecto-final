@@ -38,6 +38,7 @@ export class FormBienesComponent {
   categorias: Categoria[] = [];
   usuarios!: Usuario[];
   ubicaciones: Ubicacion[] = [];
+  propietariosCargados = false;
   constructor(
     private bienService: BienesService,
     private categoriaService: CategoriaService,
@@ -46,24 +47,42 @@ export class FormBienesComponent {
     private ubicacionService: UbicacionesService,
     private activatedRoute: ActivatedRoute,
     private router: Router
+    
   ) {}
-  // Método para comparar propietarios por pro_cod
-compareFn(propietario1: Propietario, propietario2: Propietario): boolean {
-  return propietario1.pro_cod === propietario2.pro_cod;
+// Método para comparar propietarios por pro_cod
+compareFn(propietario1: Propietario | undefined, propietario2: Propietario | undefined): boolean {
+  // Verificamos que ambos propietarios sean válidos antes de comparar sus códigos
+  if (propietario1 && propietario2) {
+    return propietario1.pro_cod === propietario2.pro_cod;
+  }
+  // Si alguno de los propietarios es undefined, no pueden ser iguales
+  return false;
 }
-// ... (código existente)
 
-// Funciones de comparación para ubicación, categorías y custodio (usuario)
-compareUbicaciones(ubi1: Ubicacion, ubi2: Ubicacion): boolean {
-  return ubi1.ubi_cod === ubi2.ubi_cod;
+
+
+compareUbicaciones(ubi1: Ubicacion | undefined, ubi2: Ubicacion | undefined): boolean {
+  // Verificamos que ambas ubicaciones sean válidas antes de comparar sus códigos
+  if (ubi1 && ubi2) {
+    return ubi1.ubi_cod === ubi2.ubi_cod;
+  }
+  // Si alguna de las ubicaciones es undefined, no pueden ser iguales
+  return false;
 }
 
+
+// Función de comparación para categorías
 compareCategorias(cat1: Categoria, cat2: Categoria): boolean {
-  return cat1.cat_cod === cat2.cat_cod;
+  return cat1?.cat_cod === cat2?.cat_cod;
 }
 
-compareUsuarios(user1: Usuario, user2: Usuario): boolean {
-  return user1.usu_cod === user2.usu_cod;
+compareUsuarios(user1: Usuario | undefined, user2: Usuario | undefined): boolean {
+  // Verificamos que ambos usuarios sean válidos antes de comparar sus códigos
+  if (user1 && user2) {
+    return user1.usu_cod === user2.usu_cod;
+  }
+  // Si alguno de los usuarios es undefined, no pueden ser iguales
+  return false;
 }
 
 // Resto del código del componente
@@ -76,15 +95,21 @@ compareUsuarios(user1: Usuario, user2: Usuario): boolean {
 
   cargarListaCategorias() {
     this.categoriaService.getCategoria().subscribe(
-      categoria => (this.categorias = categoria)
+      categoria => {
+        this.categorias = categoria;
+        // Verificar si las categorías se han cargado correctamente
+        console.log('Categorías cargadas:', this.categorias);
+      },
+      error => {
+        console.error('Error al cargar categorías:', error);
+      }
     );
   }
-
   cargarListaPropietario() {
     this.propietarioService.getPropietarios().subscribe(
       propietario => {
         this.propietarios = propietario;
-        // Verificar si los propietarios se han cargado correctamente
+        this.propietariosCargados = true; // Actualizar la variable propietariosCargados
         console.log('Propietarios cargados:', this.propietarios);
       },
       error => {
@@ -92,6 +117,9 @@ compareUsuarios(user1: Usuario, user2: Usuario): boolean {
       }
     );
   }
+  
+  
+  
 
   cargarListaUsuarios() {
     this.usuarioService.getUsers().subscribe(
