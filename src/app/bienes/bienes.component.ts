@@ -11,7 +11,9 @@ import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
   styleUrls: ['./bienes-style.component.css'],
 })
 export class BienesComponent implements OnInit {
+
   rolUsuario: string = '';
+  argumento!: string;
   ngOnInit(): void {
     this.cargarListaBienes();
     const userData = this.dataStorageService.getData('datosUsuario');
@@ -53,6 +55,14 @@ export class BienesComponent implements OnInit {
     } else {
       Swal.fire('Error', 'Por favor, seleccione el bien que desea asignar.', 'error');
     }
+  }
+
+  BuscarBienesByArgument(argument: string): void {
+    this.bienesService.getBienesByArgument(argument).subscribe(
+      bienes => { this.bienes = bienes;
+      },
+    error => console.error(error)
+    );
   }
 
   CargaEditarBien() {

@@ -3,34 +3,36 @@
 <app-header *ngIf="rolUsuario === 'Rector'"></app-header>
 <div class="header">
     <h1 style="margin-right: auto;">Panel De Bienes</h1>
-  </div>
-  
+</div>
+
 <div class="card-body">
     <div class="container">
         <div class="row">
-            <div class="col-sm">           
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FormIngresoModal">Ingresar bien</button>
+            <div class="col-sm">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FormIngresoModal">Ingresar
+                    bien</button>
             </div>
-            <div class="col-sm">           
+            <div class="col-sm">
                 <button class="btn btn-primary" (click)="CargaEditarBien()">Editar</button>
             </div>
             <div class="col-sm">
                 <button class="btn btn-primary">Reporte de Bienes</button>
             </div>
             <div class="col-sm">
-                <button class="btn btn-primary" (click)="CargaAsignarBien()"
-                >Asignar bien</button>
+                <button class="btn btn-primary" (click)="CargaAsignarBien()">Asignar bien</button>
             </div>
             <div class="col-sm">
                 <form action="" class="form">
                     <div class="form-group">
-                        <input type="text" class="form-control typehead" name="" id="" aria-describedby="helpId" placeholder="Buscar">
+                        <input type="text" class="form-control typehead" name="argumento" id=""
+                            aria-describedby="helpId" placeholder="Buscar" [(ngModel)]="argumento"
+                            [ngModelOptions]="{standalone: true}" (input)="BuscarBienesByArgument(argumento)">
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
+
     <div class="py-5 table-responsive">
         <table class="table table-bordered table-sm small">
             <thead>
@@ -55,36 +57,35 @@
                     <td>{{bien.bien_modelo}}</td>
                     <td>{{bien.bien_marca}}</td>
                     <td>{{bien.bien_estado}}</td>
-                    <td>{{bien.bien_descripcion}}</td> 
+                    <td>{{bien.bien_descripcion}}</td>
                     <td>{{bien.bien_serie}}</td>
                     <td>{{bien.propietario.pro_nombre}}</td>
                     <td>{{bien.bien_precio}}</td>
                     <td>{{bien.ubicacion.ubi_nombre}}</td>
                     <td>{{bien.categoria.cat_nombre}}</td>
-                    <td>{{bien.usuario.usuario + ' - ' + bien.usuario.persona.perPrimerNom + ' ' + bien.usuario.persona.perApellidoPater}}</td>
+                    <td>{{bien.usuario.usuario + ' - ' + bien.usuario.persona.perPrimerNom + ' ' +
+                        bien.usuario.persona.perApellidoPater}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<div class="modal fade" id="FormIngresoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="FormIngresoModal" data-bs-backdrop="static" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-form-bienes></app-form-bienes>
+            </div>
+            <div class="modal-footer-form">
+                <button id="CloseModal" type="button" class="button-close" data-bs-dismiss="modal">Cancelar</button>
+            </div>
         </div>
-        <div class="modal-body">
-            <app-form-bienes></app-form-bienes>
-        </div>
-        <div class="modal-footer-form">
-            <button id="CloseModal" type="button" class="button-close" data-bs-dismiss="modal">Cancelar</button>
-        </div>
-        </div>
-    </div> 
+    </div>
 </div>
 
 <app-footer></app-footer>
-  
-
-
