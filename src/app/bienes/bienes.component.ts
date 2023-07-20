@@ -3,17 +3,21 @@ import { Bien } from '../entities/bien';
 import { BienesService } from '../services/bienes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
 
 @Component({
   selector: 'app-bienes-asignacion',
   templateUrl: './bienes.component.html',
   styleUrls: ['./bienes-style.component.css'],
 })
-
 export class BienesComponent implements OnInit {
-  
+  rolUsuario: string = '';
   ngOnInit(): void {
-    this.cargarListaBienes()
+    this.cargarListaBienes();
+    const userData = this.dataStorageService.getData('datosUsuario');
+    this.rolUsuario = userData.rolNombre;
+    console.log('su rol es:', this.rolUsuario);
+    
   }
 
   AsignarTitle: string = 'Asignar bien';
@@ -25,19 +29,22 @@ export class BienesComponent implements OnInit {
   filaSelect: Bien | null = null;
   seleccionado: boolean = false;
 
-  constructor(private bienesService: BienesService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private bienesService: BienesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private dataStorageService: DataStorageService
+  ) {}
 
   cargarListaBienes() {
-    this.bienesService.getBienes().subscribe(
-      bien => this.bienes = bien
-    )
+    this.bienesService.getBienes().subscribe((bien) => (this.bienes = bien));
   }
 
   selectRow(bi: Bien) {
     this.codSeleccionado = bi.bien_cod.toString();
     this.filaSelect = bi;
     this.seleccionado = true;
-    console.log(bi)
+    console.log(bi);
   }
 
   CargaAsignarBien() {

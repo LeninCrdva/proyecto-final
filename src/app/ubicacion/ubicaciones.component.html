@@ -1,16 +1,19 @@
-<app-header></app-header>
+<app-headerSuper *ngIf="rolUsuario === 'Super Usuario'"></app-headerSuper>
+<app-header *ngIf="rolUsuario === 'Rector'"></app-header>
 <!DOCTYPE html>
 
 <meta charset="utf-8">
-<title>FrontEnd</title>
 
 <html>
 
     
 
- <h1 class="title1">Panel de Ubicacion</h1>
 
-  <div> 
+  <div>
+    <div class="header">
+      <h1 style="margin-right: auto;">Panel De Ubicacion</h1>
+    </div>
+     
         <div class="button-container">
             <button style="margin-left: 10%;" routerLink="/form-ubicaciones"> Crear Ubicacion </button>
             <button style="margin-left: auto;">Activo</button>

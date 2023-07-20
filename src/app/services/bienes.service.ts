@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient,HttpParams } from '@angular/common/http';
 import { Bien } from '../entities/bien';
 import { Observable } from 'rxjs';
 import { Categoria } from '../entities/categoria';
@@ -31,6 +31,13 @@ export class BienesService {
 
   getBien(id: any): Observable<Bien> {
     return this.http.get<Bien>(`${this.urlEndPoint}/${id}`)
+  }
+  getBienesPorUsuarioYContrasenia(usuario: string, contrasenia: string): Observable<Bien[]> {
+    const params = new HttpParams()
+      .set('usuario', usuario)
+      .set('contrasenia', contrasenia);
+
+    return this.http.get<Bien[]>(`${this.urlEndPoint}/usuario-contrasenia`, { params });
   }
 
 }

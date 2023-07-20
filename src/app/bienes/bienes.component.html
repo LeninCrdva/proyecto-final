@@ -1,4 +1,10 @@
-<app-header></app-header>
+
+<app-headerSuper *ngIf="rolUsuario === 'Super Usuario'"></app-headerSuper>
+<app-header *ngIf="rolUsuario === 'Rector'"></app-header>
+<div class="header">
+    <h1 style="margin-right: auto;">Panel De Bienes</h1>
+  </div>
+  
 <div class="card-body">
     <div class="container">
         <div class="row">

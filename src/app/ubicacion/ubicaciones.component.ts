@@ -3,6 +3,7 @@ import { Ubicacion } from '../entities/ubicaciones';
 import { UbicacionesService } from '../services/ubicaciones.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
 
 @Component({
   selector: 'app-ubicacion',
@@ -12,11 +13,15 @@ import Swal from 'sweetalert2';
 export class UbicacionesComponent implements OnInit {
   ubicaciones: Ubicacion[] = [];
   selectedUbicacionId: number | null = null;
-
-  constructor(private ubicacionservice: UbicacionesService, private router: Router) {}
+  rolUsuario: string = '';
+  constructor(private ubicacionservice: UbicacionesService, private router: Router,
+    private dataStorageService: DataStorageService) {}
 
   ngOnInit(): void {
     this.ubicacionservice.getUbicaciones().subscribe((ubicaciones) => (this.ubicaciones = ubicaciones));
+    const userData = this.dataStorageService.getData('datosUsuario'); 
+    this.rolUsuario = userData.rolNombre;
+    console.log('su rol es:',this.rolUsuario);
   }
 
   seleccionarUbicacion(id: number): void {

@@ -47,6 +47,26 @@ export class FormBienesComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
+  // Método para comparar propietarios por pro_cod
+compareFn(propietario1: Propietario, propietario2: Propietario): boolean {
+  return propietario1.pro_cod === propietario2.pro_cod;
+}
+// ... (código existente)
+
+// Funciones de comparación para ubicación, categorías y custodio (usuario)
+compareUbicaciones(ubi1: Ubicacion, ubi2: Ubicacion): boolean {
+  return ubi1.ubi_cod === ubi2.ubi_cod;
+}
+
+compareCategorias(cat1: Categoria, cat2: Categoria): boolean {
+  return cat1.cat_cod === cat2.cat_cod;
+}
+
+compareUsuarios(user1: Usuario, user2: Usuario): boolean {
+  return user1.usu_cod === user2.usu_cod;
+}
+
+// Resto del código del componente
 
   cargarListaBienes() {
     this.bienService.getBienes().subscribe(
@@ -62,7 +82,14 @@ export class FormBienesComponent {
 
   cargarListaPropietario() {
     this.propietarioService.getPropietarios().subscribe(
-      propietario => (this.propietarios = propietario)
+      propietario => {
+        this.propietarios = propietario;
+        // Verificar si los propietarios se han cargado correctamente
+        console.log('Propietarios cargados:', this.propietarios);
+      },
+      error => {
+        console.error('Error al cargar propietarios:', error);
+      }
     );
   }
 
@@ -79,54 +106,41 @@ export class FormBienesComponent {
   }
 
   public CrearBien(): void {
-    this.bienService.createBien(this.bien).subscribe(
-      bien => {
-        console.log(bien);
-        this.CloseModal();
-        Swal.fire(
-          'Bien Agregado',
-          `Bien ${this.bien.bien_descripcion} guardado`,
-          'success'
-        );
-        this.router.navigate(['/bienes']);
-      },
-      error => {
-        console.error(error);
-        Swal.fire(
-          'Error',
-          'Ocurrió un error al guardar el bien',
-          'error'
+    Swal.fire({
+      title: 'Confirmar',
+      text: `¿Estás seguro de agregar el bien "${this.bien.bien_descripcion}"?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, agregar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.bienService.createBien(this.bien).subscribe(
+          bien => {
+            console.log(bien);
+            this.CloseModal();
+            Swal.fire(
+              'Bien Agregado',
+              `Bien ${this.bien.bien_descripcion} guardado`,
+              'success'
+            );
+            location.href = 'bienes';
+          },
+          error => {
+            console.error(error);
+            Swal.fire(
+              'Error',
+              'Ocurrió un error al guardar el bien',
+              'error'
+            );
+          }
         );
       }
-    );
+    });
   }
 
-  /*
-  public handleSubmit(): void {
-    if (this.bien.bien_cod) {
-      console.log(this.bien + ' asdsadsadsad')
-      this.bienService.createBien(this.bien).subscribe(
-        bien => {
-          this.router.navigate(['/bienes']);
-          Swal.fire('Bien Modificado', `Bien modificado con éxito`, 'success');
-        }
-      );
-    } else {
-      console.log(this.bien + ' asdsadsadsad');
-      this.bienService.createBien(this.bien).subscribe(
-        bien => {
-          this.CloseModal();
-          Swal.fire(
-            'Bien Agregado',
-            `Bien ${this.bien.bien_descripcion} guardado`,
-            'success'
-          );
-          this.router.navigate(['/bienes']);
-        }
-      );
-    } 
-  }
-*/
   selectRow(bi: Bien) {
     this.codSeleccionado = bi.bien_cod.toString();
     this.filaSelect = bi;
@@ -160,6 +174,9 @@ export class FormBienesComponent {
   onPropietarioChange(): void {
     console.log('ID de propietario seleccionado:', this.bien.propietario.pro_cod);
   }
+
+
+ 
 
   // Método para guardar el ID del usuario (custodio) seleccionado
   onCustodioChange(): void {

@@ -1,23 +1,25 @@
 <div class="contenedor">
+  <!-- Navbar -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand"
-        ><img class="imagen_header" src="../assets/Capa 2.png" alt=""
-      /></a>
-
+      <a class="navbar-brand">
+        <img class="imagen_header" src="../assets/Capa 2.png" alt="" />
+      </a>
       <form class="d-flex">
-         <a class="btn btn-perfil" [ngClass]="{'disabled-link': !isPerfil}" href="/perfil">
-      <ng-container *ngIf="usuario && usuario.primerNombre && usuario.apellidoPaterno; else sinDatos">
-        <span class="btn-icon"><i class="fas fa-user-circle"></i></span>
-        <span class="btn-text">{{ usuario.primerNombre }}</span>
-        <span class="btn-text">{{ usuario.apellidoPaterno }}</span>
-      </ng-container>
-      <ng-template #sinDatos>
-        <span class="btn-icon"><i class="fas fa-user-circle"></i></span>
-        <span class="btn-text">Perfil</span>
-      </ng-template>
-    </a>
-    <a class="btn" (click)="cerrarSesion()" href="/login">Cerrar Sesion</a>
+        <a class="btn btn-perfil" [ngClass]="{'disabled-link': !isPerfil}" href="/perfil">
+          <ng-container *ngIf="usuario && usuario.primerNombre && usuario.apellidoPaterno; else sinDatos">
+            <span class="btn-icon"><i class="fas fa-user-circle"></i></span>
+            <span class="btn-text">{{ usuario.primerNombre }}</span>
+            <span class="btn-text">{{ usuario.apellidoPaterno }}</span>
+          </ng-container>
+          <ng-template #sinDatos>
+            <span class="btn-icon"><i class="fas fa-user-circle"></i></span>
+            <span class="btn-text">Perfil</span>
+          </ng-template>
+        </a>
+        <a class="btn" (click)="cerrarSesion()" href="/login">Cerrar Sesion</a>
       </form>
     </div>
   </nav>
@@ -30,64 +32,51 @@
         name="filterBien"
         type="text"
         id="usuario"
-        [(ngModel)]="filterBien"
         class="form-control"
         placeholder="Buscar"
         required
       />
     </div>
-    <table class="table table-bordered table-striped">
+    <table>
       <thead>
         <tr>
           <th>Código</th>
-          <th>Modelo</th>
+          <th>Descripción</th>
           <th>Marca</th>
-          <th>Estado</th>
-          <th>Tipo</th>
-          <th>Descripcion</th>
-          <th>Serie</th>
+          <th>Categoría</th>
           <th>Propietario</th>
-          <th>Precio</th>
           <th>Ubicación</th>
-          <th>Categoria</th>
-          <th>Custodio</th>
+          <th>Departamento</th>
+          <th>Usuario</th>
+          <th>Nombre y Apellido</th>
         </tr>
       </thead>
-      <!-- Aquí puedes agregar las filas de la tabla -->
       <tbody>
-        <tr *ngFor="let bien of registroBien | filter : filterBien">
-          <td>{{ bien.bien_cod }}</td>
-          <td>{{ bien.bien_modelo }}</td>
-          <td>{{ bien.bien_marca }}</td>
-          <td>{{ bien.bien_estado }}</td>
-          <td>{{ bien.bien_detalles }}</td>
+        <tr *ngFor="let bien of registroBien">
+          <td>{{ bien.bien_codigoG }}</td>
           <td>{{ bien.bien_descripcion }}</td>
-          <td>{{ bien.bien_serie }}</td>
-          <td>{{ bien.propietario.pro_nombre }}</td>
-          <td>{{ bien.bien_precio }}</td>
-          <td>{{ bien.ubicacion.ubi_nombre }}</td>
+          <td>{{ bien.bien_marca }}</td>
           <td>{{ bien.categoria.cat_nombre }}</td>
-          <td>
-            {{ bien.usuario.persona.perPrimerNom }}
-            {{ bien.usuario.persona.perApellidoPater }}
-          </td>
+          <td>{{ bien.propietario.pro_nombre }}</td>
+          <td>{{ bien.ubicacion.ubi_nombre }}</td>
+          <td>{{ bien.ubicacion.ubi_departamento }}</td>
+          <td>{{ bien.usuario.usuario }}</td>
+          <td>{{ bien.usuario.persona.perPrimerNom }} {{ bien.usuario.persona.perApellidoPater }}</td>
         </tr>
       </tbody>
     </table>
+    <button class="btn btn-outline-success btn2" type="submit" (click)="imprimirReporte()">
+      Generar Reporte
+    </button>
   </div>
-  <button
-    class="btn btn-outline-success btn2"
-    type="submit"
-    (click)="imprimirReporte()"
-  >
-    Generar Reporte
-  </button>
+
   <!-- Footer -->
   <footer class="footer">
-    <div class="texto_footer">
-      <p class="texto-1">Tecnólogico del Azuay</p>
-
-      <p class="texto-2">Instituto Universitario</p>
+    <div class="container-fluid">
+      <div class="texto_footer">
+        <p class="texto-1">Tecnólogico del Azuay</p>
+        <p class="texto-2">Instituto Universitario</p>
+      </div>
     </div>
   </footer>
 </div>

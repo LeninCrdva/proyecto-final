@@ -54,6 +54,14 @@ th {
   border-collapse: collapse;
   background-color: #1976d5;
 }
+.btn-perfil .btn-icon {
+  margin-right: 8px; /* Espacio entre el ícono y el texto */
+}
+
+/* Estilo para cambiar el color del texto cuando el botón está deshabilitado */
+.btn-perfil.disabled-link {
+  color: #ccc; /* Color de texto cuando el botón está deshabilitado */
+}
 table {
   margin: 0 auto;
 }
@@ -92,3 +100,4 @@ td {
 .texto-2 {
   font-size: 10px;
 }
+

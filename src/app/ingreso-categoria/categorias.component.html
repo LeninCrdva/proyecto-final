@@ -1,4 +1,5 @@
-<app-header></app-header>
+<app-headerSuper *ngIf="rolUsuario === 'Super Usuario'"></app-headerSuper>
+<app-header *ngIf="rolUsuario === 'Admin'"></app-header>
 <!DOCTYPE html>
 <html>
 <body>

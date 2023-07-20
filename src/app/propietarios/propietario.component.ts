@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Propietario } from '../entities/propietario';
+import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PropietarioService } from '../services/propietario.service';
 @Component({
   selector: 'app-propietario',
@@ -9,11 +11,17 @@ import { PropietarioService } from '../services/propietario.service';
 export class PropietarioComponent implements OnInit{
 
   propietarios: Propietario[]=[];
-
-  constructor(private propietarioService: PropietarioService){}
+  rolUsuario: string = '';
+  constructor(private propietarioService: PropietarioService
+    ,private router: Router, private activatedRoute: ActivatedRoute,
+    private dataStorageService: DataStorageService){}
 
   ngOnInit():void{
+
     this.cargarListaPropietarios()
+    const userData = this.dataStorageService.getData('datosUsuario'); 
+    this.rolUsuario = userData.rolNombre;
+    console.log('su rol es:',this.rolUsuario);
   }
 
   cargarListaPropietarios(){

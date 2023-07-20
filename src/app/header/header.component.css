@@ -1,85 +1,84 @@
 /* Estilos para el contenedor principal */
 .container-fluid {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-    height: 80px;
-    background-color: #1976d5;
-    padding: 10px 46px;
-  }
-  
-  /* Estilos para la imagen del header */
-  .imagen_header {
-    width: 60px;
-    height: 54px;
-    cursor: pointer;
-  }
-  
-  /* Estilos para el contenedor de botones */
-  .button-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-left: auto; /* Mueve los botones al margen derecho */
-  }
-  
-  /* Estilos para los botones */
-  .button-container a.btn {
-    color: white;
-    padding: 7px 18px;
-    border: 1px solid white;
-    background-color: #1976d5;
-    border-radius: 20px;
-    font-size: 15px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  /* Estilos para el efecto hover de los botones */
-  .button-container a.btn:hover {
-    background-color: white;
-    color: #1976d5;
-  }
-  
-  /* Estilos adicionales para el input de búsqueda (si lo tienes en tu código) */
-  .button-container input[type="search"] {
-    padding: 5px;
-    border: none;
-    border-radius: 20px;
-    font-size: 13px;
-  }
-  
-  /* Estilo para botones deshabilitados */
-  .disabled-link {
-    pointer-events: none; /* Evita que se dispare el evento de clic */
-    opacity: 0.6; /* Opacidad para indicar que el enlace está deshabilitado */
-    cursor: not-allowed; /* Cambiar el cursor al indicar que el enlace no es interactivo */
-  }
- /* Estilos para el botón de perfil */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 80px;
+  background-color: #1976d5;
+  padding: 10px 46px;
+}
+
+/* Estilos para la imagen del header */
+.imagen_header {
+  width: 60px;
+  height: 54px;
+  cursor: pointer;
+}
+
+/* Estilos para el contenedor de botones */
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto; /* Mueve los botones al margen derecho */
+}
+
+/* Estilos para los botones */
+.button-container a.btn {
+  color: white;
+  padding: 7px 18px;
+  border: 1px solid white;
+  background-color: #1976d5;
+  border-radius: 20px;
+  font-size: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Estilos para el efecto hover de los botones */
+.button-container a.btn:hover {
+  background-color: white;
+  color: #1976d5;
+}
+
+/* Estilos adicionales para el input de búsqueda (si lo tienes en tu código) */
+.button-container input[type="search"] {
+  padding: 5px;
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Estilo para botones deshabilitados */
+.disabled-link {
+  pointer-events: none; /* Evita que se dispare el evento de clic */
+  opacity: 0.6; /* Opacidad para indicar que el enlace está deshabilitado */
+  cursor: not-allowed; /* Cambiar el cursor al indicar que el enlace no es interactivo */
+}
+/* Estilos para el botón de perfil */
 .btn-perfil {
-    font-size: 18px;
-    padding: 12px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #ff4081; /* Color de fondo distintivo para el botón de perfil */
-    border: 2px solid #ff4081; /* Borde del botón de perfil */
-    transition: background-color 0.3s, border-color 0.3s;
-  }
-  
-  .btn-perfil:hover {
-    background-color: #d81b60; /* Color de fondo en el hover */
-    border-color: #d81b60; /* Borde en el hover */
-  }
-  
-  /* Estilo para agregar un ícono al botón de perfil */
-  .btn-perfil .btn-icon {
-    margin-right: 8px; /* Espacio entre el ícono y el texto */
-  }
-  
-  /* Estilo para cambiar el color del texto cuando el botón está deshabilitado */
-  .btn-perfil.disabled-link {
-    color: #ccc; /* Color de texto cuando el botón está deshabilitado */
-  }
-  
+  font-size: 18px;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff4081; /* Color de fondo distintivo para el botón de perfil */
+  border: 2px solid #ff4081; /* Borde del botón de perfil */
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-perfil:hover {
+  background-color: #d81b60; /* Color de fondo en el hover */
+  border-color: #d81b60; /* Borde en el hover */
+}
+
+/* Estilo para agregar un ícono al botón de perfil */
+.btn-perfil .btn-icon {
+  margin-right: 8px; /* Espacio entre el ícono y el texto */
+}
+
+/* Estilo para cambiar el color del texto cuando el botón está deshabilitado */
+.btn-perfil.disabled-link {
+  color: #ccc; /* Color de texto cuando el botón está deshabilitado */
+}

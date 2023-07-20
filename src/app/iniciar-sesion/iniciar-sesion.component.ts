@@ -70,7 +70,12 @@ export class IniciarSesionComponent implements OnInit {
                       // Redireccionar a otra página (por ejemplo, ubicacion luego cambiar)
                       //this.router.navigate(['/perfil']);
                       //this.router.navigate(['/ubicacion']);//cargado
-                    location.href = 'biencustodio';//redirecciona con niueva carga
+                      if(rolNombre=="Rector"){
+
+                      }
+                      else{
+                        location.href = 'biencustodio';
+                      }
                     // this.router.navigate(['/biencustodio']);
                     }
                   }

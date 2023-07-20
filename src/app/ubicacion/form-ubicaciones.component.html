@@ -11,7 +11,7 @@
 
             <section class="entradas-form"> Código:
                 <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                name="codigo" id="codigo" required="required" class="controls"
+                name="codigo" id="codigo" required="required" class="controls" [disabled]="true"
                     [(ngModel)]="ubicacion.ubi_cod">
 
                 Nombre:<input type="text" name="nombre" id="nombre" required="required" class="controls"

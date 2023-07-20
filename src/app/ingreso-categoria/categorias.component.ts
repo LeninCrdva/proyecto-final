@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categoria } from '../entities/categoria';
+import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
 
 //import { CategoriaService } from './categoria.service';
 import Swal from 'sweetalert2';
@@ -12,6 +13,7 @@ import { CategoriaService } from '../services/categoria.service';
   styleUrls: ['./categoria.component.css']
 })
 export class CategoriasComponent implements OnInit {
+  rolUsuario: string = '';
   categorias: Categoria[] = [];
   categFiltradas: Categoria[] = [];
   codSeleccionado: string = '';
@@ -19,7 +21,8 @@ export class CategoriasComponent implements OnInit {
   filtrar: string = '';
   seleccionado: boolean = false;
 
-  constructor(private categoriaService: CategoriaService, private router: Router) { }
+  constructor(private categoriaService: CategoriaService, private router: Router,
+    private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
     this.categoriaService.getCategoria().subscribe(
@@ -28,6 +31,9 @@ export class CategoriasComponent implements OnInit {
         this.categFiltradas = categorias;
       }
     );
+    const userData = this.dataStorageService.getData('datosUsuario'); 
+    this.rolUsuario = userData.rolNombre;
+    console.log('su rol es:',this.rolUsuario);
   }
 
   selectRow(categ: Categoria) {
