@@ -25,58 +25,88 @@
   </nav>
 
   <!-- Cuerpo -->
-  <div class="tabla-contenedor" id="reporte" #reporte>
+  
+  <div class="tabla-contenedor">
     <div class="buscar">
       <h1 class="titulo">Panel Principal Custodio</h1>
-      <input
-        name="filterBien"
-        type="text"
-        id="usuario"
-        class="form-control"
-        placeholder="Buscar"
-        required
-      />
+      <div class="row">
+        <div class="col mt-5 barra">
+          <select class="form-select form-control-lg" [(ngModel)]="properties">
+            <option selected value="bien.categoria.cat_nombre">
+              Categoria
+            </option>
+            <option value="bien.ubicacion.ubi_nombre">Ubicacion</option>
+            <option value="bien_descripcion">Descripcion</option>
+          </select>
+        </div>
+        <div class="col mt-5">
+          <input
+            type="text"
+            [(ngModel)]="filterBien"
+            class="form-select form-control-lg"
+            name="filter"
+            placeholder="Buscar..."
+          />
+        </div>
+      </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Código</th>
-          <th>Descripción</th>
-          <th>Marca</th>
-          <th>Categoría</th>
-          <th>Propietario</th>
-          <th>Ubicación</th>
-          <th>Departamento</th>
-          <th>Usuario</th>
-          <th>Nombre y Apellido</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bien of registroBien">
-          <td>{{ bien.bien_codigoG }}</td>
-          <td>{{ bien.bien_descripcion }}</td>
-          <td>{{ bien.bien_marca }}</td>
-          <td>{{ bien.categoria.cat_nombre }}</td>
-          <td>{{ bien.propietario.pro_nombre }}</td>
-          <td>{{ bien.ubicacion.ubi_nombre }}</td>
-          <td>{{ bien.ubicacion.ubi_departamento }}</td>
-          <td>{{ bien.usuario.usuario }}</td>
-          <td>{{ bien.usuario.persona.perPrimerNom }} {{ bien.usuario.persona.perApellidoPater }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="btn btn-outline-success btn2" type="submit" (click)="imprimirReporte()">
-      Generar Reporte
-    </button>
+    <div class="tabla" id="reporte" #reporte>
+      <h2 class="titulobienes">Listado de Bienes</h2>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Estado</th>
+            <th>Tipo</th>
+            <th>Descripcion</th>
+            <th>Serie</th>
+            <th>Propietario</th>
+            <th>Precio</th>
+            <th>Ubicación</th>
+            <th>Categoria</th>
+            <th>Custodio</th>
+          </tr>
+        </thead>
+        <!-- Aquí puedes agregar las filas de la tabla -->
+        <tbody>
+          <tr
+            *ngFor="let bien of registroBien | filter : filterBien : properties"
+          >
+            <td>{{ bien.bien_cod }}</td>
+            <td>{{ bien.bien_modelo }}</td>
+            <td>{{ bien.bien_marca }}</td>
+            <td>{{ bien.bien_estado }}</td>
+            <td>{{ bien.bien_detalles }}</td>
+            <td>{{ bien.bien_descripcion }}</td>
+            <td>{{ bien.bien_serie }}</td>
+            <td>{{ bien.propietario.pro_nombre }}</td>
+            <td>{{ bien.bien_precio }}</td>
+            <td>{{ bien.ubicacion.ubi_nombre }}</td>
+            <td>{{ bien.categoria.cat_nombre }}</td>
+            <td>
+              {{ bien.usuario.persona.perPrimerNom }}
+              {{ bien.usuario.persona.perApellidoPater }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-
+  <button
+    class="btn btn-outline-success btn2"
+    type="submit"
+    (click)="imprimirReporte()"
+  >
+    Generar Reporte
+  </button>
   <!-- Footer -->
   <footer class="footer">
-    <div class="container-fluid">
-      <div class="texto_footer">
-        <p class="texto-1">Tecnólogico del Azuay</p>
-        <p class="texto-2">Instituto Universitario</p>
-      </div>
+    <div class="texto_footer">
+      <p class="texto-1">Tecnólogico del Azuay</p>
+
+      <p class="texto-2">Instituto Universitario</p>
     </div>
   </footer>
 </div>

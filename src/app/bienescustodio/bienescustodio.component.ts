@@ -17,7 +17,8 @@ export class BienescustodioComponent implements OnInit {
   @ViewChild('reporte', { static: false }) el!: ElementRef;
   usuario: any = {};
   public registroBien: Bien[] = []; // Asegúrate de que el tipo de datos coincida con la interfaz de Bien
-
+  properties!: any;
+  filterBien = '';
   constructor(
     private bienService: BienesService,
     private dataStorageService: DataStorageService,
@@ -71,13 +72,13 @@ export class BienescustodioComponent implements OnInit {
     doc.html(this.el.nativeElement, {
       callback: (doc) => {
         doc.save('Reporte de Bienes.pdf');
-      },
-      margin: [0, 0, 40, 0],
+      }, // Adjust your margins here (left, top, right ,bottom)
+      margin: [20, 0, 40, 0],
       autoPaging: 'text',
       x: 0,
       y: 0,
-      width: doc.internal.pageSize.getWidth(),
-      windowWidth: 1000,
+      width: doc.internal.pageSize.getWidth(), //target width in the PDF document
+      windowWidth: 1000, //window width in CSS pixels,
     });
   }
 }

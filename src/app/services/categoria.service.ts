@@ -29,7 +29,10 @@ export class CategoriaService {
   getCategorias(cat_cod: number): Observable<Categoria>{
     return this.http.get<Categoria> (`${this.urlEndPoint}/${cat_cod}`);
   }
-
+  updateEstado(categoria: Categoria): Observable<Categoria> {
+    const url = `${this.urlEndPoint}/${categoria.cat_cod}`;
+    return this.http.put<Categoria>(url, categoria, { headers: this.httpHeaders });
+  }
 
   
 }

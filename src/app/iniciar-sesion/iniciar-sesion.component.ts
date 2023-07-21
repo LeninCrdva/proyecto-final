@@ -62,7 +62,7 @@ export class IniciarSesionComponent implements OnInit {
               
                     if (rolNombre === "Super Usuario") {
                       // Redireccionar a la página de ubicaciónpaginaadmin
-                      location.href = 'superusuario';//'/paginaadmin'
+                      location.href = 'paginaadmin';//'/paginaadmin'
                      //this.router.navigate(['/perfil']);
                      //this.router.navigate(['/paginaadmin']);
                     

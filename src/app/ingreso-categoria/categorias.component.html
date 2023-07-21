@@ -1,21 +1,24 @@
 <app-headerSuper *ngIf="rolUsuario === ''"></app-headerSuper>
-<app-headerSuper *ngIf="rolUsuario === 'Super Usuario'"></app-headerSuper>
-<app-header *ngIf="rolUsuario === 'Admin'"></app-header>
+<app-headerSuper *ngIf="rolUsuario === 'Rector'"></app-headerSuper>
+<app-header *ngIf="rolUsuario === 'Super Usuario'"></app-header>
 <!DOCTYPE html>
 <html>
 <body>
   <div class="header">
-    <h1 style="margin-right: auto;">Panel Ingresar Categoría</h1>
+    <h1 style="margin-right: auto;">Panel  Categorías</h1>
   </div>
   <div class="button-container">
     <button routerLink="/categoria/form">Ingresar Categoría</button>
     <button (click)="filtrarCategorias('activo')">Activo</button>
     <button (click)="filtrarCategorias('inactivo')">Inactivo</button>
     <button (click)="editarCategoria()">Editar</button>
+    <button (click)="cambiarEstado(false)">Desactivar</button>
+    <button (click)="cambiarEstado(true)">Activar</button>
+    
     <input type="text" class="search-input" placeholder="Buscar" [(ngModel)]="filtrar" (input)="filtrarCategorias('busqueda')">
   </div>
 
-  <table class="table table-bordered table-striped">
+  <table>
     <thead align="center">
       <tr>
         <th>Código</th>
@@ -24,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let categ of categFiltradas" [class.selected]="categ === filaSelect" (click)="selectRow(categ)">
+      <tr *ngFor="let categ of categFiltradas" [class.selected]="categ === filaSelect" (click)="selectRow(categ)" (contextmenu)="contextMenuClick($event, true)">
         <td>{{categ.cat_cod}}</td>
         <td>{{categ.cat_nombre}}</td>
         <td>{{categ.cat_descripcion}}</td>

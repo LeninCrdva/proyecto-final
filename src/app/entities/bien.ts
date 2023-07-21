@@ -18,5 +18,6 @@ export class Bien {
   'usuario': Usuario;
   'propietario': Propietario;
   'categoria': Categoria;
+  [key: string]: any;
 
 }
