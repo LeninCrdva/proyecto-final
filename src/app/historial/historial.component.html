@@ -26,8 +26,8 @@
             <td>{{historial.his_cod}}</td>
             <td>{{historial.his_fecha}}</td>
             <td>{{historial.his_detalles}}</td>
-            <td>{{historial.his_usu_cod}}</td>
-            <td>{{historial.his_bie_cod}}</td>
+            <td>{{historial.usuario.persona.perPrimerNom + ' ' + historial.usuario.persona.perApellidoPater}}</td>
+            <td>{{historial.bien.bien_cod + ': ' + historial.bien.bien_modelo + ' - ' + historial.bien.ubicacion.ubi_nombre + ' - ' + historial.bien.ubicacion.ubi_departamento}}</td>
           </tr>
         </tbody>
       </table>
