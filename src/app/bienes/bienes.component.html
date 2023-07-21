@@ -16,7 +16,7 @@
                 <button class="btn btn-primary" (click)="CargaEditarBien()">Editar</button>
             </div>
             <div class="col-sm">
-                <button class="btn btn-primary">Reporte de Bienes</button>
+                <button class="btn btn-primary"  (click)="imprimirReporte()">Reporte de Bienes</button>
             </div>
             <div class="col-sm">
                 <button class="btn btn-primary" (click)="CargaAsignarBien()">Asignar bien</button>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="py-5 table-responsive">
-        <table class="table table-bordered table-sm small">
+        <table  #tableToExport class="table table-bordered table-sm small">
             <thead>
                 <tr class="btn-primary disabled font-weight-bold">
                     <td>Código</td>

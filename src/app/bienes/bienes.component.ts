@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild,ElementRef  } from '@angular/core';
 import { Bien } from '../entities/bien';
 import { BienesService } from '../services/bienes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
-
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-bienes-asignacion',
   templateUrl: './bienes.component.html',
@@ -71,5 +72,21 @@ export class BienesComponent implements OnInit {
     } else {
       Swal.fire('Error', 'Por favor, seleccione el bien que desea editar.', 'error');
     }
+  }
+  
+  @ViewChild('tableToExport', { static: false }) tableToExport!: ElementRef;
+
+  imprimirReporte() {
+    const doc = new jsPDF();
+
+    html2canvas(this.tableToExport.nativeElement).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+      const imgProps = doc.getImageProperties(imgData);
+      const pdfWidth = doc.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      doc.save('Reporte de Bienestotales.pdf');
+    });
   }
 }

@@ -17,6 +17,9 @@
                 <button class="btn btn-primary btn-sm">Subir Excel</button>
             </div>
             <div class="col-sm">
+                <button class="btn btn-primary btn-sm" (click)="imprimirReporte()">Generar Reporte</button>
+            </div>
+            <div class="col-sm">
                 <form action="" class="form">
                     <div class="form-group">
                         <input type="text" class="form-control typehead" name="" id="" aria-describedby="helpId" placeholder="Buscar">
@@ -27,7 +30,7 @@
     </div>
     
     <div class="py-5 table-responsive">
-        <table class="table table-bordered table-sm small">
+        <table #tableToExport class="table table-bordered table-sm small">
             <thead>
                 <tr class="btn-primary disabled font-weight-bold">
                     <td>Cedula</td>
