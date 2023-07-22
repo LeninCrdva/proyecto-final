@@ -4,7 +4,6 @@
 <div class="header">
     <h1 style="margin-right: auto;">Panel De Bienes</h1>
 </div>
-
 <div class="card-body">
     <div class="container">
         <div class="row">
@@ -32,7 +31,6 @@
             </div>
         </div>
     </div>
-
     <div class="py-5 table-responsive">
         <table  #tableToExport class="table table-bordered table-sm small">
             <thead>
@@ -50,7 +48,6 @@
                     <td>Custodio</td>
                 </tr>
             </thead>
-
             <tbody>
                 <tr *ngFor="let bien of bienes" [class.selected]="bien === filaSelect" (click)="selectRow(bien)">
                     <td>{{bien.bien_codigoG}}</td>
@@ -70,7 +67,6 @@
         </table>
     </div>
 </div>
-
 <div class="modal fade" id="FormIngresoModal" data-bs-backdrop="static" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -78,14 +74,13 @@
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body m-auto">
                 <app-form-bienes></app-form-bienes>
             </div>
-            <div class="modal-footer-form">
-                <button id="CloseModal" type="button" class="button-close" data-bs-dismiss="modal">Cancelar</button>
+            <div class="modal-footer-form position-relative">
+                <button  id="CloseModal" type="button" class="button-close" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
 </div>
-
 <app-footer></app-footer>

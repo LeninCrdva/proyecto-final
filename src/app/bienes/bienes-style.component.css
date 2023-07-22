@@ -13,6 +13,10 @@ tr.selected {
   align-items: center;
 }
 
+.modal-footer-form .button-close {
+  padding-top: -20px;
+}
+
 @media (max-width: 768px) {
   .modal-footer-form {
     flex-direction: column;
@@ -20,8 +24,8 @@ tr.selected {
 }
 
 .button-close {
-  width: 100%;
-  padding: 10px;
+  width: 20%;
+  text-decoration: none;
   border: none;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -31,9 +35,16 @@ tr.selected {
 
 @media (min-width: 768px) {
   .button-close {
-    width: 50%;
+    width: 20%;
     padding: 8px;
   }
+}
+
+.form-body {
+  padding: 10px 40px 0px;
+  display: grid;
+  gap: 10px;
+  text-align: center;
 }
 
 .button-close:hover {

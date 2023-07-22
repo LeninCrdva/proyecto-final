@@ -1,6 +1,6 @@
-<div class="Form-Bien">
+<div class="w-100 d-flex justify-content-center">
   <form (ngSubmit)="CrearBien()">
-    <fieldset class="section">
+    <section class="section">
       <div class="title">
         <legend class="Form-title text-center">
           {{modalTitle}}
@@ -13,38 +13,32 @@
             aria-describedby="codigoDesc">
           <small id="codigoDesc" class="form-text text-muted">Código autogenerado</small>
         </div>
-
         <!-- Modelo -->
         <div class="form-group">
           <input [(ngModel)]="bien.bien_modelo" type="text" class="form-control" name="modelo" placeholder="Modelo">
         </div>
-
         <!-- Marca -->
         <div class="form-group">
           <input [(ngModel)]="bien.bien_marca" type="text" class="form-control" name="marca" placeholder="Marca">
         </div>
-
         <!-- Estado -->
         <div class="form-group">
           <input [(ngModel)]="bien.bien_estado" type="text" class="form-control" name="estado" placeholder="Estado">
         </div>
-
         <!-- Descripción -->
         <div class="form-group">
           <input [(ngModel)]="bien.bien_descripcion" type="text" class="form-control" name="descripcion"
             placeholder="Modelo">
         </div>
-
         <!-- Serie -->
         <div class="form-group">
           <input [(ngModel)]="bien.bien_serie" type="text" class="form-control" name="serie" placeholder="Serie">
         </div>
-
         <!-- Precio -->
         <div class="form-group">
-          <input [(ngModel)]="bien.bien_precio" [min]="0" [max]="100000" [step]="0.01" type="number" class="form-control" name="precio" placeholder="Precio">
+          <input [(ngModel)]="bien.bien_precio" [min]="0" [max]="100000" [step]="0.01" type="number"
+            class="form-control" name="precio" placeholder="Precio">
         </div>
-
         <!-- Propietario -->
         <div class="form-group">
           <label for="propietario">Propietario</label>
@@ -58,18 +52,17 @@
             </select>
           </div>
         </div>
-
         <!-- Ubicación -->
         <div class="form-group">
           <label for="ubicacion">Ubicación</label>
           <div>
             <select [(ngModel)]="bien.ubicacion" name="ubicacion" class="form-select"
               (ngModelChange)="onUbicacionChange()" [compareWith]="compareUbicaciones" required>
-              <option *ngFor="let ubi of ubicaciones" [ngValue]="ubi">{{ ubi.ubi_nombre + '-'+ ubi.ubi_departamento}}</option>
+              <option *ngFor="let ubi of ubicaciones" [ngValue]="ubi">{{ ubi.ubi_nombre + '-'+ ubi.ubi_departamento}}
+              </option>
             </select>
           </div>
         </div>
-
         <!-- Categorías -->
         <div class="form-group">
           <label for="categoria">Categorías</label>
@@ -80,23 +73,24 @@
             </select>
           </div>
         </div>
-
         <!-- Custodio (Usuario) -->
         <div class="form-group">
           <label for="custodio">Custodio (Usuario)</label>
           <div>
             <select [(ngModel)]="bien.usuario" name="usuario" class="form-select" (ngModelChange)="onCustodioChange()"
               [compareWith]="compareUsuarios" required>
-              <option *ngFor="let user of usuarios" [ngValue]="user">{{ user.usuario + '-' + user.persona.perPrimerNom + ' ' + user.persona.perApellidoPater }}</option>
+              <option *ngFor="let user of usuarios" [ngValue]="user">{{ user.usuario + '-' + user.persona.perPrimerNom +
+                ' ' + user.persona.perApellidoPater }}</option>
             </select>
           </div>
         </div>
-
         <!-- Botón de Guardar -->
-        <div class="btn-container py-2 text-center">
-          <button type="submit" class="btn">Guardar</button>
+        <div class="row">
+          <div class="btn-container py-2 text-center">
+            <button type="submit" class="button">Guardar</button>
+          </div>
         </div>
       </div>
-    </fieldset>
+    </section>
   </form>
 </div>
