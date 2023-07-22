@@ -17,11 +17,13 @@
      
         <div class="button-container">
             <button style="margin-left: 10%;" routerLink="/form-ubicaciones"> Crear Ubicacion </button>
-            <button style="margin-left: auto;">Activo</button>
-            <button style="margin-left: auto;">Inactivo</button>
+            <button style="margin-left: auto;" (click)="filtrarUbicacion('activo')" >Activo</button>
+            <button style="margin-left: auto;" (click)="filtrarUbicacion('inactivo')" >Inactivo</button>
             <button style="margin-left: auto;" (click)="editarUbicacion()">Editar</button>
+            <button style="margin-left: auto;" (click)="cambiarEstado(false)">Desactivar</button>
+            <button style="margin-left: auto;" (click)="cambiarEstado(true)">Activar</button>
 
-            <input type="text" class="buscar" placeholder="Buscar">
+            <input type="text" class="buscar" placeholder="Buscar" (input)="filtrarUbicacion('busqueda')">
         </div>
 
         <table>
@@ -33,7 +35,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let ubicacion of ubicaciones" [ngClass]="{ 'selected-row': ubicacion.ubi_cod === selectedUbicacionId }" (click)="seleccionarUbicacion(ubicacion.ubi_cod)">
+              <tr *ngFor="let ubicacion of ubicacionesFiltradas" [class.selected]="ubicacion === filaSelect" (click)="seleccionarUbicacion(ubicacion)" (contextmenu)="contextMenuClick($event, true)">
                 <td>{{ ubicacion.ubi_cod }}</td>
                 <td>{{ ubicacion.ubi_nombre }}</td>
                 <td>{{ ubicacion.ubi_departamento }}</td>

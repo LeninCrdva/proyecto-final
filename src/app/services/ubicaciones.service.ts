@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Ubicacion } from '../entities/ubicaciones';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -14,7 +14,9 @@ export class UbicacionesService {
   constructor(private http: HttpClient) {}
 
   getUbicaciones(): Observable<Ubicacion[]> {  
-    return this.http.get<Ubicacion[]>(this.urlEndPoint);
+    return this.http.get(this.urlEndPoint).pipe(
+      map(response => response as Ubicacion[])
+    );
   }
 
   getUbicacion(id: number): Observable<Ubicacion> {

@@ -117,3 +117,12 @@ input[type="text"] {
 .selected-row {
   background-color: rgba(0, 128, 0, 0.1); /* Verde transparente */
 }
+
+td {
+  border: 1px solid #cccccc; /* Color gris */
+  padding: 10px;
+}
+
+tr.selected {
+  background-color: rgb(213, 248, 172);
+}
