@@ -16,7 +16,7 @@ import { Bien } from '../entities/bien';
 export class BienescustodioComponent implements OnInit {
   @ViewChild('reporte', { static: false }) el!: ElementRef;
   usuario: any = {};
-  public registroBien: Bien[] = []; // Asegúrate de que el tipo de datos coincida con la interfaz de Bien
+  public registroBien: Bien[] = []; 
   properties!: any;
   filterBien = '';
   constructor(

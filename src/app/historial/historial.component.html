@@ -19,6 +19,7 @@
             <th>Detalles</th>
             <th>Custodio</th>
             <th>Bien</th>
+            <th>Acta</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +29,11 @@
             <td>{{historial.his_detalles}}</td>
             <td>{{historial.usuario.persona.perPrimerNom + ' ' + historial.usuario.persona.perApellidoPater}}</td>
             <td>{{historial.bien.bien_cod + ': ' + historial.bien.bien_modelo + ' - ' + historial.bien.ubicacion.ubi_nombre + ' - ' + historial.bien.ubicacion.ubi_departamento}}</td>
+            <td>
+              <button style="border: none; background: transparent;" (click)="guardarDatosHistorialSeleccionado(historial)">
+                <i class="fas fa-file"></i> <!-- Cambiar el ícono a "fa-file" -->
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

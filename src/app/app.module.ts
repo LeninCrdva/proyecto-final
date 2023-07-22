@@ -33,6 +33,8 @@ import { FormRolComponent } from './rol/formrol.component';
 import { AdminPrincipal1Component } from './admin-principal/admin-principal.component';
 import { HeaderSuperComponent } from './headerSuper/headerSuper.component';
 import {RolComponent} from './rol/rol.component';
+import { ActaComponent } from './Acta/acta';
+import {historialActaComponent} from './historial/historial.acta';
 const routes: Routes = [
   { path:'', redirectTo: '', pathMatch: 'full' },
   { path:'', component: VentanaPrincipalComponent},
@@ -60,6 +62,8 @@ const routes: Routes = [
   {path:'rol/form/:id', component: FormRolComponent},
   { path: 'superusuario', component: AdminPrincipal1Component },
   {path:'rol',component:RolComponent},
+  {path:'acta',component:ActaComponent},
+  {path:'historialActa',component:historialActaComponent},
 ];
 
 @NgModule({
@@ -89,6 +93,8 @@ const routes: Routes = [
     FormRolComponent,
     RolComponent,
     FooterComponent,
+    ActaComponent,
+    historialActaComponent,
 
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes),HttpClientModule,FormsModule],

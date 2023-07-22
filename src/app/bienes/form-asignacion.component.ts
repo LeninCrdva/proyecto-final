@@ -10,9 +10,9 @@ import { BienesService } from '../services/bienes.service';
 import { UsuarioService } from '../services/usuario.service';
 import { UbicacionesService } from '../services/ubicaciones.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import Swal from 'sweetalert2';
 import { of, switchMap } from 'rxjs';
+import {ActaComponent} from '../Acta/acta';
 
 @Component({
   selector: 'app-form-asignacion',
@@ -25,7 +25,7 @@ export class FormAsignacionComponent implements OnInit {
     this.cargarBien()
     this.cargarListaCategorias()
     this.cargarListaPropietario()
-    this.cargarListaUsuarios()
+    this.cargarCustodios()
     this.cargarListaUbicaciones()
   }
 
@@ -41,7 +41,7 @@ export class FormAsignacionComponent implements OnInit {
   categorias: Categoria[] = [];
   usuarios: Usuario[] = [];
   ubicaciones: Ubicacion[] = [];
-
+  usuariosCustodios: Usuario[] = [];
   cargarListaCategorias() {
     this.categoriaService.getCategoria().subscribe(
       categoria => this.categorias = categoria
@@ -54,10 +54,18 @@ export class FormAsignacionComponent implements OnInit {
     )
   }
 
-  cargarListaUsuarios() {
+  /*cargarListaUsuarios() {
     this.usuarioService.getUsers().subscribe(
       user => this.usuarios = user
     )
+  }*/
+  cargarCustodios(): void {
+    this.usuarioService.getUsers().subscribe(users => {
+      this.usuarios = users;
+      this.usuariosCustodios = this.usuarios.filter(usuario =>
+        usuario.roles.some(rol => rol.rol_nombre === 'Custodio')
+      );
+    });
   }
 
   cargarListaUbicaciones() {
@@ -92,7 +100,9 @@ export class FormAsignacionComponent implements OnInit {
         `Bien ${this.bien.bien_codigoG} asignado a ${this.bien.usuario.persona.perPrimerNom + ' ' + this.bien.usuario.persona.perApellidoPater}`,
         'success'
       );
-      this.router.navigate(['/bienes']);
+      const custodioId = this.bien.usuario.usu_cod;
+    this.router.navigate(['/acta'], { queryParams: { custodioId: custodioId } });
+      //this.router.navigate(['/bienes']);
     });
   }
 
@@ -101,5 +111,11 @@ export class FormAsignacionComponent implements OnInit {
     if (cancelButton) {
       cancelButton.click();
     }
+  }
+  // Método para guardar el ID del usuario (custodio) seleccionado
+  onCustodioChange(): void {
+    console.log('ID de usuario (custodio) seleccionado:', this.bien.usuario.usu_cod);
+    const custodioId = this.bien.usuario.usu_cod;
+    //this.router.navigate(['/acta'], { queryParams: { custodioId: custodioId } });
   }
 }

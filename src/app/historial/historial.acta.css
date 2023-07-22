@@ -1,0 +1,65 @@
+/* Estilos para el contenedor del botón */
+.contenedor-boton {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+h2.display-4 {
+    font-size: 24px; /* Puedes ajustar el tamaño de la fuente según tus necesidades */
+    color: red; /* Puedes ajustar el color del título también */
+  }
+/* Estilos para el footer */
+.footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+/* Estilos para los párrafos */
+p {
+    margin: 0;
+}
+
+/* Estilos para la línea horizontal */
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para la tabla */
+table {
+    font-size: 10px; /* Ajusta el tamaño de la fuente según sea necesario */
+    border-collapse: collapse; /* Combina los bordes de las celdas contiguas */
+    width: 100%; /* Opcional: Ajusta el ancho de la tabla según tus necesidades */
+    background-color: white; /* Fondo blanco para la tabla */
+}
+
+/* Estilos para las celdas de la tabla */
+table td, table th {
+    padding: 5px; /* Ajusta el espacio interno de las celdas */
+    border: 2px solid #000000; /* Agrega bordes de 1 píxel de ancho en todas las celdas */
+}
+
+/* Estilos para el footer */
+footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+/* Estilos para la impresión */
+@media print {
+    /* Ocultar el botón "Generar" y el botón "Guardar Acta" */
+    .contenedor-boton, #btnImprimirActa {
+      display: none;
+    }
+  
+    /* Ajustar el estilo del título "Acta Transferencia de Bienes" para la impresión */
+    h1.display-4 {
+      background-color: transparent;
+      color: black; /* Cambiar el color del texto para que sea visible en el PDF */
+    }
+}
+.ocultar-boton-generar .contenedor-boton {
+    display: none;
+  }
