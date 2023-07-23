@@ -18,6 +18,16 @@
                 <button class="btn btn-primary"  (click)="imprimirReporte()">Reporte de Bienes</button>
             </div>
             <div class="col-sm">
+                <button class="btn btn-primary" [routerLink]="'/acta-perdidos'">Perdidos</button>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-primary" (click)="BienesFiltro('activo')" >Activo</button>
+            </div>
+            <div class="col-sm">
+                <!--<a class="btn btn-primary" href="/acta-perdidos">Bienes Perdidos</a>-->
+                <button class="btn btn-primary" (click)="BienesFiltro('inactivo')">Bienes Inactivos</button>
+            </div> 
+            <div class="col-sm">
                 <button class="btn btn-primary" (click)="CargaAsignarBien()">Asignar bien</button>
             </div>
             <div class="col-sm">
@@ -49,7 +59,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let bien of bienes" [class.selected]="bien === filaSelect" (click)="selectRow(bien)">
+                <tr *ngFor="let bien of BienesInactivos" [class.selected]="bien === filaSelect" (click)="selectRow(bien)">
                     <td>{{bien.bien_codigoG}}</td>
                     <td>{{bien.bien_modelo}}</td>
                     <td>{{bien.bien_marca}}</td>

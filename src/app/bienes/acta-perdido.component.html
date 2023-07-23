@@ -1,0 +1,64 @@
+<div class="container text-center py-2" id="reporte" #reporte>
+    <h2 class="py-2">Reporte de bienes perdidos</h2>
+    <section class="row">
+        <div class="col">
+            <hr>
+            <div class="card-title py-2">
+                <div>
+                    <h2>Instituto Superior Universitario Tecnológico del Azuay</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                    <div class="col-md-2">
+                        <label for="inputFecha" class="label-danger">Fecha:</label>
+                        <input #inputFechaRef type="text" class="form-control" id="inputFecha" disabled/>
+                    </div>
+                <section class="py-2">
+                    <div>
+                        <table class="table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Modelo</th>
+                                    <th>Marca</th>
+                                    <th>Estado</th>
+                                    <th>Tipo</th>
+                                    <th>Descripcion</th>
+                                    <th>Serie</th>
+                                    <th>Propietario</th>
+                                    <th>Precio</th>
+                                    <th>Ubicación</th>
+                                    <th>Categoria</th>
+                                    <th>Custodio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let bienes of BienesInactivos">
+                                    <td>{{ bienes.bien_cod }}</td>
+                                    <td>{{ bienes.bien_modelo }}</td>
+                                    <td>{{ bienes.bien_marca }}</td>
+                                    <td>{{ bienes.bien_estado }}</td>
+                                    <td>{{ bienes.bien_detalles }}</td>
+                                    <td>{{ bienes.bien_descripcion }}</td>
+                                    <td>{{ bienes.bien_serie }}</td>
+                                    <td>{{ bienes.propietario.pro_nombre }}</td>
+                                    <td>{{ bienes.bien_precio }}</td>
+                                    <td>{{ bienes.ubicacion.ubi_nombre }}</td>
+                                    <td>{{ bienes.categoria.cat_nombre }}</td>
+                                    <td>
+                                        {{ bienes.usuario.persona.perPrimerNom }}
+                                        {{ bienes.usuario.persona.perApellidoPater }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <div class="col mt-4" [class.ocultar-boton-generar]="!mostrarBotonGenerarActa">
+        <button class="btn btn-dark btn-lg" id="btnImprimirActa" (click)="ImprimirReporte()" style="background-color: cornflowerblue;"  
+        [hidden]="!mostrarBotonGenerarActa">Guardar Acta</button>
+      </div>
+</div>

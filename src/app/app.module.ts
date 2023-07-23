@@ -35,6 +35,8 @@ import { HeaderSuperComponent } from './headerSuper/headerSuper.component';
 import {RolComponent} from './rol/rol.component';
 import { ActaComponent } from './Acta/acta';
 import {historialActaComponent} from './historial/historial.acta';
+import { ActaPerdidoComponent } from './bienes/acta-perdido.component';
+
 const routes: Routes = [
   { path:'', redirectTo: '', pathMatch: 'full' },
   { path:'', component: VentanaPrincipalComponent},
@@ -64,6 +66,7 @@ const routes: Routes = [
   {path:'rol',component:RolComponent},
   {path:'acta',component:ActaComponent},
   {path:'historialActa',component:historialActaComponent},
+  {path:'acta-perdidos', component: ActaPerdidoComponent}
 ];
 
 @NgModule({
@@ -95,6 +98,7 @@ const routes: Routes = [
     FooterComponent,
     ActaComponent,
     historialActaComponent,
+    ActaPerdidoComponent,
 
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes),HttpClientModule,FormsModule],

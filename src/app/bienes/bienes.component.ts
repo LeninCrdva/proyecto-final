@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild,ElementRef  } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Bien } from '../entities/bien';
 import { BienesService } from '../services/bienes.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+
 @Component({
   selector: 'app-bienes-asignacion',
   templateUrl: './bienes.component.html',
@@ -20,14 +21,14 @@ export class BienesComponent implements OnInit {
     const userData = this.dataStorageService.getData('datosUsuario');
     this.rolUsuario = userData.rolNombre;
     console.log('su rol es:', this.rolUsuario);
-    
+
   }
 
   AsignarTitle: string = 'Asignar bien';
   public bien: Bien = new Bien();
 
   bienes: Bien[] = [];
-
+  BienesInactivos: Bien[] = [];
   codSeleccionado!: string;
   filaSelect: Bien | null = null;
   seleccionado: boolean = false;
@@ -35,12 +36,30 @@ export class BienesComponent implements OnInit {
   constructor(
     private bienesService: BienesService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     private dataStorageService: DataStorageService
-  ) {}
+  ) { }
 
-  cargarListaBienes() {
-    this.bienesService.getBienes().subscribe((bien) => (this.bienes = bien));
+  cargarListaBienes(): void {
+    this.bienesService.getBienes().subscribe(
+      bien => {
+        this.bienes = bien;
+        this.BienesFiltro('activo');
+      },
+      error => {
+        console.log('Error al cargar la lista: ', error)
+      }
+    );
+  }
+
+  BienesFiltro(filtro: string): void {
+    if (filtro === 'activo') {
+      this.BienesInactivos = this.bienes.filter((bi) => bi.bien_estadoA === true);
+      console.log(this.bien.bien_estadoA)
+    } else if (filtro === 'inactivo') {
+      this.BienesInactivos = this.bienes.filter((bi) => bi.bien_estadoA === false);
+      console.log(this.bienes)
+      console.log(this.bien.bien_estadoA)
+    }
   }
 
   selectRow(bi: Bien) {
@@ -60,9 +79,10 @@ export class BienesComponent implements OnInit {
 
   BuscarBienesByArgument(argument: string): void {
     this.bienesService.getBienesByArgument(argument).subscribe(
-      bienes => { this.bienes = bienes;
+      bienes => {
+        this.bienes = bienes;
       },
-    error => console.error(error)
+      error => console.error(error)
     );
   }
 
@@ -73,8 +93,10 @@ export class BienesComponent implements OnInit {
       Swal.fire('Error', 'Por favor, seleccione el bien que desea editar.', 'error');
     }
   }
-  
+
   @ViewChild('tableToExport', { static: false }) tableToExport!: ElementRef;
+
+
 
   imprimirReporte() {
     const doc = new jsPDF();

@@ -16,7 +16,10 @@ export class BienesService {
   constructor(private http: HttpClient) { }
 
   getBienes(): Observable<Bien[]> {
-    return this.http.get<Bien[]>(this.urlEndPoint);
+    //return this.http.get<Bien[]>(this.urlEndPoint);
+    return this.http.get(this.urlEndPoint).pipe(
+      map(response => response as Bien[])
+    );
   }
   //metodo para traer bienes de custodios
   getBienesCustodio() {
