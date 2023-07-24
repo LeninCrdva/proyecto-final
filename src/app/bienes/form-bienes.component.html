@@ -58,7 +58,7 @@
           <div>
             <select [(ngModel)]="bien.ubicacion" name="ubicacion" class="form-select"
               (ngModelChange)="onUbicacionChange()" [compareWith]="compareUbicaciones" required>
-              <option *ngFor="let ubi of ubicaciones" [ngValue]="ubi">{{ ubi.ubi_nombre + '-'+ ubi.ubi_departamento}}
+              <option *ngFor="let ubi of ubicaciones" [ngValue]="ubi">{{ ubi.ubi_nombre + '-'+ ubi.departamento}}
               </option>
             </select>
           </div>

@@ -6,42 +6,47 @@
 <meta charset="utf-8">
 
 <html>
-
-    
-
-
   <div>
     <div class="header">
       <h1 style="margin-right: auto;">Panel De Ubicacion</h1>
     </div>
-     
-        <div class="button-container">
-            <button style="margin-left: 10%;" routerLink="/form-ubicaciones"> Crear Ubicacion </button>
-            <button style="margin-left: auto;" (click)="filtrarUbicacion('activo')" >Activo</button>
-            <button style="margin-left: auto;" (click)="filtrarUbicacion('inactivo')" >Inactivo</button>
-            <button style="margin-left: auto;" (click)="editarUbicacion()">Editar</button>
-            <button style="margin-left: auto;" (click)="cambiarEstado(false)">Desactivar</button>
-            <button style="margin-left: auto;" (click)="cambiarEstado(true)">Activar</button>
-
-            <input type="text" class="buscar" placeholder="Buscar" (input)="filtrarUbicacion('busqueda')">
-        </div>
-
-        <table>
-            <thead>
-              <tr class="firstRow">
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th>Departamento</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let ubicacion of ubicacionesFiltradas" [class.selected]="ubicacion === filaSelect" (click)="seleccionarUbicacion(ubicacion)" (contextmenu)="contextMenuClick($event, true)">
-                <td>{{ ubicacion.ubi_cod }}</td>
-                <td>{{ ubicacion.ubi_nombre }}</td>
-                <td>{{ ubicacion.ubi_departamento }}</td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="button-container">
+      <button style="margin-left: 10%;" routerLink="/form-ubicaciones"> Crear Ubicacion </button>
+      <button style="margin-left: auto;" (click)="filtrarUbicacion('activo')">Activo</button>
+      <button style="margin-left: auto;" (click)="filtrarUbicacion('inactivo')">Inactivo</button>
+      <button style="margin-left: auto;" (click)="editarUbicacion()">Editar</button>
+      <button style="margin-left: auto;" (click)="cambiarEstado(false)">Desactivar</button>
+      <button style="margin-left: auto;" (click)="cambiarEstado(true)">Activar</button>
+      
+        
+          <input type="text" name="argumento" id=""
+            aria-describedby="helpId" placeholder="Buscar" [(ngModel)]="argumento"
+            [ngModelOptions]="{standalone: true}" (input)="buscarPorDepartamento(argumento)">
+    
+      
     </div>
+    <table>
+      <thead>
+        <tr class="firstRow">
+          <th>Estado</th>
+          <th>Codigo</th>
+          <th>Nombre</th>
+          <th>Departamento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ubicacion of ubicacionesFiltradas" [class.selected]="ubicacion === filaSelect" (click)="seleccionarUbicacion(ubicacion)" (contextmenu)="contextMenuClick($event, true)">
+          <td>
+            <!-- Mostrar el estado de la ubicación (activo o inactivo) -->
+            <span *ngIf="ubicacion.ubi_estado">Activo</span>
+            <span *ngIf="!ubicacion.ubi_estado">Inactivo</span>
+          </td>
+          <td>{{ ubicacion.ubi_cod }}</td>
+          <td>{{ ubicacion.ubi_nombre }}</td>
+          <td>{{ ubicacion.departamento }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </html>
 <app-footer></app-footer>

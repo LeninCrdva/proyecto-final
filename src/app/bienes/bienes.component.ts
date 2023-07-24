@@ -16,12 +16,12 @@ export class BienesComponent implements OnInit {
 
   rolUsuario: string = '';
   argumento!: string;
+
   ngOnInit(): void {
     this.cargarListaBienes();
     const userData = this.dataStorageService.getData('datosUsuario');
     this.rolUsuario = userData.rolNombre;
     console.log('su rol es:', this.rolUsuario);
-
   }
 
   AsignarTitle: string = 'Asignar bien';
@@ -77,15 +77,20 @@ export class BienesComponent implements OnInit {
     }
   }
 
+ 
   BuscarBienesByArgument(argument: string): void {
+    if (argument.trim() === '') {
+      this.cargarListaBienes();
+      return;
+    }
+
     this.bienesService.getBienesByArgument(argument).subscribe(
       bienes => {
-        this.bienes = bienes;
+        this.BienesInactivos = bienes.filter((bi) => bi.bien_estadoA === true);
       },
       error => console.error(error)
     );
   }
-
   CargaEditarBien() {
     if (this.seleccionado) {
       this.router.navigate(['/bienes/form/', this.codSeleccionado]);
@@ -94,9 +99,34 @@ export class BienesComponent implements OnInit {
     }
   }
 
+  cambiarEstado(activar: boolean) {
+    if (!this.filaSelect) {
+      Swal.fire('Error', 'Por favor, selecciona un bien', 'error');
+      return;
+    }
+
+    const nuevoEstado = activar;
+
+    if (nuevoEstado === this.filaSelect.bien_estadoA) {
+      Swal.fire('Error', `El bien ya está ${nuevoEstado ? 'activo' : 'inactivo'}.`, 'error');
+      return;
+    }
+
+    this.filaSelect.bien_estadoA = nuevoEstado;
+
+    this.bienesService.updateEstado(this.filaSelect).subscribe(
+      () => {
+        const estadoAccion = nuevoEstado ? 'activado' : 'desactivado';
+        Swal.fire('Correcto', `Bien ${estadoAccion} correctamente.`, 'success');
+        this.cargarListaBienes(); // Actualizar la tabla después de cambiar el estado
+      },
+      (error) => {
+        Swal.fire('Error', 'Error al cambiar el estado del bien.', 'error');
+      }
+    );
+  }
+
   @ViewChild('tableToExport', { static: false }) tableToExport!: ElementRef;
-
-
 
   imprimirReporte() {
     const doc = new jsPDF();

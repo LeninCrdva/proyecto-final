@@ -48,9 +48,10 @@ export class BienesService {
   }
 
 
-  // getBienesByArgument(argument: string): Observable<Bien[]> {
-  //   return this.http.get<Bien[]>(`${this.urlEndPoint}/${argument}`);
-  // }
-
+  updateEstado(bien: Bien): Observable<Bien> {
+    const url = `${this.urlEndPoint}/${bien.bien_cod}`;
+    return this.http.put<Bien>(url, bien, { headers: this.httpHeaders });
+  }
+  
 
 }

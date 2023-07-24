@@ -8,27 +8,33 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#FormIngresoModal">Ingresar
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#FormIngresoModal">Ingresar
                     bien</button>
             </div>
             <div class="col-sm">
-                <button class="btn btn-primary" (click)="CargaEditarBien()">Editar</button>
+                <button class="btn btn-primary btn-sm" (click)="CargaEditarBien()">Editar</button>
             </div>
             <div class="col-sm">
-                <button class="btn btn-primary"  (click)="imprimirReporte()">Reporte de Bienes</button>
+                <button class="btn btn-primary btn-sm"  (click)="imprimirReporte()">Reporte de Bienes</button>
             </div>
             <div class="col-sm">
-                <button class="btn btn-primary" [routerLink]="'/acta-perdidos'">Perdidos</button>
+                <button class="btn btn-primary btn-sm" [routerLink]="'/acta-perdidos'">Perdidos</button>
             </div>
             <div class="col-sm">
-                <button class="btn btn-primary" (click)="BienesFiltro('activo')" >Activo</button>
+                <button class="btn btn-primary btn-sm" (click)="BienesFiltro('activo')" >Activo</button>
             </div>
             <div class="col-sm">
                 <!--<a class="btn btn-primary" href="/acta-perdidos">Bienes Perdidos</a>-->
-                <button class="btn btn-primary" (click)="BienesFiltro('inactivo')">Bienes Inactivos</button>
+                <button class="btn btn-primary btn-sm" (click)="BienesFiltro('inactivo')">Bienes Inactivos</button>
             </div> 
             <div class="col-sm">
-                <button class="btn btn-primary" (click)="CargaAsignarBien()">Asignar bien</button>
+                <button class="btn btn-primary btn-sm" (click)="CargaAsignarBien()">Asignar bien</button>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-primary btn-sm" (click)="cambiarEstado(true)">Activar</button>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-primary btn-sm" (click)="cambiarEstado(false)">Desactivar</button>
             </div>
             <div class="col-sm">
                 <form action="" class="form">
@@ -42,7 +48,7 @@
         </div>
     </div>
     <div class="py-5 table-responsive">
-        <table  #tableToExport class="table table-bordered table-sm small">
+        <table #tableToExport class="table table-bordered table-sm small">
             <thead>
                 <tr class="btn-primary disabled font-weight-bold">
                     <td>Código</td>
@@ -63,12 +69,16 @@
                     <td>{{bien.bien_codigoG}}</td>
                     <td>{{bien.bien_modelo}}</td>
                     <td>{{bien.bien_marca}}</td>
-                    <td>{{bien.bien_estado}}</td>
+                    <td>
+                        <!-- Mostrar el estado del bien (activo o inactivo) -->
+                        <span *ngIf="bien.bien_estadoA">Activo</span>
+                        <span *ngIf="!bien.bien_estadoA">Inactivo</span>
+                    </td>
                     <td>{{bien.bien_descripcion}}</td>
                     <td>{{bien.bien_serie}}</td>
                     <td>{{bien.propietario.pro_nombre}}</td>
                     <td>{{bien.bien_precio}}</td>
-                    <td>{{bien.ubicacion.ubi_nombre}}</td>
+                    <td>{{bien.ubicacion.ubi_nombre+'-' +bien.ubicacion.departamento}}</td>
                     <td>{{bien.categoria.cat_nombre}}</td>
                     <td>{{bien.usuario.usuario + ' - ' + bien.usuario.persona.perPrimerNom + ' ' +
                         bien.usuario.persona.perApellidoPater}}</td>

@@ -13,11 +13,11 @@ export class Bien {
   'bien_descripcion': string;
   'bien_serie': string;
   'bien_precio': number;
-  'bien_estadoA': boolean;
+  'bien_estadoA':boolean = true;
   'ubicacion': Ubicacion;
   'usuario': Usuario;
   'propietario': Propietario;
   'categoria': Categoria;
   [key: string]: any;
-
+ 
 }

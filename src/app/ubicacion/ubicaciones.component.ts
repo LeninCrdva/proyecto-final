@@ -12,26 +12,42 @@ import { DataStorageService } from '../PerfilUsuarios/data-storage.service';
 })
 export class UbicacionesComponent implements OnInit {
   ubicaciones: Ubicacion[] = [];
-  ubicacionesFiltradas:Ubicacion[] = [];
+  ubicacionesFiltradas: Ubicacion[] = [];
   selectedUbicacionId: number | null = null;
   rolUsuario: string = '';
   filtrar: string = '';
   filaSelect: Ubicacion | null = null;
-
+  argumento!: string;
 
   constructor(private ubicacionservice: UbicacionesService, private router: Router,
-    private dataStorageService: DataStorageService) {}
+    private dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
-    const userData = this.dataStorageService.getData('datosUsuario'); 
+    const userData = this.dataStorageService.getData('datosUsuario');
     this.rolUsuario = userData.rolNombre;
-    console.log('su rol es:',this.rolUsuario);
+    console.log('su rol es:', this.rolUsuario);
     this.cargarUbicaciones();
   }
 
   seleccionarUbicacion(ubic: Ubicacion): void {
     this.filaSelect = ubic;
     this.selectedUbicacionId = ubic.ubi_cod;
+  }
+
+  buscarPorDepartamento(argument: string): void {
+    if (argument.trim() === '') {
+      this.cargarUbicaciones();
+      return;
+    }
+  
+    this.ubicacionservice.getUbicacionesByDepartamento(argument).subscribe(
+      ubicaciones => {
+        this.ubicacionesFiltradas = ubicaciones.filter((ubic) => ubic.ubi_estado === true);
+      },
+      error => {
+        console.error('Error al obtener las ubicaciones por departamento: ', error);
+      }
+    );
   }
 
   cargarUbicaciones(): void {
@@ -42,7 +58,7 @@ export class UbicacionesComponent implements OnInit {
       }, error => {
         console.log('Error al cargar la lista: ', error)
       }
-      );
+    );
   }
 
   editarUbicacion(): void {
@@ -58,17 +74,6 @@ export class UbicacionesComponent implements OnInit {
       this.ubicacionesFiltradas = this.ubicaciones.filter((ubic) => ubic.ubi_estado === true);
     } else if (filtro === 'inactivo') {
       this.ubicacionesFiltradas = this.ubicaciones.filter((ubic) => ubic.ubi_estado === false);
-    } else if (filtro === 'busqueda') {
-      if (this.filtrar.trim() === '') {
-        this.ubicacionesFiltradas = this.ubicaciones;
-      } else {
-        const filtroTxt = this.filtrar.toLowerCase().trim();
-        this.ubicacionesFiltradas = this.ubicaciones.filter(
-          (ubic) =>
-            ubic.ubi_nombre.toLowerCase().includes(filtroTxt) ||
-            ubic.ubi_departamento.toLowerCase().includes(filtroTxt)
-        );
-      }
     }
   }
 

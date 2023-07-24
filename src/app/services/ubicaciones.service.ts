@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Ubicacion } from '../entities/ubicaciones';
 import { Observable, map } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +32,11 @@ export class UbicacionesService {
     const url = `${this.urlEndPoint}/${ubicacion.ubi_cod}`;
     return this.http.put<Ubicacion>(url, ubicacion, { headers: this.httpHeaders });
   }
+  getUbicacionesByDepartamento(departamento: string): Observable<Ubicacion[]> {
+    const params = new HttpParams().set('departamento', departamento);
+    const url = `${this.urlEndPoint}/departamento`;
+    console.log('URL de la solicitud: ', url); // Agrega esta línea para imprimir la URL en la consola
+    return this.http.get<Ubicacion[]>(url, { params });
+  }
+  
 }
