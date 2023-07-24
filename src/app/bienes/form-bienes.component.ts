@@ -28,6 +28,15 @@ export class FormBienesComponent {
     this.cargarListaUbicaciones();
   }
 
+  constructor(
+    private bienService: BienesService,
+    private categoriaService: CategoriaService,
+    private propietarioService: PropietarioService,
+    private usuarioService: UsuarioService,
+    private ubicacionService: UbicacionesService,
+    private activatedRoute: ActivatedRoute,    
+  ) {}
+
   modalTitle: string = 'Ingresar bien';
   codSeleccionado!: string;
   seleccionado: boolean = false;
@@ -36,19 +45,14 @@ export class FormBienesComponent {
   bienes: Bien[] = [];
   propietarios: Propietario[] = [];
   categorias: Categoria[] = [];
+  Filtrocategorias: Categoria[] = [];
   usuarios!: Usuario[];
+  FiltroUsuarioRector: Usuario[] = [];
   ubicaciones: Ubicacion[] = [];
+  FiltroUbicaciones: Ubicacion[] = [];
+
   propietariosCargados = false;
-  constructor(
-    private bienService: BienesService,
-    private categoriaService: CategoriaService,
-    private propietarioService: PropietarioService,
-    private usuarioService: UsuarioService,
-    private ubicacionService: UbicacionesService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-    
-  ) {}
+
 // Método para comparar propietarios por pro_cod
 compareFn(propietario1: Propietario | undefined, propietario2: Propietario | undefined): boolean {
   // Verificamos que ambos propietarios sean válidos antes de comparar sus códigos
@@ -59,8 +63,6 @@ compareFn(propietario1: Propietario | undefined, propietario2: Propietario | und
   return false;
 }
 
-
-
 compareUbicaciones(ubi1: Ubicacion | undefined, ubi2: Ubicacion | undefined): boolean {
   // Verificamos que ambas ubicaciones sean válidas antes de comparar sus códigos
   if (ubi1 && ubi2) {
@@ -69,7 +71,6 @@ compareUbicaciones(ubi1: Ubicacion | undefined, ubi2: Ubicacion | undefined): bo
   // Si alguna de las ubicaciones es undefined, no pueden ser iguales
   return false;
 }
-
 
 // Función de comparación para categorías
 compareCategorias(cat1: Categoria, cat2: Categoria): boolean {
@@ -97,14 +98,38 @@ compareUsuarios(user1: Usuario | undefined, user2: Usuario | undefined): boolean
     this.categoriaService.getCategoria().subscribe(
       categoria => {
         this.categorias = categoria;
-        // Verificar si las categorías se han cargado correctamente
-        console.log('Categorías cargadas:', this.categorias);
+        this.CategoriasFiltro('activo');
       },
       error => {
         console.error('Error al cargar categorías:', error);
       }
     );
   }
+
+  CategoriasFiltro(filtro: string): void {
+    if (filtro === 'activo') {
+      this.Filtrocategorias = this.categorias.filter((cat) => cat.cat_estado === true);
+    }
+  }
+
+  cargarListaUbicaciones() {
+    this.ubicacionService.getUbicaciones().subscribe(
+      ubicacion => {
+        this.ubicaciones = ubicacion;
+        this.UbicacionesFiltro('activo');
+      },  error => {
+        console.log('Error al cargar la lista: ', error)
+      } 
+    );
+  }
+
+  UbicacionesFiltro(filtro: string): void {
+    if (filtro === 'activo') {
+      this.FiltroUbicaciones = this.ubicaciones.filter((ubi) => ubi.ubi_estado === true);
+      console.log(this.bien.bien_estadoA)
+    } 
+  }
+
   cargarListaPropietario() {
     this.propietarioService.getPropietarios().subscribe(
       propietario => {
@@ -118,19 +143,22 @@ compareUsuarios(user1: Usuario | undefined, user2: Usuario | undefined): boolean
     );
   }
   
-  
-  
-
   cargarListaUsuarios() {
     this.usuarioService.getUsers().subscribe(
-      user => (this.usuarios = user)
+      user => {
+        this.usuarios = user;
+        this.RectorFiltro('rector'); 
+      },
+      error => {
+        console.error('Error al cargar propietarios:', error);
+      }
     );
   }
 
-  cargarListaUbicaciones() {
-    this.ubicacionService.getUbicaciones().subscribe(
-      ubicacion => (this.ubicaciones = ubicacion)
-    );
+  RectorFiltro(filtro: string): void {
+    if (filtro === 'rector') {
+      this.FiltroUsuarioRector = this.usuarios.filter((usu) => usu.roles.some(rol => rol.rol_nombre === 'Rector'));
+    } 
   }
 
   public CrearBien(): void {

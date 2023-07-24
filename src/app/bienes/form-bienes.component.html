@@ -58,7 +58,7 @@
           <div>
             <select [(ngModel)]="bien.ubicacion" name="ubicacion" class="form-select"
               (ngModelChange)="onUbicacionChange()" [compareWith]="compareUbicaciones" required>
-              <option *ngFor="let ubi of ubicaciones" [ngValue]="ubi">{{ ubi.ubi_nombre + '-'+ ubi.departamento}}
+              <option *ngFor="let ubi of FiltroUbicaciones" [ngValue]="ubi">{{ ubi.ubi_nombre + '-'+ ubi.departamento}}
               </option>
             </select>
           </div>
@@ -69,7 +69,7 @@
           <div>
             <select [(ngModel)]="bien.categoria" name="categoria" class="form-select"
               (ngModelChange)="onCategoriaChange()" [compareWith]="compareCategorias" required>
-              <option *ngFor="let cat of categorias" [ngValue]="cat">{{ cat.cat_nombre }}</option>
+              <option *ngFor="let cat of Filtrocategorias" [ngValue]="cat">{{ cat.cat_nombre }}</option>
             </select>
           </div>
         </div>
@@ -79,7 +79,7 @@
           <div>
             <select [(ngModel)]="bien.usuario" name="usuario" class="form-select" (ngModelChange)="onCustodioChange()"
               [compareWith]="compareUsuarios" required>
-              <option *ngFor="let user of usuarios" [ngValue]="user">{{ user.usuario + '-' + user.persona.perPrimerNom +
+              <option *ngFor="let user of FiltroUsuarioRector" [ngValue]="user">{{ user.usuario + '-' + user.persona.perPrimerNom +
                 ' ' + user.persona.perApellidoPater }}</option>
             </select>
           </div>
