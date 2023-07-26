@@ -20,6 +20,7 @@ export class ConstatacionComponent {
   public registroBien: Bien[] = [];
   filtrar: string = '';
   tipo:string = '';
+  correcPlace:boolean = false;
   @ViewChild('reporte', { static: false }) el!: ElementRef;
   @ViewChild('inputRecibidoPorRef') inputRecibidoPorRef!: ElementRef;
   @ViewChild('inputCédula2ERef') inputCédula2ERef!: ElementRef;
@@ -67,6 +68,7 @@ export class ConstatacionComponent {
   async ngAfterViewInit(): Promise<void> {
     // Obtener la fecha actual y asignarla al campo inputFecha
     await this.loadHead();
+    const firma = document.getElementById('firmaConstatacion');
     const today = new Date();
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
@@ -87,7 +89,9 @@ export class ConstatacionComponent {
       this.inputNroActaRef.nativeElement.value = formattedNumber;
     }
 
-    console.log(this.bienesFiltrados);
+    if(this.correcPlace && firma){
+      firma.style.display = 'none';
+    }
   }
   async loadHead(): Promise<void> {
     const { value: accept } = await Swal.fire({
@@ -208,6 +212,7 @@ export class ConstatacionComponent {
     if(this.bienesFiltrados.length >= 0) {
       this.inputRecibidoPorRef.nativeElement.value = this.bienesFiltrados[0].usuario.persona.perPrimerNom + ' ' + this.bienesFiltrados[0].usuario.persona.perApellidoPater;
       this.inputCédula2ERef.nativeElement.value = this.bienesFiltrados[0].usuario.persona.perCedula;
+      this.correcPlace = this.bienesFiltrados.some(bi => bi.bien_descripcion_lugar === 'No se encuentra en el lugar correcto');
     }
   }
 }
