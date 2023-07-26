@@ -3,24 +3,22 @@ x.container {
 }
 
 .footer {
-    margin-top: 45px;
-    font-family: "Poppins", sans-serif;
-}
-
-
-.texto_footer {
-    width: 100%;
-    height: 64px;
+    margin-top: auto;
     background-color: #1976d5;
-    padding: 5px 0;
-    text-align: center;
     color: white;
-}
-
-.texto-1 {
-    font-size: 13px;
-}
-
-.texto-2 {
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .texto_footer {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .texto-1 {
+    font-size: 12px;
+  }
+  
+  .texto-2 {
     font-size: 10px;
-}
+  }
