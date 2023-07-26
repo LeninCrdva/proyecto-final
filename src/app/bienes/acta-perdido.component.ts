@@ -79,33 +79,41 @@ export class ActaPerdidoComponent {
   }
 
   ImprimirReporte() {
-    this.mostrarBotonGenerarActa = false
-    const doc = new jsPDF();
-    // Ajustamos la altura del contenedor principal al contenido
-    const container = this.el.nativeElement;
-    const originalHeight = container.style.height;
-    container.style.height = 'auto';
+    const btnGuardar = document.getElementById('btnImprimirActa');
+    if(btnGuardar) {
+      btnGuardar.style.display = 'none';
 
-    // Agregamos una clase CSS para ocultar el botón "Generar Acta" en el PDF
-    container.classList.add('ocultar-boton-generar');
+      this.mostrarBotonGenerarActa = false
+      const doc = new jsPDF();
+      // Ajustamos la altura del contenedor principal al contenido
+      const container = this.el.nativeElement;
+      const originalHeight = container.style.height;
+      container.style.height = 'auto';
 
-    doc.html(container, {
-      callback: (pdf) => {
-        // Restauramos la altura original del contenedor principal
-        container.style.height = originalHeight;
+      // Agregamos una clase CSS para ocultar el botón "Generar Acta" en el PDF
+      container.classList.add('ocultar-boton-generar');
 
-        // Eliminamos la clase CSS para mostrar nuevamente el botón en la vista
-        container.classList.remove('ocultar-boton-generar');
+      doc.html(container, {
+        callback: (pdf) => {
 
-        pdf.save('.acta-transferencia');
-      },
-      margin: [20, 0, 40, 0],
-      autoPaging: 'text',
-      x: 0,
-      y: 0,
-      width: doc.internal.pageSize.getWidth(),
-      windowWidth: 1000
-    });
-    this.router.navigate(['/bienes']);
+          btnGuardar.style.display = 'block';
+
+          // Restauramos la altura original del contenedor principal
+          container.style.height = originalHeight;
+
+          // Eliminamos la clase CSS para mostrar nuevamente el botón en la vista
+          container.classList.remove('ocultar-boton-generar');
+
+          pdf.save('.acta-transferencia');
+        },
+        margin: [20, 0, 40, 0],
+        autoPaging: 'text',
+        x: 0,
+        y: 0,
+        width: doc.internal.pageSize.getWidth(),
+        windowWidth: 1000
+      });
+      this.router.navigate(['/bienes']);
+    }
   }
 }

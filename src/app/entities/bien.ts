@@ -11,6 +11,7 @@ export class Bien {
   'bien_estado': string;
   'bien_detalles': string;
   'bien_descripcion': string;
+  'bien_descripcion_lugar': string;
   'bien_serie': string;
   'bien_precio': number;
   'bien_estadoA':boolean = true;

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constatacion de Bienes</title>
+</head>
+<body class="bg-light">
+  <div class="container"  id="reporte" #reporte>
+    <h2 style="color: red;">Constatacion de Bienes</h2>
+    <hr />
+    <main>
+      <section class="row">
+        <div class="col">
+          <div class="card">
+            <div >
+              <h2 >Instituto Superior Universitario Tecnológico del Azuay</h2>
+            </div>
+            <div class="card-body">
+              <form class="row" #userForm>
+                <div class="form-group col-md-4">
+                  <label for="inputRecibidoPor">Recibido Por:</label>
+                  <input #inputRecibidoPorRef type="text" class="form-control" placeholder="Nombre del Remitente" id="inputRecibidoPor" disabled/>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputCédulaR">Cédula:</label>
+                  <input #inputCédula2ERef type="text" class="form-control" placeholder="0101995892001" id="inputCédula2R" disabled />
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputFecha">Fecha:</label>
+                  <input  #inputFechaRef type="date" class="form-control" id="inputFecha" disabled/>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="row mt-4">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              
+            </div>
+          </div>
+        </div>
+      </section>
+      <section >
+        <div>
+          <table >
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Modelo</th>
+                <th>Marca</th>
+                <th>Estado</th>
+                <th>Tipo</th>
+                <th>Descripcion</th>
+                <th>Serie</th>
+                <th>Propietario</th>
+                <th>Precio</th>
+                <th>Ubicación</th>
+                <th>Categoria</th>
+                <th>Custodio</th>
+                <th>Lugar Constatado</th>
+              </tr>
+            </thead>
+            <!-- Aquí puedes agregar las filas de la tabla -->
+            <tbody>
+              <tr
+                *ngFor="let bien of bienesFiltrados "
+              >
+                <td>{{ bien.bien_cod }}</td>
+                <td>{{ bien.bien_modelo }}</td>
+                <td>{{ bien.bien_marca }}</td>
+                <td>{{ bien.bien_estado }}</td>
+                <td>{{ bien.bien_detalles }}</td>
+                <td>{{ bien.bien_descripcion }}</td>
+                <td>{{ bien.bien_serie }}</td>
+                <td>{{ bien.propietario.pro_nombre }}</td>
+                <td>{{ bien.bien_precio }}</td>
+                <td>{{ bien.ubicacion.ubi_nombre +'-' +bien.ubicacion.departamento}}</td>
+                <td>{{ bien.categoria.cat_nombre }}</td>
+                <td>
+                  {{ bien.usuario.persona.perPrimerNom }}
+                  {{ bien.usuario.persona.perApellidoPater }}
+                </td>
+                <td>{{bien.bien_descripcion_lugar}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <footer class="row mt-4">
+        <form class="row" id="formDetalle">
+            <div class="col mt-4" [class.ocultar-boton-generar]="!mostrarBotonGenerarActa">
+                <button class="btn btn-dark btn-lg" id="btnImprimirActa" (click)="imprimirReporte()" style="background-color: cornflowerblue;"  
+                [hidden]="!mostrarBotonGenerarActa">Guardar Acta</button>
+              </div>
+          </form>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

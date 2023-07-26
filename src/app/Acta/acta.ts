@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Usuario } from '../entities/usuario';
 import { UsuarioService } from '../services/usuario.service';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Bien } from '../entities/bien';
 import { BienesService } from '../services/bienes.service';
 import { tap } from 'rxjs/operators';
@@ -16,8 +16,8 @@ import { jsPDF } from 'jspdf';
 export class ActaComponent implements OnInit {
   usuarios: Usuario[] = [];
   usuariosRector: Usuario[] = [];
-  public registroBien: Bien[] = []; 
-   @ViewChild('reporte', { static: false }) el!: ElementRef;
+  public registroBien: Bien[] = [];
+  @ViewChild('reporte', { static: false }) el!: ElementRef;
   @ViewChild('inputNombreEntregaRef') inputNombreEntregaRef!: ElementRef;
   @ViewChild('inputCédulaERef') inputCédulaERef!: ElementRef;
   @ViewChild('inputRecibidoPorRef') inputRecibidoPorRef!: ElementRef;
@@ -28,24 +28,24 @@ export class ActaComponent implements OnInit {
   @ViewChild('inputNroActaRef', { static: false }) inputNroActaRef!: ElementRef;
   mostrarBotonGenerarActa: boolean = true;
   constructor(private usuarioService: UsuarioService,
-     private route: ActivatedRoute,
-     private router: Router,
-     private bienService: BienesService,) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private bienService: BienesService,) { }
 
   ngOnInit(): void {
     this.cargarRector();
     this.route.queryParams.subscribe((params) => {
-        const custodioId = params['custodioId'];
-        console.log('ID de usuario acta:',custodioId);
-        if (custodioId) {
-          this.loadCustodioDetails(custodioId);
-        }
-      });
-       this.ngAfterViewInit();
-      
-  
+      const custodioId = params['custodioId'];
+      console.log('ID de usuario acta:', custodioId);
+      if (custodioId) {
+        this.loadCustodioDetails(custodioId);
+      }
+    });
+    this.ngAfterViewInit();
+
+
   }
- 
+
   ngAfterViewInit(): void {
     // Obtener la fecha actual y asignarla al campo inputFecha
     const today = new Date();
@@ -75,7 +75,7 @@ export class ActaComponent implements OnInit {
       }
     });
   }
- 
+
   cargarRector(): void {
     this.usuarioService.getUsers().subscribe(users => {
       this.usuarios = users;
@@ -104,40 +104,43 @@ export class ActaComponent implements OnInit {
       )
       .subscribe();
   }
-    // Método para imprimir el acta
-   
-    imprimirReporte() {
-      this.mostrarBotonGenerarActa=false
+  // Método para imprimir el acta
+
+  imprimirReporte() {
+    const btnGuardar = document.getElementById('btnImprimirActa');
+
+    if(btnGuardar){
+      btnGuardar.style.display = 'none';
+      this.mostrarBotonGenerarActa = false
       const doc = new jsPDF();
       // Ajustamos la altura del contenedor principal al contenido
       const container = this.el.nativeElement;
       const originalHeight = container.style.height;
       container.style.height = 'auto';
-    
+      
       // Agregamos una clase CSS para ocultar el botón "Generar Acta" en el PDF
       container.classList.add('ocultar-boton-generar');
-    
+      
       doc.html(container, {
         callback: (pdf) => {
+          btnGuardar.style.display = 'block';
+
           // Restauramos la altura original del contenedor principal
           container.style.height = originalHeight;
-    
+          
           // Eliminamos la clase CSS para mostrar nuevamente el botón en la vista
           container.classList.remove('ocultar-boton-generar');
-    
+          
           pdf.save('.acta-transferencia');
         },
-        margin: [20, 0, 40, 0],
-        autoPaging: 'text',
-        x: 0,
-        y: 0,
-        width: doc.internal.pageSize.getWidth(),
-        windowWidth: 1000
-      });
-        this.router.navigate(['/bienes']);
-    }
-    
-  
-  
-  
+      margin: [20, 0, 40, 0],
+      autoPaging: 'text',
+      x: 0,
+      y: 0,
+      width: doc.internal.pageSize.getWidth(),
+      windowWidth: 1000
+    });
+    this.router.navigate(['/bienes']);
+  }
+  }
 }

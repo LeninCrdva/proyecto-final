@@ -36,6 +36,7 @@ import {RolComponent} from './rol/rol.component';
 import { ActaComponent } from './Acta/acta';
 import {historialActaComponent} from './historial/historial.acta';
 import { ActaPerdidoComponent } from './bienes/acta-perdido.component';
+import { ConstatacionComponent } from './constatacion/constatacion.component';
 
 const routes: Routes = [
   { path:'', redirectTo: '', pathMatch: 'full' },
@@ -65,6 +66,7 @@ const routes: Routes = [
   { path: 'superusuario', component: AdminPrincipal1Component },
   {path:'rol',component:RolComponent},
   {path:'acta',component:ActaComponent},
+  {path:'constatacion',component:ConstatacionComponent},
   {path:'historialActa',component:historialActaComponent},
   {path:'acta-perdidos', component: ActaPerdidoComponent}
 ];
@@ -99,6 +101,7 @@ const routes: Routes = [
     ActaComponent,
     historialActaComponent,
     ActaPerdidoComponent,
+    ConstatacionComponent,
 
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes),HttpClientModule,FormsModule],
