@@ -1,23 +1,27 @@
-<div class="container">
-    <!-- Botón para volver a la página anterior -->
-    <button class="btn btn-primary" (click)="volverPaginaAnterior()">Volver</button>
+<div class="container py-5">
+  <!-- Botón para volver a la página anterior -->
+  <button class="btn btn-primary" (click)="volverPaginaAnterior()">Volver</button>
   <h2>Perfil de usuario</h2>
-  <form>
+  <form class="py-2">
     <div class="mb-3">
       <label for="primerNombre" class="form-label">Primer Nombre</label>
-      <input type="text" class="form-control" id="primerNombre" name="primerNombre" [(ngModel)]="datosUsuario.primerNombre" readonly>
+      <input type="text" class="form-control" id="primerNombre" name="primerNombre"
+        [(ngModel)]="datosUsuario.primerNombre" readonly>
     </div>
     <div class="mb-3">
       <label for="segundoNombre" class="form-label">Segundo Nombre</label>
-      <input type="text" class="form-control" id="segundoNombre" name="segundoNombre" [(ngModel)]="datosUsuario.segundoNombre" readonly>
+      <input type="text" class="form-control" id="segundoNombre" name="segundoNombre"
+        [(ngModel)]="datosUsuario.segundoNombre" readonly>
     </div>
     <div class="mb-3">
       <label for="primerApellido" class="form-label">Primer Apellido</label>
-      <input type="text" class="form-control" id="primerApellido" name="primerApellido" [(ngModel)]="datosUsuario.apellidoPaterno" readonly>
+      <input type="text" class="form-control" id="primerApellido" name="primerApellido"
+        [(ngModel)]="datosUsuario.apellidoPaterno" readonly>
     </div>
     <div class="mb-3">
       <label for="segundoApellido" class="form-label">Segundo Apellido</label>
-      <input type="text" class="form-control" id="segundoApellido" name="segundoApellido" [(ngModel)]="datosUsuario.apellidoMaterno" readonly>
+      <input type="text" class="form-control" id="segundoApellido" name="segundoApellido"
+        [(ngModel)]="datosUsuario.apellidoMaterno" readonly>
     </div>
     <div class="mb-3">
       <label for="cedula" class="form-label">Cédula</label>
@@ -35,13 +39,15 @@
     <div class="mb-3">
       <label for="contrasenia" class="form-label">Contraseña</label>
       <div class="input-group">
-        <input type="password" class="form-control" id="contrasenia" name="contrasenia" [(ngModel)]="datosUsuario.contrasenia" [attr.type]="verContrasenia ? 'text' : 'password'" [readonly]="!verContrasenia">
+        <input type="password" class="form-control" id="contrasenia" name="contrasenia"
+          [(ngModel)]="datosUsuario.contrasenia" [attr.type]="verContrasenia ? 'text' : 'password'"
+          [readonly]="!verContrasenia">
         <button class="btn btn-outline-secondary" type="button" (click)="toggleContrasenia()">
-          <i class="fa" [ngClass]="{'fa-eye': verContrasenia, 'fa-eye-slash': !verContrasenia}" [class.tachar]="verContrasenia"></i>
+          <i class="fa" [ngClass]="{'fa-eye': verContrasenia, 'fa-eye-slash': !verContrasenia}"
+            [class.tachar]="verContrasenia"></i>
         </button>
       </div>
     </div>
-
   </form>
 </div>
 <app-footer></app-footer>
