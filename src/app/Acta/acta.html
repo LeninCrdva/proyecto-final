@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acta Transferencia de Bienes</title>
+  <title>Acta TRANSFERENCIA de Bienes</title>
 </head>
 <body class="bg-light">
   <div class="container"  id="reporte" #reporte>
-    <h2 style="color: red;">Acta Transferencia de Bienes</h2>
-    <hr />
+    <img src="assets/logo60.jpg" alt="Logo del encabezado del acta">
     <main>
+      <h2 >Acta Transferencia de Bienes</h2>
+                  <p>En la ciudad de Cuenca a la fecha <input  #inputFechaRefParra type="date" class="form-head" id="inputFecha" disabled/>se procede a la suscripción de la 
+                    siguiente acta de responsabilidad de bienes. Por parte del Mgst. <input #inputNombreEntregaRefParra type="text" class="form-head"id="inputNombreEntrega" disabled/>Rector del Instituto
+                    Universitario Superior Tecnológico del Azuay, quien entrega, y por otra parte el docente <input #inputRecibidoPorRefParra type="text" class="form-head" id="inputRecibidoPor" disabled/>se procede a la entrega de los bienes que a continuación se detalla:
+                  </p><br>
       <section class="row">
         <div class="col">
           <div class="card">
-            <div >
-              <h2 >Instituto Superior Universitario Tecnológico del Azuay</h2>
-            </div>
             <div class="card-body">
               <form class="row" #userForm>
                 <div class="form-group col-md-4">
@@ -61,7 +62,7 @@
                   <input #inputCorreoURef type="text" class="form-control" id="inputCorreoU" disabled >
                 </div>
                 <div class="col mt-4" [class.ocultar-boton-generar]="!mostrarBotonGenerarActa">
-                    <button class="btn btn-dark btn-lg" id="btnImprimirActa" (click)="imprimirReporte()" style="background-color: cornflowerblue;"  
+                    <button class="btn btn-dark btn-lg" id="btnImprimirActa" (click)="imprimirReporte()" style="background-color: #2060b3; border: none;"  
                     [hidden]="!mostrarBotonGenerarActa">Guardar Acta</button>
                   </div>
               </form>
@@ -69,6 +70,7 @@
           </div>
         </div>
       </section>
+      <br>
       <section >
         <div>
           <table >
@@ -116,8 +118,10 @@
       <footer class="row mt-4">
         <div class="col text-center">
           <p>Entregado por: __________________________________</p>
+          <p class="cargos">Rector del TecAzuay</p>
           <p>&nbsp;</p> <!-- Párrafo vacío que crea el espacio -->
           <p>Recibido por: _________________________________</p>
+          <p class="cargos">Directora de Carrera</p>
         </div>
       </footer>
     </main>

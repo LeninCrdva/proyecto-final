@@ -3,10 +3,27 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    border: none;
 }
-h2.display-4 {
-    font-size: 24px; /* Puedes ajustar el tamaño de la fuente según tus necesidades */
-    color: red; /* Puedes ajustar el color del título también */
+
+h2{
+    font-size: 36px; /* Puedes ajustar el tamaño de la fuente según tus necesidades */
+    color: #14407a;
+    margin: 30px;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+
+  }
+img {
+    border: none;
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.form-head {
+    border: none;
+    background-color: transparent;
   }
 /* Estilos para el footer */
 .footer {
@@ -17,7 +34,12 @@ h2.display-4 {
 
 /* Estilos para los párrafos */
 p {
-    margin: 0;
+    margin: 30px;
+    display: block;
+}
+.cargos{
+    font-size:11px;
+    margin-left: 90px;
 }
 
 /* Estilos para la línea horizontal */

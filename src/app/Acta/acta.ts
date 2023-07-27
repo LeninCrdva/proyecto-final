@@ -19,12 +19,15 @@ export class ActaComponent implements OnInit {
   public registroBien: Bien[] = [];
   @ViewChild('reporte', { static: false }) el!: ElementRef;
   @ViewChild('inputNombreEntregaRef') inputNombreEntregaRef!: ElementRef;
+  @ViewChild('inputNombreEntregaRefParra') inputNombreEntregaRefParra!: ElementRef;
   @ViewChild('inputCédulaERef') inputCédulaERef!: ElementRef;
   @ViewChild('inputRecibidoPorRef') inputRecibidoPorRef!: ElementRef;
+  @ViewChild('inputRecibidoPorRefParra') inputRecibidoPorRefParra!: ElementRef;
   @ViewChild('inputCédula2ERef') inputCédula2ERef!: ElementRef;
   @ViewChild('inputCódigoURef') inputCódigoURef!: ElementRef;
   @ViewChild('inputCorreoURef') inputCorreoURef!: ElementRef;
   @ViewChild('inputFechaRef', { static: false }) inputFechaRef!: ElementRef;
+  @ViewChild('inputFechaRefParra', { static: false }) inputFechaRefParra!: ElementRef;
   @ViewChild('inputNroActaRef', { static: false }) inputNroActaRef!: ElementRef;
   mostrarBotonGenerarActa: boolean = true;
   constructor(private usuarioService: UsuarioService,
@@ -54,6 +57,7 @@ export class ActaComponent implements OnInit {
     const day = today.getDate();
     const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
     this.inputFechaRef.nativeElement.value = formattedDate;
+    this.inputFechaRefParra.nativeElement.value = formattedDate;
     const randomNumber = Math.floor(Math.random() * 1000);
 
     // Formatear el número a un formato específico (por ejemplo, rellenar con ceros a la izquierda)
@@ -66,6 +70,7 @@ export class ActaComponent implements OnInit {
     this.usuarioService.getUserById(custodioId).subscribe((custodio) => {
       if (custodio) {
         this.inputRecibidoPorRef.nativeElement.value = custodio.persona.perPrimerNom + ' ' + custodio.persona.perApellidoMater;
+        this.inputRecibidoPorRefParra.nativeElement.value = custodio.persona.perPrimerNom + ' ' + custodio.persona.perApellidoMater;
         this.inputCédula2ERef.nativeElement.value = custodio.persona.perCedula;
         this.inputCódigoURef.nativeElement.value = custodio.usu_cod;
         this.inputCorreoURef.nativeElement.value = custodio.usuario;
@@ -88,6 +93,7 @@ export class ActaComponent implements OnInit {
         // Populate the form fields using the ElementRef references.
         this.inputNombreEntregaRef.nativeElement.value = rector.persona.perPrimerNom + ' ' + rector.persona.perApellidoMater;
         this.inputCédulaERef.nativeElement.value = rector.persona.perCedula;
+        this.inputNombreEntregaRefParra.nativeElement.value = rector.persona.perPrimerNom + ' ' + rector.persona.perApellidoMater;
         // Add similar lines for other form fields that need to be populated
       }
     });
