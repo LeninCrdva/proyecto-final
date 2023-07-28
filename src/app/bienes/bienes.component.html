@@ -1,42 +1,43 @@
 <app-headerSuper *ngIf="rolUsuario === ''"></app-headerSuper>
 <app-headerSuper *ngIf="rolUsuario === 'Rector'"></app-headerSuper>
 <app-header *ngIf="rolUsuario === 'Super Usuario'"></app-header>
-<div class="header">
-    <h1 style="margin-right: auto;">Panel De Bienes</h1>
-</div>
-<div class="card-body min-vh-100">
+<div class="container min-vh-100"> <br><br>
+    <div class="header">
+        <h1 style="margin-right: auto; color: #1976d5; font-weight: 600; 
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Panel de Bienes</h1>
+    </div>
     <div class="container">
         <div class="row">
-            <div class="col-sm">
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#FormIngresoModal">Ingresar
+            <div class="col">
+                <button class="btn btn-primary btn-sm btn-fixed-height" data-bs-toggle="modal" data-bs-target="#FormIngresoModal">Ingresar
                     bien</button>
             </div>
-            <div class="col-sm">
-                <button class="btn btn-primary btn-sm" (click)="CargaEditarBien()">Editar</button>
+            <div class="col">
+                <button class="btn btn-primary btn-sm btn-fixed" (click)="CargaEditarBien()">Editar</button>
             </div>
-            <div class="col-sm">
-                <button class="btn btn-primary btn-sm"  (click)="imprimirReporte()">Reporte de Bienes</button>
+            <div class="col">
+                <button class="btn btn-primary btn-sm btn-fixed-height"  (click)="imprimirReporte()">Reporte de Bienes</button>
             </div>
-            <div class="col-sm">
-                <button class="btn btn-primary btn-sm" [routerLink]="'/acta-perdidos'">Perdidos</button>
+            <div class="col">
+                <button class="btn btn-primary btn-sm btn-fixed" [routerLink]="'/acta-perdidos'">Perdidos</button>
             </div>
-            <div class="col-sm">
-                <button class="btn btn-primary btn-sm" (click)="BienesFiltro('activo')" >Activo</button>
+            <div class="col">
+                <button class="btn btn-primary btn-sm btn-fixed" (click)="BienesFiltro('activo')" >Activo</button>
             </div>
-            <div class="col-sm">
+            <div class="col">
                 <!--<a class="btn btn-primary" href="/acta-perdidos">Bienes Perdidos</a>-->
-                <button class="btn btn-primary btn-sm" (click)="BienesFiltro('inactivo')">Bienes Inactivos</button>
+                <button class="btn btn-primary btn-sm btn-fixed-height" (click)="BienesFiltro('inactivo')">Bienes Inactivos</button>
             </div> 
-            <div class="col-sm">
-                <button class="btn btn-primary btn-sm" (click)="CargaAsignarBien()">Asignar bien</button>
+            <div class="col">
+                <button class="btn btn-primary btn-sm btn-fixed-height" (click)="CargaAsignarBien()">Asignar bien</button>
             </div>
-            <div class="col-sm">
-                <button class="btn btn-primary btn-sm" (click)="cambiarEstado(true)">Activar</button>
+            <div class="col">
+                <button class="btn btn-primary btn-sm btn-fixed" (click)="cambiarEstado(true)">Activar</button>
             </div>
-            <div class="col-sm">
-                <button class="btn btn-primary btn-sm" (click)="cambiarEstado(false)">Desactivar</button>
+            <div class="col">
+                <button class="btn btn-primary btn-sm btn-fixed" (click)="cambiarEstado(false)">Desactivar</button>
             </div>
-            <div class="col-sm">
+            <div class="col">
                 <form action="" class="form">
                     <div class="form-group">
                         <input type="text" class="form-control typehead" name="argumento" id=""
@@ -86,8 +87,7 @@
             </tbody>
         </table>
     </div>
-</div>
-<div class="modal fade" id="FormIngresoModal" data-bs-backdrop="static" tabindex="-1"
+    <div class="modal fade" id="FormIngresoModal" data-bs-backdrop="static" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -103,4 +103,6 @@
         </div>
     </div>
 </div>
+</div>
+
 <app-footer></app-footer>
