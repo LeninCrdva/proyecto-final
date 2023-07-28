@@ -3,13 +3,13 @@
     <img class="imagen_header" src="../assets/Capa 2.png" alt="">
   </a>
   <div class="button-container">
-    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/ubicaciones">Ubicación</a>
     <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/bienes">Bien</a>
+    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/ingresobien" data-bs-toggle="modal" data-bs-target="#FormModal">Custodio</a>
+    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/constatacion">Constatación</a>
+    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/ubicaciones">Ubicación</a>
     <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/categorias">Categoría</a>
     <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/propietario">Propietario</a>
     <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/historial">Historial</a>
-    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/constatacion">Constatación</a>
-    <a class="btn" [ngClass]="{'disabled-link': !isPerfil}" href="/ingresobien" data-bs-toggle="modal" data-bs-target="#FormModal"> Custodio</a>
     <a class="btn btn-perfil" [ngClass]="{'disabled-link': !isPerfil}" href="/perfil">
       <ng-container *ngIf="usuario && usuario.primerNombre && usuario.apellidoPaterno; else sinDatos">
         <span class="btn-icon"><i class="fas fa-user-circle"></i></span>
