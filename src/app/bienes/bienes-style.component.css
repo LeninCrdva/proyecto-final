@@ -5,6 +5,16 @@ tr.selected {
 .btn-primary {
   background-color: #1976d5;
   font-weight: bolder;
+  margin: 2px 1px;
+}
+
+.btn-fixed-height {
+  height: 40px;
+  width: 140px;
+}
+.btn-fixed {
+  height: 40px;
+  width: 100px;
 }
 
 .modal-footer-form {
